@@ -69,7 +69,7 @@ nav.scrolled{background:rgba(26,0,16,0.92);backdrop-filter:blur(16px);border-bot
 .trust-icon{font-size:44px;margin-bottom:14px;display:block}
 .trust-card h3{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--white)}
 .trust-card p{font-size:14px;line-height:1.6;color:rgba(255,255,255,0.6)}
-.hero-visual{flex:0 0 340px;position:relative}
+.hero-visual{flex:0 0 340px;position:relative;display:flex;flex-direction:column;align-items:center}
 .phone-mockup{width:300px;height:600px;background:linear-gradient(180deg,#1a0010,#880E4F,#AD1457);border-radius:40px;border:3px solid rgba(255,255,255,0.15);box-shadow:0 40px 80px rgba(0,0,0,0.4);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
 .phone-mockup::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:100px;height:28px;background:rgba(0,0,0,0.5);border-radius:20px}
 .phone-logo{width:140px;height:140px;border-radius:36px;background:linear-gradient(135deg,#880E4F,#C2185B);display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 12px 32px rgba(0,0,0,0.3)}
@@ -77,7 +77,8 @@ nav.scrolled{background:rgba(26,0,16,0.92);backdrop-filter:blur(16px);border-bot
 .phone-text{text-align:center;color:var(--white);font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;margin-bottom:24px}
 .phone-btn{background:var(--white);color:var(--bg-mid);border-radius:30px;padding:12px 40px;font-weight:700;font-size:14px;margin-bottom:10px;width:80%}
 .phone-btn2{background:var(--bg-mid);border:1.5px solid rgba(255,255,255,0.4);color:var(--white);border-radius:30px;padding:12px 40px;font-weight:700;font-size:14px;width:80%}
-.phone-btn,.phone-btn2{text-align:center}
+.phone-btn,.phone-btn2{text-align:center;cursor:pointer;transition:transform .2s}
+.phone-btn:hover,.phone-btn2:hover{transform:scale(1.03)}
 
 /* ─── SECTION SHARED ─── */
 section{padding:100px 0}
@@ -177,7 +178,7 @@ footer{background:var(--bg-dark);padding:60px 0 32px;border-top:1px solid rgba(2
 .hero-text p{margin-left:auto;margin-right:auto}
 .hero-buttons{justify-content:center}
 .store-badges{justify-content:center}
-.hero-visual{flex:none;margin-top:40px}
+.hero-visual{flex:none;margin-top:20px;display:flex;flex-direction:column;align-items:center}
 .phone-mockup{width:240px;height:480px}
 .phone-logo{width:100px;height:100px;border-radius:28px}
 .phone-logo span{font-size:26px}
@@ -240,8 +241,8 @@ section{padding:70px 0}
 <div class="phone-mockup">
 <div class="phone-logo"><span>Nospi</span></div>
 <div class="phone-text">Tu dosis semanal<br>de conexión</div>
-<div class="phone-btn">Empezar</div>
-<div class="phone-btn2">Ya tengo cuenta</div>
+<a href="https://nospi.vercel.app" class="phone-btn" style="text-decoration:none;display:block">Empezar</a>
+<a href="https://nospi.vercel.app/login" class="phone-btn2" style="text-decoration:none;display:block">Ya tengo cuenta</a>
 </div>
 <div class="store-badges" style="margin-top:20px;justify-content:center">
 <a href="#" class="store-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.86 9.28 4.84C10.56 4.81 11.78 5.7 12.58 5.7C13.38 5.7 14.87 4.62 16.42 4.8C17.09 4.83 18.88 5.08 20.01 6.73C19.9 6.8 17.53 8.16 17.56 11.02C17.59 14.45 20.53 15.61 20.56 15.62C20.53 15.71 20.09 17.22 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg> App Store</a>
