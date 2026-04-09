@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eliminar Cuenta — Nospi</title>
+<link rel="icon" type="image/png" href="/nospi_icon.png">
+<meta name="description" content="Solicita la eliminación de tu cuenta y datos en Nospi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg-dark:#1a0010;--bg-mid:#880E4F;--bg-light:#AD1457;
+--pink:#F06292;--pink-soft:rgba(240,98,146,0.15);--pink-border:rgba(240,98,146,0.35);
+--white:#FFFFFF;--off-white:#FFF8FA;--text-dark:#1a0010;
+--radius-pill:50px;--radius-card:24px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--white);overflow-x:hidden;background:var(--bg-dark)}
+h1,h2,h3,h4{font-family:'Outfit',sans-serif}
+a{text-decoration:none;color:inherit}
+.container{max-width:800px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(26,0,16,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(240,98,146,0.1)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:28px;color:var(--white);letter-spacing:-1px}
+.nav-back{font-size:14px;font-weight:500;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:6px;transition:color .2s}
+.nav-back:hover{color:var(--white)}
+
+/* HERO */
+.page-hero{padding:140px 0 60px;text-align:center;background:linear-gradient(180deg,rgba(26,0,16,0.95) 0%,rgba(136,14,79,0.4) 100%)}
+.page-hero h1{font-size:clamp(32px,5vw,56px);font-weight:900;letter-spacing:-2px;margin-bottom:16px}
+.page-hero h1 span{background:linear-gradient(90deg,#F06292,#FFB74D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.55)}
+
+/* CONTENT */
+.content{padding:60px 0 100px}
+.section{margin-bottom:32px;background:rgba(255,255,255,0.04);border:1px solid rgba(240,98,146,0.12);border-radius:var(--radius-card);padding:36px}
+.section h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;margin-bottom:16px;color:var(--pink)}
+.section p{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.75);margin-bottom:12px}
+.section p:last-child{margin-bottom:0}
+.section ul{padding-left:20px;margin-top:8px}
+.section ul li{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.75);margin-bottom:6px}
+.section ul li::marker{color:var(--pink)}
+.highlight{color:var(--white);font-weight:600}
+.badge{display:inline-block;background:var(--pink-soft);border:1px solid var(--pink-border);color:var(--pink);font-size:13px;font-weight:600;padding:4px 14px;border-radius:var(--radius-pill);margin-bottom:20px}
+
+/* WARNING BOX */
+.warning{background:rgba(240,98,146,0.08);border:1px solid rgba(240,98,146,0.3);border-radius:16px;padding:20px 24px;margin-bottom:24px;display:flex;gap:14px;align-items:flex-start}
+.warning-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.warning p{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.8);margin:0}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:16px;margin-top:8px}
+.step{display:flex;gap:16px;align-items:flex-start}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--pink-soft);border:1px solid var(--pink-border);color:var(--pink);font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-text{font-size:15px;line-height:1.7;color:rgba(255,255,255,0.75);padding-top:4px}
+.step-text strong{color:var(--white)}
+
+/* BUTTONS */
+.btn-group{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#AD1457,#880E4F);color:var(--white);font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;padding:14px 28px;border-radius:var(--radius-pill);transition:opacity .2s;border:none;cursor:pointer}
+.btn-primary:hover{opacity:0.85}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,0.7);font-family:'DM Sans',sans-serif;font-weight:500;font-size:15px;padding:14px 28px;border-radius:var(--radius-pill);border:1px solid rgba(255,255,255,0.15);transition:all .2s}
+.btn-secondary:hover{border-color:var(--pink);color:var(--white)}
+
+/* FOOTER */
+footer{background:var(--bg-dark);border-top:1px solid rgba(240,98,146,0.1);padding:40px 0;text-align:center}
+footer p{font-size:14px;color:rgba(255,255,255,0.4)}
+footer a{color:var(--pink);transition:opacity .2s}
+footer a:hover{opacity:0.8}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Nospi</a>
+    <a href="/" class="nav-back">← Volver al inicio</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="badge">Cuenta</div>
+    <h1>Eliminar <span>tu cuenta</span></h1>
+    <p>Puedes solicitar la eliminación de tu cuenta y todos tus datos en cualquier momento.</p>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container">
+
+    <div class="section">
+      <h2>¿Qué se elimina?</h2>
+      <div class="warning">
+        <div class="warning-icon">⚠️</div>
+        <p>La eliminación de tu cuenta es <strong style="color:#F06292">permanente e irreversible</strong>. Una vez procesada, no podremos recuperar tu información.</p>
+      </div>
+      <p>Al eliminar tu cuenta se borrarán permanentemente:</p>
+      <ul>
+        <li>Tu perfil e información personal (nombre, foto, datos de contacto)</li>
+        <li>Tu historial de eventos y citas</li>
+        <li>Tus preferencias y configuraciones</li>
+        <li>Tu cuenta de acceso a Nospi</li>
+      </ul>
+      <p style="margin-top:16px">Los pagos ya realizados no son reembolsables una vez procesada la eliminación.</p>
+    </div>
+
+    <div class="section">
+      <h2>¿Cómo solicitar la eliminación?</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Contáctanos por cualquiera de los canales indicados abajo indicando tu <strong>email registrado en Nospi</strong> y el asunto <strong>"Eliminar cuenta"</strong>.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">Verificaremos tu identidad para proteger tu cuenta de eliminaciones no autorizadas.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">Procesaremos tu solicitud en un plazo máximo de <strong>7 días hábiles</strong> y te confirmaremos por email.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Canales de contacto</h2>
+      <p>Puedes contactarnos por cualquiera de estas vías:</p>
+      <div class="btn-group">
+        <a href="mailto:nospisocial@gmail.com?subject=Eliminar%20cuenta" class="btn-primary">
+          ✉️ Enviar email
+        </a>
+        <a href="https://wa.me/573192099123?text=Hola%2C%20quiero%20eliminar%20mi%20cuenta%20de%20Nospi" class="btn-secondary" target="_blank" rel="noopener">
+          💬 WhatsApp
+        </a>
+      </div>
+      <p style="margin-top:20px;font-size:14px;color:rgba(255,255,255,0.45)">Email: nospisocial@gmail.com · WhatsApp: +57 319 209 9123</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Nospi · <a href="/privacy.html">Privacidad</a> · <a href="/terms.html">Términos</a></p>
+</footer>
+
+</body>
+</html>
