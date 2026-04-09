@@ -44,27 +44,27 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rg
 .section ul{padding-left:20px;margin-top:8px}
 .section ul li{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.75);margin-bottom:6px}
 .section ul li::marker{color:var(--pink)}
-.highlight{color:var(--white);font-weight:600}
 .badge{display:inline-block;background:var(--pink-soft);border:1px solid var(--pink-border);color:var(--pink);font-size:13px;font-weight:600;padding:4px 14px;border-radius:var(--radius-pill);margin-bottom:20px}
-
-/* WARNING BOX */
 .warning{background:rgba(240,98,146,0.08);border:1px solid rgba(240,98,146,0.3);border-radius:16px;padding:20px 24px;margin-bottom:24px;display:flex;gap:14px;align-items:flex-start}
 .warning-icon{font-size:22px;flex-shrink:0;margin-top:2px}
 .warning p{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.8);margin:0}
-
-/* STEPS */
 .steps{display:flex;flex-direction:column;gap:16px;margin-top:8px}
 .step{display:flex;gap:16px;align-items:flex-start}
 .step-num{width:32px;height:32px;border-radius:50%;background:var(--pink-soft);border:1px solid var(--pink-border);color:var(--pink);font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .step-text{font-size:15px;line-height:1.7;color:rgba(255,255,255,0.75);padding-top:4px}
 .step-text strong{color:var(--white)}
 
-/* BUTTONS */
-.btn-group{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#AD1457,#880E4F);color:var(--white);font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;padding:14px 28px;border-radius:var(--radius-pill);transition:opacity .2s;border:none;cursor:pointer}
-.btn-primary:hover{opacity:0.85}
-.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,0.7);font-family:'DM Sans',sans-serif;font-weight:500;font-size:15px;padding:14px 28px;border-radius:var(--radius-pill);border:1px solid rgba(255,255,255,0.15);transition:all .2s}
-.btn-secondary:hover{border-color:var(--pink);color:var(--white)}
+/* CONTACT CARDS */
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px}
+@media(max-width:480px){.contact-grid{grid-template-columns:1fr}}
+.contact-card{display:flex;flex-direction:column;align-items:center;padding:32px 20px;border-radius:var(--radius-card);background:rgba(255,255,255,0.06);border:1px solid rgba(240,98,146,0.12);transition:transform .3s,border-color .3s;cursor:pointer}
+.contact-card:hover{transform:translateY(-6px);border-color:var(--pink-border)}
+.contact-icon{width:56px;height:56px;border-radius:50%;background:rgba(136,14,79,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.contact-card h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:4px}
+.contact-card p{font-size:13px;color:rgba(255,255,255,0.5)}
+
+/* MODAL */
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 
 /* FOOTER */
 footer{background:var(--bg-dark);border-top:1px solid rgba(240,98,146,0.1);padding:40px 0;text-align:center}
@@ -114,7 +114,7 @@ footer a:hover{opacity:0.8}
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
-          <div class="step-text">Contáctanos por cualquiera de los canales indicados abajo indicando tu <strong>email registrado en Nospi</strong> y el asunto <strong>"Eliminar cuenta"</strong>.</div>
+          <div class="step-text">Contáctanos usando cualquiera de los canales de abajo. Incluye tu <strong>email registrado en Nospi</strong> y el asunto <strong>"Eliminar cuenta"</strong>.</div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
@@ -128,25 +128,163 @@ footer a:hover{opacity:0.8}
     </div>
 
     <div class="section">
-      <h2>Canales de contacto</h2>
-      <p>Puedes contactarnos por cualquiera de estas vías:</p>
-      <div class="btn-group">
-        <a href="mailto:nospisocial@gmail.com?subject=Eliminar%20cuenta" class="btn-primary">
-          ✉️ Enviar email
+      <h2>Contáctanos</h2>
+      <p>Escríbenos por cualquiera de estos canales y procesamos tu solicitud:</p>
+      <div class="contact-grid">
+
+        <!-- Email — abre modal igual que landing -->
+        <div class="contact-card" onclick="openSupportModal()">
+          <div class="contact-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F06292" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <h3>Correo</h3>
+          <p>Envíanos un mensaje</p>
+        </div>
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/573192099123?text=Hola%2C%20quiero%20eliminar%20mi%20cuenta%20de%20Nospi" id="whatsapp-link" target="_blank" rel="noopener" class="contact-card" style="text-decoration:none">
+          <div class="contact-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#F06292"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <h3>WhatsApp</h3>
+          <p>Chatea con nosotros</p>
         </a>
-        <a href="https://wa.me/573192099123?text=Hola%2C%20quiero%20eliminar%20mi%20cuenta%20de%20Nospi" class="btn-secondary" target="_blank" rel="noopener">
-          💬 WhatsApp
-        </a>
+
       </div>
-      <p style="margin-top:20px;font-size:14px;color:rgba(255,255,255,0.45)">Email: nospisocial@gmail.com · WhatsApp: +57 319 209 9123</p>
     </div>
 
   </div>
+</div>
+
+<!-- MODAL DE SOPORTE (mismo que landing) -->
+<div id="supportModal" style="display:none;position:fixed;inset:0;z-index:200;align-items:flex-end;justify-content:center" onclick="if(event.target===this)closeSupportModal()">
+<div style="position:absolute;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px)"></div>
+<div style="position:relative;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;background:var(--white);border-radius:24px 24px 0 0;padding:32px 28px 40px;margin:0 auto;animation:slideUp .3s ease">
+
+<div id="supportFormState">
+<h3 style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:700;color:#880E4F;margin-bottom:6px">Solicitar eliminación</h3>
+<p style="font-size:15px;color:#666;margin-bottom:24px">Incluye tu email registrado en Nospi</p>
+
+<label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px">Nombre</label>
+<input id="supportName" type="text" placeholder="Tu nombre" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid #E5E7EB;background:#F3F4F6;color:#333;font-size:16px;font-family:'DM Sans',sans-serif;margin-bottom:14px;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#880E4F'" onblur="this.style.borderColor='#E5E7EB'">
+
+<label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px">Tu correo electrónico registrado en Nospi</label>
+<input id="supportEmail" type="email" placeholder="tu@correo.com" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid #E5E7EB;background:#F3F4F6;color:#333;font-size:16px;font-family:'DM Sans',sans-serif;margin-bottom:14px;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#880E4F'" onblur="this.style.borderColor='#E5E7EB'">
+
+<label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px">Mensaje</label>
+<textarea id="supportMessage" placeholder="Escribe: 'Solicito la eliminación de mi cuenta y todos mis datos de Nospi.'" rows="4" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid #E5E7EB;background:#F3F4F6;color:#333;font-size:16px;font-family:'DM Sans',sans-serif;margin-bottom:20px;outline:none;resize:vertical;min-height:110px;transition:border-color .2s" onfocus="this.style.borderColor='#880E4F'" onblur="this.style.borderColor='#E5E7EB'"></textarea>
+
+<button id="supportSubmitBtn" onclick="handleSupportSubmit()" style="width:100%;padding:16px;border-radius:12px;border:none;background:#880E4F;color:#fff;font-size:16px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:opacity .2s">Enviar solicitud</button>
+<p id="supportError" style="display:none;margin-top:12px;font-size:14px;color:#EF4444;text-align:center"></p>
+<button onclick="closeSupportModal()" style="width:100%;padding:14px;border-radius:12px;border:none;background:#E0E0E0;color:#333;font-size:16px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:12px">Cancelar</button>
+</div>
+
+<div id="supportSuccessState" style="display:none;text-align:center;padding:24px 0">
+<div style="width:72px;height:72px;border-radius:50%;background:#E8F5E9;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px">✓</div>
+<h3 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;color:#880E4F;margin-bottom:12px">¡Solicitud enviada!</h3>
+<p style="font-size:15px;color:#666;margin-bottom:4px">Te responderemos en máximo 7 días hábiles a</p>
+<p id="supportSuccessEmail" style="font-size:15px;color:#333;font-weight:600;margin-bottom:28px"></p>
+<button onclick="closeSupportModal()" style="width:100%;padding:14px;border-radius:12px;border:none;background:#880E4F;color:#fff;font-size:16px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer">Cerrar</button>
+</div>
+
+</div>
 </div>
 
 <footer>
   <p>© 2026 Nospi · <a href="/privacy.html">Privacidad</a> · <a href="/terms.html">Términos</a></p>
 </footer>
 
+<script>
+const SUPPORT_EDGE_URL = 'https://wjdiraurfbawotlcndmk.supabase.co/functions/v1/support-send-email';
+
+function openSupportModal() {
+  document.getElementById('supportModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSupportModal() {
+  document.getElementById('supportModal').style.display = 'none';
+  document.body.style.overflow = '';
+  document.getElementById('supportName').value = '';
+  document.getElementById('supportEmail').value = '';
+  document.getElementById('supportMessage').value = '';
+  document.getElementById('supportError').style.display = 'none';
+  document.getElementById('supportFormState').style.display = 'block';
+  document.getElementById('supportSuccessState').style.display = 'none';
+}
+
+async function handleSupportSubmit() {
+  const name = document.getElementById('supportName').value.trim();
+  const email = document.getElementById('supportEmail').value.trim();
+  const message = document.getElementById('supportMessage').value.trim();
+  const btn = document.getElementById('supportSubmitBtn');
+  const errorEl = document.getElementById('supportError');
+
+  errorEl.style.display = 'none';
+  if (!email || !message) {
+    errorEl.textContent = 'Por favor completa tu correo y el mensaje.';
+    errorEl.style.display = 'block';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errorEl.textContent = 'Por favor ingresa un correo válido.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  btn.style.opacity = '0.6';
+
+  try {
+    const response = await fetch(SUPPORT_EDGE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ senderEmail: email, senderName: name, message: 'SOLICITUD ELIMINACIÓN DE CUENTA\n\n' + message }),
+    });
+    if (!response.ok) throw new Error('Error ' + response.status);
+    document.getElementById('supportSuccessEmail').textContent = email;
+    document.getElementById('supportFormState').style.display = 'none';
+    document.getElementById('supportSuccessState').style.display = 'block';
+  } catch (err) {
+    document.getElementById('supportError').textContent = 'No se pudo enviar. Intenta por WhatsApp.';
+    document.getElementById('supportError').style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Enviar solicitud';
+    btn.style.opacity = '1';
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSupportModal(); });
+
+// Carga dinámica desde Supabase app_config (igual que landing principal)
+(async function loadAppConfig() {
+  const SUPABASE_URL = 'https://wjdiraurfbawotlcndmk.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/app_config?select=key,value`, {
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      }
+    });
+    if (!res.ok) return;
+    const rows = await res.json();
+    const config = {};
+    rows.forEach(r => { config[r.key] = r.value; });
+
+    // Actualizar link de WhatsApp dinámicamente
+    if (config.support_whatsapp) {
+      const waLink = document.getElementById('whatsapp-link');
+      if (waLink) {
+        waLink.href = `https://wa.me/${config.support_whatsapp}?text=Hola%2C%20quiero%20eliminar%20mi%20cuenta%20de%20Nospi`;
+      }
+    }
+  } catch (err) {
+    console.warn('[AppConfig] Usando valores por defecto.', err);
+  }
+})();
+</script>
 </body>
 </html>
