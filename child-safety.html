@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seguridad de Menores — Nospi</title>
+<link rel="icon" type="image/png" href="/nospi_icon.png">
+<meta name="description" content="Estándares de seguridad de menores de Nospi. Conoce cómo protegemos a los menores de edad en nuestra plataforma.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg-dark:#1a0010;--bg-mid:#880E4F;--bg-light:#AD1457;
+--pink:#F06292;--pink-soft:rgba(240,98,146,0.15);--pink-border:rgba(240,98,146,0.35);
+--white:#FFFFFF;--off-white:#FFF8FA;--text-dark:#1a0010;
+--radius-pill:50px;--radius-card:24px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--white);overflow-x:hidden;background:var(--bg-dark)}
+h1,h2,h3,h4{font-family:'Outfit',sans-serif}
+a{text-decoration:none;color:inherit}
+.container{max-width:800px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(26,0,16,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(240,98,146,0.1)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:28px;color:var(--white);letter-spacing:-1px}
+.nav-back{font-size:14px;font-weight:500;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:6px;transition:color .2s}
+.nav-back:hover{color:var(--white)}
+
+/* HERO */
+.page-hero{padding:140px 0 60px;text-align:center;background:linear-gradient(180deg,rgba(26,0,16,0.95) 0%,rgba(136,14,79,0.4) 100%)}
+.page-hero h1{font-size:clamp(32px,5vw,56px);font-weight:900;letter-spacing:-2px;margin-bottom:16px}
+.page-hero h1 span{background:linear-gradient(90deg,#F06292,#FFB74D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.55)}
+
+/* CONTENT */
+.content{padding:60px 0 100px}
+.section{margin-bottom:48px;background:rgba(255,255,255,0.04);border:1px solid rgba(240,98,146,0.12);border-radius:var(--radius-card);padding:36px}
+.section h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;margin-bottom:16px;color:var(--pink)}
+.section p{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.75);margin-bottom:12px}
+.section p:last-child{margin-bottom:0}
+.section ul{padding-left:20px;margin-top:8px}
+.section ul li{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.75);margin-bottom:6px}
+.section ul li::marker{color:var(--pink)}
+.highlight{color:var(--white);font-weight:600}
+.badge{display:inline-block;background:var(--pink-soft);border:1px solid var(--pink-border);color:var(--pink);font-size:13px;font-weight:600;padding:4px 14px;border-radius:var(--radius-pill);margin-bottom:20px}
+
+/* ALERT BOX */
+.alert{background:rgba(240,98,146,0.1);border:1px solid rgba(240,98,146,0.4);border-radius:16px;padding:20px 24px;margin-bottom:16px;display:flex;align-items:flex-start;gap:14px}
+.alert-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.alert p{margin-bottom:0;color:rgba(255,255,255,0.85)}
+
+/* FOOTER */
+footer{background:var(--bg-dark);border-top:1px solid rgba(240,98,146,0.1);padding:40px 0;text-align:center}
+footer p{font-size:14px;color:rgba(255,255,255,0.4)}
+footer a{color:var(--pink);transition:opacity .2s}
+footer a:hover{opacity:0.8}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Nospi</a>
+    <a href="/" class="nav-back">← Volver al inicio</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="badge">Seguridad</div>
+    <h1>Seguridad de <span>Menores</span></h1>
+    <p>Última actualización: abril 2026</p>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container">
+
+    <div class="section">
+      <h2>1. Plataforma exclusiva para mayores de 18 años</h2>
+      <div class="alert">
+        <div class="alert-icon">🔞</div>
+        <p><span class="highlight">Nospi es una plataforma estrictamente para mayores de 18 años.</span> No está dirigida a menores de edad ni permite su registro o participación bajo ninguna circunstancia.</p>
+      </div>
+      <p>Al registrarse, todos los usuarios confirman explícitamente ser mayores de 18 años. Nos reservamos el derecho de eliminar cualquier cuenta que no cumpla con este requisito.</p>
+    </div>
+
+    <div class="section">
+      <h2>2. Nuestro compromiso contra el CSAM</h2>
+      <p>Nospi tiene una política de <span class="highlight">tolerancia cero</span> frente a cualquier forma de explotación o abuso sexual infantil (CSAM — Child Sexual Abuse Material).</p>
+      <ul>
+        <li>Está estrictamente prohibido publicar, compartir o distribuir cualquier contenido que involucre a menores de edad de forma sexual o inapropiada.</li>
+        <li>Cualquier contenido de este tipo será eliminado de inmediato y la cuenta responsable será suspendida permanentemente.</li>
+        <li>Reportaremos de forma proactiva cualquier caso detectado a las autoridades competentes de Colombia y a los organismos internacionales correspondientes.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>3. Mecanismos de denuncia</h2>
+      <p>Nospi permite y facilita que los usuarios denuncien cualquier comportamiento o contenido inapropiado que involucre a menores:</p>
+      <ul>
+        <li><span class="highlight">Dentro de la app:</span> los usuarios pueden reportar contenido directamente desde la aplicación móvil.</li>
+        <li><span class="highlight">Por correo electrónico:</span> cualquier persona puede enviar una denuncia a <span class="highlight">nospisocial@gmail.com</span> con el asunto "Reporte de seguridad".</li>
+        <li><span class="highlight">Por WhatsApp:</span> también puedes contactarnos al <span class="highlight">+57 319 209 9123</span>.</li>
+      </ul>
+      <p>Todas las denuncias son tratadas con urgencia y confidencialidad.</p>
+    </div>
+
+    <div class="section">
+      <h2>4. Cumplimiento legal</h2>
+      <p>Nospi cumple con todas las leyes colombianas e internacionales aplicables en materia de protección de menores, incluyendo:</p>
+      <ul>
+        <li>Ley 679 de 2001 (Colombia) — Estatuto para prevenir y contrarrestar la explotación, pornografía y turismo sexual con menores.</li>
+        <li>Código de la Infancia y la Adolescencia (Ley 1098 de 2006).</li>
+        <li>Convenio de Budapest sobre ciberdelincuencia en lo relativo al CSAM.</li>
+      </ul>
+      <p>Las denuncias sobre contenido de abuso sexual infantil detectado en nuestra plataforma serán reportadas a las autoridades competentes, incluyendo la Policía Nacional de Colombia y el ICBF cuando corresponda.</p>
+    </div>
+
+    <div class="section">
+      <h2>5. Verificación de edad y moderación</h2>
+      <p>Para garantizar que solo adultos accedan a Nospi aplicamos las siguientes medidas:</p>
+      <ul>
+        <li>Confirmación obligatoria de mayoría de edad durante el registro.</li>
+        <li>La app está clasificada como contenido para <span class="highlight">mayores de 18 años</span> en Google Play y App Store.</li>
+        <li>Revisión manual de reportes relacionados con la seguridad de usuarios.</li>
+        <li>Suspensión inmediata de cuentas que violen nuestras políticas.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>6. Contacto de seguridad designado</h2>
+      <p>El punto de contacto designado para asuntos relacionados con la seguridad de menores y cumplimiento de estándares CSAM es:</p>
+      <p><span class="highlight">nospisocial@gmail.com</span></p>
+      <p>Este contacto está disponible para comunicarse con autoridades, investigadores y organizaciones de protección infantil sobre prácticas de cumplimiento y reportes.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Nospi · <a href="/privacy.html">Privacidad</a> · <a href="/terms.html">Términos</a> · <a href="/child-safety.html">Seguridad de Menores</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
