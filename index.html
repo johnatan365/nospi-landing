@@ -195,6 +195,28 @@ footer{background:var(--bg-dark);padding:60px 0 32px;border-top:1px solid rgba(2
 /* ─── CTA CENTER ─── */
 .cta-center{text-align:center;margin-top:16px}
 
+/* ─── EVENTOS ─── */
+.eventos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.evento-card{border-radius:var(--radius-card);background:rgba(255,255,255,0.06);border:1px solid rgba(240,98,146,0.2);overflow:hidden;transition:transform .3s,border-color .3s;display:flex;flex-direction:column}
+.evento-card:hover{transform:translateY(-6px);border-color:var(--pink-border)}
+.evento-header{padding:20px 24px 16px;border-bottom:1px solid rgba(240,98,146,0.12)}
+.evento-tipo{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--pink);background:rgba(240,98,146,0.12);padding:4px 10px;border-radius:20px;margin-bottom:10px}
+.evento-nombre{font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:0}
+.evento-body{padding:16px 24px;flex:1;display:flex;flex-direction:column;gap:10px}
+.evento-info{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,0.65)}
+.evento-info span:first-child{font-size:16px;flex-shrink:0}
+.evento-cupos{display:flex;align-items:center;gap:8px;font-size:13px;margin-top:4px}
+.evento-cupos-bar{flex:1;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden}
+.evento-cupos-fill{height:100%;background:linear-gradient(90deg,var(--pink),#FFB74D);border-radius:2px;transition:width .5s}
+.evento-cupos-text{font-size:12px;color:rgba(255,255,255,0.5);white-space:nowrap}
+.evento-footer{padding:16px 24px;border-top:1px solid rgba(240,98,146,0.08)}
+.evento-btn{display:block;text-align:center;background:var(--white);color:var(--bg-mid);padding:12px 24px;border-radius:var(--radius-pill);font-weight:700;font-size:15px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.evento-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.25)}
+.evento-btn.lleno{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.4);cursor:not-allowed;pointer-events:none}
+.eventos-loading{text-align:center;padding:60px 0;color:rgba(255,255,255,0.4);font-size:16px}
+.eventos-empty{text-align:center;padding:60px 0;color:rgba(255,255,255,0.4);font-size:16px}
+@media(max-width:900px){.eventos-grid{grid-template-columns:1fr}}
+
 /* ─── SCROLL REVEAL ─── */
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -335,6 +357,20 @@ section{padding:70px 0}
 </div>
 </div>
 <div class="cta-center reveal"><a href="https://app.nospi.co" class="btn-primary">Reserva tu primer evento →</a></div>
+</div>
+</section>
+
+<!-- PRÓXIMOS EVENTOS -->
+<section class="section-dark" id="eventos" style="border-top:1px solid rgba(240,98,146,0.08)">
+<div class="container">
+<h2 class="section-title reveal">Próximos eventos</h2>
+<p class="section-subtitle reveal" style="color:rgba(255,255,255,0.6)">Elige el que más te llame y reserva tu cupo. Son grupos pequeños — los cupos se van rápido.</p>
+<div id="eventos-container">
+  <div class="eventos-loading">Cargando eventos... ✨</div>
+</div>
+<div class="cta-center reveal" style="margin-top:40px">
+  <a href="https://app.nospi.co" class="btn-primary">Ver todos los eventos →</a>
+</div>
 </div>
 </section>
 
@@ -668,6 +704,100 @@ section{padding:70px 0}
 </footer>
 
 <script>
+// ════════════════════════════════════════════════════════
+// EVENTOS — Carga en tiempo real desde Supabase
+// ════════════════════════════════════════════════════════
+(async function loadEventos() {
+  const SUPABASE_URL = 'https://wjdiraurfbawotlcndmk.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
+  const container = document.getElementById('eventos-container');
+
+  const TIPO_EMOJI = { bar: '🍻', restaurante: '🍽️', default: '✨' };
+  const TIPO_LABEL = { bar: 'Bar', restaurante: 'Restaurante', default: 'Evento' };
+
+  function formatFecha(dateStr, timeStr) {
+    const date = new Date(dateStr);
+    const dias = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+    const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    const dia = dias[date.getUTCDay()];
+    const num = date.getUTCDate();
+    const mes = meses[date.getUTCMonth()];
+    const hora = timeStr ? timeStr.slice(0,5) : '';
+    return `${dia} ${num} ${mes}${hora ? ' · ' + hora : ''}`;
+  }
+
+  function renderEventos(events) {
+    if (!events || events.length === 0) {
+      container.innerHTML = '<div class="eventos-empty">No hay eventos disponibles por el momento. ¡Vuelve pronto! 🗓️</div>';
+      return;
+    }
+
+    const grid = document.createElement('div');
+    grid.className = 'eventos-grid';
+
+    events.forEach(ev => {
+      const max = ev.max_participants || 6;
+      const actual = ev.current_participants || 0;
+      const disponibles = max - actual;
+      const lleno = disponibles <= 0;
+      const pct = Math.min(100, Math.round((actual / max) * 100));
+      const tipo = ev.type || 'default';
+      const emoji = TIPO_EMOJI[tipo] || TIPO_EMOJI.default;
+      const label = TIPO_LABEL[tipo] || TIPO_LABEL.default;
+      const lugar = ev.location_name || ev.location || 'Medellín';
+      const direccion = ev.location_address || '';
+      const fecha = formatFecha(ev.date, ev.time);
+
+      const card = document.createElement('div');
+      card.className = 'evento-card reveal';
+      card.innerHTML = `
+        <div class="evento-header">
+          <div class="evento-tipo">${emoji} ${label}</div>
+          <div class="evento-nombre">${ev.name}</div>
+        </div>
+        <div class="evento-body">
+          <div class="evento-info"><span>📅</span><span>${fecha}</span></div>
+          <div class="evento-info"><span>📍</span><span>${lugar}${direccion ? ' — ' + direccion : ''}</span></div>
+          <div class="evento-info"><span>👥</span><span>Grupos de ${max} personas</span></div>
+          <div class="evento-cupos">
+            <div class="evento-cupos-bar"><div class="evento-cupos-fill" style="width:${pct}%"></div></div>
+            <div class="evento-cupos-text">${lleno ? 'Sin cupos' : disponibles + ' cupo' + (disponibles !== 1 ? 's' : '') + ' disponible' + (disponibles !== 1 ? 's' : '')}</div>
+          </div>
+        </div>
+        <div class="evento-footer">
+          <a href="https://app.nospi.co" class="evento-btn${lleno ? ' lleno' : ''}">${lleno ? 'Sin cupos disponibles' : 'Quiero ir →'}</a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    container.innerHTML = '';
+    container.appendChild(grid);
+
+    // Activar scroll reveal para las nuevas cards
+    document.querySelectorAll('.evento-card.reveal').forEach(el => observer.observe(el));
+  }
+
+  try {
+    const today = new Date().toISOString().split('T')[0];
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/events?select=id,name,description,date,time,location_name,location_address,type,max_participants,current_participants,status&status=neq.cancelada&date=gte.${today}&order=date.asc&limit=6`,
+      {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        }
+      }
+    );
+    if (!res.ok) throw new Error('Error ' + res.status);
+    const events = await res.json();
+    renderEventos(events);
+  } catch (err) {
+    console.warn('[Eventos] Error cargando eventos:', err);
+    container.innerHTML = '<div class="eventos-empty">No pudimos cargar los eventos. <a href="https://app.nospi.co" style="color:var(--pink)">Ver en la app →</a></div>';
+  }
+})();
+
 // Navbar scroll effect
 window.addEventListener('scroll',()=>{
 document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50)
