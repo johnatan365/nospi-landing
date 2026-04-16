@@ -718,8 +718,13 @@ section{padding:70px 0}
   const TIPO_LABEL = { bar: 'Bar', restaurante: 'Restaurante', default: 'Evento' };
 
   function formatFecha(dateStr, timeStr) {
-    const partes = dateStr.split('T')[0].split('-');
+    // Supabase devuelve "2026-04-24 02:00:00+00" — tomamos solo YYYY-MM-DD
+    const soloFecha = dateStr.replace('T', ' ').split(' ')[0];
+    const partes = soloFecha.split('-');
     const date = new Date(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2]));
+    // Ajustar a Colombia UTC-5: si la hora UTC es < 5, restar un día
+    const horaUTC = parseInt(dateStr.replace('T',' ').split(' ')[1].split(':')[0]);
+    if (horaUTC < 5) date.setDate(date.getDate() - 1);
     const dias = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
     const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
     const dia = dias[date.getDay()];
