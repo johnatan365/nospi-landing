@@ -277,7 +277,7 @@ section{padding:70px 0}
 <a href="#experiencias" onclick="this.parentElement.classList.remove('open')">Experiencias</a>
 <a href="#testimonios" onclick="this.parentElement.classList.remove('open')">Testimonios</a>
 <a href="#soporte" onclick="this.parentElement.classList.remove('open')">Soporte</a>
-<a onclick="fbq('track','Lead')" href="https://app.nospi.co/login" onclick="this.parentElement.classList.remove('open')">Iniciar sesión</a>
+<a href="https://app.nospi.co/login" onclick="this.parentElement.classList.remove('open')">Iniciar sesión</a>
 <a onclick="fbq('track','Lead')" href="https://app.nospi.co" style="background:var(--white);color:var(--bg-mid);padding:14px 40px;border-radius:var(--radius-pill);font-weight:700">Regístrate</a>
 </div>
 
@@ -773,7 +773,7 @@ section{padding:70px 0}
           </div>
         </div>
         <div class="evento-footer">
-          <a onclick="fbq('track','Lead')" href="https://app.nospi.co" class="evento-btn${lleno ? ' lleno' : ''}">${lleno ? 'Sin cupos disponibles' : 'Quiero ir →'}</a>
+          <a href="https://app.nospi.co" onclick="fbq('track','Lead')" class="evento-btn${lleno ? ' lleno' : ''}">${lleno ? 'Sin cupos disponibles' : 'Quiero ir →'}</a>
         </div>
       `;
       grid.appendChild(card);
@@ -802,7 +802,7 @@ section{padding:70px 0}
     renderEventos(events);
   } catch (err) {
     console.warn('[Eventos] Error cargando eventos:', err);
-    container.innerHTML = '<div class="eventos-empty">No pudimos cargar los eventos. <a onclick="fbq('track','Lead')" href="https://app.nospi.co" style="color:var(--pink)">Ver en la app →</a></div>';
+    container.innerHTML = '<div class="eventos-empty">No pudimos cargar los eventos. <a href="https://app.nospi.co" onclick="fbq(\'track\',\'Lead\')" style="color:var(--pink)">Ver en la app →</a></div>';
   }
 })();
 
