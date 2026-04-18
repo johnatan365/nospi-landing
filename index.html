@@ -828,16 +828,13 @@ function trackLandingClick() {
   try {
     const deviceId = getLandingDeviceId();
     const now = new Date().toISOString();
-    fetch(`${SUPA_URL}/rest/v1/onboarding_sessions`, {
-      method: 'POST',
-      headers: {
-        'apikey': SUPA_KEY,
-        'Authorization': `Bearer ${SUPA_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      keepalive: true,
-      body: JSON.stringify({ device_id: deviceId, last_step: 'landing_click', created_at: now, updated_at: now })
-    }).catch(e => console.warn('[LandingTrack] Error:', e));
+    // Usar XMLHttpRequest síncrono — no se cancela al navegar
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', `${SUPA_URL}/rest/v1/onboarding_sessions`, false); // false = síncrono
+    xhr.setRequestHeader('apikey', SUPA_KEY);
+    xhr.setRequestHeader('Authorization', `Bearer ${SUPA_KEY}`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ device_id: deviceId, last_step: 'landing_click', created_at: now, updated_at: now }));
   } catch(e) {
     console.warn('[LandingTrack] Error:', e);
   }
@@ -849,7 +846,7 @@ function trackLead(url) {
     fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()});
   } catch(e) {}
   trackLandingClick();
-  setTimeout(function(){ window.location.href = url; }, 500);
+  window.location.href = url;
   return false;
 }
 
