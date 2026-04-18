@@ -829,16 +829,14 @@ async function trackLandingClick() {
     const deviceId = getLandingDeviceId();
     const now = new Date().toISOString();
 
-    // Upsert nativo: insert o update si ya existe el device_id
     await fetch(`${SUPA_URL}/rest/v1/onboarding_sessions`, {
       method: 'POST',
       headers: {
         'apikey': SUPA_KEY,
         'Authorization': `Bearer ${SUPA_KEY}`,
-        'Content-Type': 'application/json',
-        'Prefer': 'resolution=merge-duplicates'
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ device_id: deviceId, last_step: 'landing_click', updated_at: now, created_at: now })
+      body: JSON.stringify({ device_id: deviceId, last_step: 'landing_click', created_at: now, updated_at: now })
     });
   } catch(e) {
     console.warn('[LandingTrack] Error:', e);
