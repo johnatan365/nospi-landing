@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nospi — Conoce tu gente en Medellín</title>
+<link rel="icon" type="image/png" href="/nospi_icon.png">
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '9567012776734114');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=9567012776734114&ev=PageView&noscript=1"/></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#F7F2EE;--dark:#1A0A0F;--accent:#D4145A;--accent2:#FF6B9D;--warm:#F5E6D3}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;background:rgba(247,242,238,0.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.06)}
+.nav-logo{font-size:20px;font-weight:800;color:var(--accent)}
+.nav-cta{background:var(--accent);color:#fff;font-size:13px;font-weight:700;padding:10px 24px;border-radius:100px;transition:transform .2s}
+.nav-cta:hover{transform:translateY(-2px)}
+
+/* HERO */
+.hero{min-height:100svh;padding:100px 24px 60px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative}
+
+.tag{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:28px}
+
+h1{font-size:clamp(36px,6vw,80px);font-weight:800;line-height:1;letter-spacing:-3px;margin-bottom:20px;max-width:800px}
+h1 .line2{font-family:'Lora',serif;font-style:italic;font-weight:600;color:var(--accent);display:block}
+
+.hero-sub{font-size:18px;font-weight:400;color:#666;max-width:520px;line-height:1.6;margin-bottom:48px;font-family:'Lora',serif;font-style:italic}
+
+/* EVENT BOX */
+.event-box{background:var(--dark);border-radius:24px;padding:28px 36px;display:inline-flex;align-items:center;gap:32px;margin-bottom:40px;flex-wrap:wrap;justify-content:center}
+@media(max-width:600px){.event-box{padding:20px 24px;gap:20px}}
+.ev-item{text-align:center}
+.ev-item .v{font-family:'Lora',serif;font-size:22px;font-weight:600;color:#fff}
+.ev-item .l{font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
+.ev-sep{width:1px;height:36px;background:rgba(255,255,255,0.1)}
+.ev-price .v{color:var(--accent2);font-size:28px}
+
+.cta-group{display:flex;flex-direction:column;align-items:center;gap:12px}
+.cta-btn{background:var(--accent);color:#fff;font-size:18px;font-weight:700;padding:20px 56px;border-radius:100px;transition:transform .2s,box-shadow .2s;display:inline-block}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(212,20,90,0.35)}
+.cta-sub{font-size:13px;color:#999}
+
+/* PARA TI */
+.para-ti{background:var(--warm);padding:80px 24px}
+.para-ti-inner{max-width:800px;margin:0 auto}
+.para-ti h2{font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-1.5px;margin-bottom:8px}
+.para-ti .intro{font-family:'Lora',serif;font-style:italic;font-size:18px;color:#888;margin-bottom:40px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:500px){.checks{grid-template-columns:1fr}}
+.check{display:flex;align-items:flex-start;gap:12px;background:#fff;border-radius:14px;padding:18px 20px}
+.check-icon{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.check p{font-size:14px;line-height:1.5;color:#444}
+.check p strong{color:var(--dark);display:block;margin-bottom:2px}
+
+/* COMO */
+.como{background:var(--bg);padding:80px 24px;text-align:center}
+.como h2{font-size:clamp(26px,3vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:48px}
+.pasos{display:flex;align-items:flex-start;gap:0;max-width:700px;margin:0 auto 48px;position:relative}
+.pasos::before{content:'';position:absolute;top:20px;left:60px;right:60px;height:1px;background:rgba(0,0,0,0.1);z-index:0}
+@media(max-width:600px){.pasos{flex-direction:column;align-items:center}.pasos::before{display:none}}
+.paso{flex:1;text-align:center;position:relative;z-index:1}
+.paso-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.paso h3{font-size:14px;font-weight:700;margin-bottom:6px}
+.paso p{font-size:12px;color:#888;line-height:1.5}
+
+/* TESTIMONIOS */
+.testimonios{background:var(--dark);padding:80px 24px;text-align:center}
+.testimonios h2{font-size:clamp(26px,3vw,38px);font-weight:800;color:#fff;margin-bottom:40px;letter-spacing:-1px}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto 48px}
+@media(max-width:600px){.test-grid{grid-template-columns:1fr}}
+.test{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px;text-align:left}
+.test-stars{color:#F5A623;font-size:12px;letter-spacing:2px;margin-bottom:10px}
+.test q{font-family:'Lora',serif;font-style:italic;font-size:14px;color:rgba(255,255,255,0.7);line-height:1.6;display:block;margin-bottom:12px}
+.test-name{font-size:12px;font-weight:700;color:rgba(255,255,255,0.4)}
+
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.05);padding:20px;text-align:center;font-size:12px;color:rgba(255,255,255,0.2)}
+footer a{color:rgba(255,255,255,0.3);margin:0 8px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Nospi</div>
+  <a href="https://app.nospi.co" class="nav-cta" id="cta-nav">Reservar</a>
+</nav>
+
+<section class="hero">
+  <div class="tag">Solo mujeres · Medellín</div>
+  <h1>¿Todavía no tienes<br><span class="line2">tu grupo en Medellín?</span></h1>
+  <p class="hero-sub">Encuentra amigas reales en un encuentro grupal. Sin apps de citas, sin chat interminable.</p>
+
+  <div class="event-box">
+    <div class="ev-item">
+      <div class="v">Voraz Laureles</div>
+      <div class="l">Lugar</div>
+    </div>
+    <div class="ev-sep"></div>
+    <div class="ev-item">
+      <div class="v">Mié 22 Abr</div>
+      <div class="l">Fecha</div>
+    </div>
+    <div class="ev-sep"></div>
+    <div class="ev-item">
+      <div class="v">19:00</div>
+      <div class="l">Hora</div>
+    </div>
+    <div class="ev-sep"></div>
+    <div class="ev-item ev-price">
+      <div class="v">$9.900</div>
+      <div class="l">Entrada</div>
+    </div>
+  </div>
+
+  <div class="cta-group">
+    <a href="https://app.nospi.co" class="cta-btn" id="cta-hero">Quiero mi lugar →</a>
+    <span class="cta-sub">Grupos de 6 personas · Cupos limitados</span>
+  </div>
+</section>
+
+<section class="para-ti">
+  <div class="para-ti-inner">
+    <h2>Nospi es para ti si...</h2>
+    <p class="intro">No importa si llevas años o llegaste hace poco</p>
+    <div class="checks">
+      <div class="check">
+        <div class="check-icon">✓</div>
+        <p><strong>Eres nueva en Medellín</strong> y quieres construir tu círculo social desde cero</p>
+      </div>
+      <div class="check">
+        <div class="check-icon">✓</div>
+        <p><strong>Tus amigas no pueden salir</strong> y quieres conocer más gente con quien salir</p>
+      </div>
+      <div class="check">
+        <div class="check-icon">✓</div>
+        <p><strong>Estás cansada del chat</strong> sin fin que nunca lleva a un plan real</p>
+      </div>
+      <div class="check">
+        <div class="check-icon">✓</div>
+        <p><strong>Quieres un plan diferente</strong> este miércoles con personas interesantes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="como">
+  <h2>Así funciona</h2>
+  <div class="pasos">
+    <div class="paso">
+      <div class="paso-num">1</div>
+      <h3>Reserva</h3>
+      <p>Paga $9.900 y confirma tu cupo en segundos</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">2</div>
+      <h3>Llega</h3>
+      <p>Te enviamos la dirección el mismo día</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">3</div>
+      <h3>Conéctate</h3>
+      <p>Juego rompe-hielo · buena comida · buena gente</p>
+    </div>
+  </div>
+  <a href="https://app.nospi.co" class="cta-btn" id="cta-como">Reservar para el miércoles →</a>
+</section>
+
+<section class="testimonios">
+  <h2>Lo que dicen ellas</h2>
+  <div class="test-grid">
+    <div class="test">
+      <div class="test-stars">★★★★★</div>
+      <q>Llegué sin conocer a nadie y salí con amigas nuevas. El ambiente es muy bueno.</q>
+      <div class="test-name">Valentina R. · El Poblado</div>
+    </div>
+    <div class="test">
+      <div class="test-stars">★★★★★</div>
+      <q>Llevaba meses en Medellín y no conocía a nadie. Nospi me cambió eso en una noche.</q>
+      <div class="test-name">Sara M. · Laureles</div>
+    </div>
+    <div class="test">
+      <div class="test-stars">★★★★★</div>
+      <q>Mis amigas nunca pueden. Nospi me dio un grupo nuevo para salir cada semana.</q>
+      <div class="test-name">Carolina T. · Envigado</div>
+    </div>
+  </div>
+  <a href="https://app.nospi.co" class="cta-btn" id="cta-final">Quiero ir este miércoles →</a>
+</section>
+
+<footer>
+  <span>© 2025 Nospi · Medellín</span>
+  <a href="/terms.html">Términos</a>
+  <a href="/privacy.html">Privacidad</a>
+</footer>
+
+<script>
+const SUPA_URL = 'https://wjdiraurfbawotlcndmk.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
+
+function getLandingDeviceId() {
+  let id = localStorage.getItem('nospi_device_id');
+  if (!id) {
+    id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+    localStorage.setItem('nospi_device_id', id);
+  }
+  return id;
+}
+
+function getUtmSource() {
+  try { return new URLSearchParams(window.location.search).get('utm_source') || 'lp4'; } catch(e) { return 'lp4'; }
+}
+
+function trackLandingClick() {
+  try {
+    const deviceId = getLandingDeviceId();
+    const now = new Date().toISOString();
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', `${SUPA_URL}/rest/v1/onboarding_sessions`, false);
+    xhr.setRequestHeader('apikey', SUPA_KEY);
+    xhr.setRequestHeader('Authorization', `Bearer ${SUPA_KEY}`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ device_id: deviceId, last_step: 'landing_click', utm_source: getUtmSource(), created_at: now, updated_at: now }));
+  } catch(e) { console.warn('[LandingTrack] Error:', e); }
+}
+
+document.addEventListener('click', function(e) {
+  var el = e.target.closest('a');
+  if (!el) return;
+  var href = el.getAttribute('href');
+  if (href === 'https://app.nospi.co' || href === 'https://app.nospi.co/login') {
+    e.preventDefault();
+    try { fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()}); } catch(err) {}
+    trackLandingClick();
+    window.location.href = href;
+  }
+});
+</script>
+</body>
+</html>

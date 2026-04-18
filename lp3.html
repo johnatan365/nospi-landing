@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nospi — Voraz Laureles · Mié 22 Abr</title>
+<link rel="icon" type="image/png" href="/nospi_icon.png">
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '9567012776734114');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=9567012776734114&ev=PageView&noscript=1"/></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--wine:#7B1C47;--pink:#E91E8C;--gold:#F5A623;--dark:#0D0009;--light:#FDF4F8}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* TOP BAR */
+.topbar{background:var(--pink);padding:10px 24px;text-align:center;font-size:13px;font-weight:600;letter-spacing:0.5px}
+.topbar span{opacity:0.8;margin:0 12px}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url('img-noche-chicas.jpg') center/cover;opacity:0.15}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(123,28,71,0.4) 0%,rgba(13,0,9,0.95) 70%)}
+.hero-content{position:relative;z-index:1;max-width:700px}
+
+.evento-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.4);border-radius:100px;padding:8px 20px;font-size:12px;font-weight:600;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:32px}
+
+h1{font-family:'Playfair Display',serif;font-size:clamp(38px,6vw,72px);font-weight:900;line-height:1.05;margin-bottom:20px;letter-spacing:-1px}
+h1 em{font-style:italic;color:var(--pink)}
+
+.date-row{display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.date-item{text-align:center}
+.date-item .val{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--pink);line-height:1}
+.date-item .lbl{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.date-sep{width:1px;height:40px;background:rgba(255,255,255,0.1)}
+
+.location-row{display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;color:rgba(255,255,255,0.6);margin-bottom:40px}
+
+.price-row{margin-bottom:40px}
+.price-row .precio{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:var(--white)}
+.price-row .por{font-size:14px;color:rgba(255,255,255,0.4);margin-top:4px}
+
+.cta-btn{display:inline-block;background:var(--pink);color:var(--white);font-size:18px;font-weight:600;padding:20px 52px;border-radius:100px;transition:transform .2s,box-shadow .2s;font-family:'Inter',sans-serif}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(233,30,140,0.4)}
+
+.urgency{font-size:13px;color:rgba(255,255,255,0.35);margin-top:16px}
+.urgency strong{color:var(--gold)}
+
+/* INCLUYE */
+.incluye{background:var(--wine);padding:60px 24px}
+.incluye-inner{max-width:800px;margin:0 auto;text-align:center}
+.incluye h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;margin-bottom:36px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:600px){.grid3{grid-template-columns:1fr}}
+.include-item{background:rgba(0,0,0,0.2);border-radius:16px;padding:24px 20px;text-align:center}
+.include-item .emoji{font-size:32px;margin-bottom:12px;display:block}
+.include-item h3{font-size:15px;font-weight:600;margin-bottom:6px}
+.include-item p{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.5}
+
+/* SEGURIDAD */
+.seguridad{background:var(--dark);padding:60px 24px;text-align:center}
+.seguridad h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:32px}
+.seg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:600px;margin:0 auto}
+@media(max-width:480px){.seg-grid{grid-template-columns:1fr}}
+.seg-item{display:flex;align-items:flex-start;gap:12px;text-align:left;padding:16px;background:rgba(255,255,255,0.04);border-radius:12px}
+.seg-item .ico{font-size:20px;flex-shrink:0}
+.seg-item p{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.5}
+
+/* FINAL */
+.final{background:linear-gradient(135deg,var(--wine),#4A0E2B);padding:80px 24px;text-align:center}
+.final h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:900;margin-bottom:12px}
+.final .sub{font-size:16px;color:rgba(255,255,255,0.55);margin-bottom:32px}
+.final .precio-final{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:var(--gold);margin-bottom:8px}
+.final .evento-final{font-size:14px;color:rgba(255,255,255,0.4);margin-bottom:36px}
+
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.05);padding:20px;text-align:center;font-size:12px;color:rgba(255,255,255,0.2)}
+footer a{color:rgba(255,255,255,0.3);margin:0 8px}
+</style>
+</head>
+<body>
+
+<div class="topbar">🗓️ Miércoles 22 de Abril <span>·</span> Voraz Laureles <span>·</span> 19:00 hrs <span>·</span> $9.900 COP</div>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="evento-chip">⚡ Este miércoles en Medellín</div>
+    <h1>Una noche para<br>conocer <em>personas reales</em></h1>
+    <div class="date-row">
+      <div class="date-item">
+        <div class="val">22</div>
+        <div class="lbl">Abril</div>
+      </div>
+      <div class="date-sep"></div>
+      <div class="date-item">
+        <div class="val">7pm</div>
+        <div class="lbl">Hora</div>
+      </div>
+      <div class="date-sep"></div>
+      <div class="date-item">
+        <div class="val">6</div>
+        <div class="lbl">Personas</div>
+      </div>
+    </div>
+    <div class="location-row">📍 Voraz Laureles · Tv. 39B #74B 41, Laureles</div>
+    <div class="price-row">
+      <div class="precio">$9.900</div>
+      <div class="por">entrada por persona · todo incluido</div>
+    </div>
+    <a href="https://app.nospi.co" class="cta-btn" id="cta-hero">Reservar mi cupo →</a>
+    <div class="urgency">Grupos pequeños — <strong>cupos limitados</strong></div>
+  </div>
+</section>
+
+<section class="incluye">
+  <div class="incluye-inner">
+    <h2>¿Qué incluye?</h2>
+    <div class="grid3">
+      <div class="include-item">
+        <span class="emoji">🍽️</span>
+        <h3>Mesa reservada</h3>
+        <p>En uno de los mejores restaurantes de Laureles</p>
+      </div>
+      <div class="include-item">
+        <span class="emoji">🎯</span>
+        <h3>Juego rompe-hielo</h3>
+        <p>Preguntas por niveles para que nadie se quede callada</p>
+      </div>
+      <div class="include-item">
+        <span class="emoji">👯‍♀️</span>
+        <h3>Grupo solo mujeres</h3>
+        <p>Ambiente cómodo, seguro y muy buena vibra</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seguridad">
+  <h2>Tu seguridad primero</h2>
+  <div class="seg-grid">
+    <div class="seg-item">
+      <span class="ico">✅</span>
+      <p>Todas las participantes verificadas con nombre real y foto</p>
+    </div>
+    <div class="seg-item">
+      <span class="ico">📍</span>
+      <p>Lugar público y reconocido en Laureles</p>
+    </div>
+    <div class="seg-item">
+      <span class="ico">🔐</span>
+      <p>Código de confirmación al llegar — solo entran quienes pagaron</p>
+    </div>
+    <div class="seg-item">
+      <span class="ico">💬</span>
+      <p>Soporte por WhatsApp antes y durante el evento</p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <h2>Este miércoles, sé de las primeras</h2>
+  <p class="sub">Grupos de 6 · Solo mujeres · Laureles</p>
+  <div class="precio-final">$9.900</div>
+  <div class="evento-final">Voraz Laureles · Miércoles 22 Abril · 19:00</div>
+  <a href="https://app.nospi.co" class="cta-btn" id="cta-final">Quiero mi lugar →</a>
+</section>
+
+<footer>
+  <span>© 2025 Nospi · Medellín</span>
+  <a href="/terms.html">Términos</a>
+  <a href="/privacy.html">Privacidad</a>
+</footer>
+
+<script>
+const SUPA_URL = 'https://wjdiraurfbawotlcndmk.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
+
+function getLandingDeviceId() {
+  let id = localStorage.getItem('nospi_device_id');
+  if (!id) {
+    id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+    localStorage.setItem('nospi_device_id', id);
+  }
+  return id;
+}
+
+function getUtmSource() {
+  try { return new URLSearchParams(window.location.search).get('utm_source') || 'lp3'; } catch(e) { return 'lp3'; }
+}
+
+function trackLandingClick() {
+  try {
+    const deviceId = getLandingDeviceId();
+    const now = new Date().toISOString();
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', `${SUPA_URL}/rest/v1/onboarding_sessions`, false);
+    xhr.setRequestHeader('apikey', SUPA_KEY);
+    xhr.setRequestHeader('Authorization', `Bearer ${SUPA_KEY}`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ device_id: deviceId, last_step: 'landing_click', utm_source: getUtmSource(), created_at: now, updated_at: now }));
+  } catch(e) { console.warn('[LandingTrack] Error:', e); }
+}
+
+document.addEventListener('click', function(e) {
+  var el = e.target.closest('a');
+  if (!el) return;
+  var href = el.getAttribute('href');
+  if (href === 'https://app.nospi.co' || href === 'https://app.nospi.co/login') {
+    e.preventDefault();
+    try { fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()}); } catch(err) {}
+    trackLandingClick();
+    window.location.href = href;
+  }
+});
+</script>
+</body>
+</html>

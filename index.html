@@ -824,17 +824,23 @@ function getLandingDeviceId() {
 }
 
 // Registra el clic en Supabase onboarding_sessions
+function getUtmSource() {
+  try {
+    return new URLSearchParams(window.location.search).get('utm_source') || 'lp1';
+  } catch(e) { return 'lp1'; }
+}
+
 function trackLandingClick() {
   try {
     const deviceId = getLandingDeviceId();
     const now = new Date().toISOString();
-    // Usar XMLHttpRequest síncrono — no se cancela al navegar
+    const utmSource = getUtmSource();
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', `${SUPA_URL}/rest/v1/onboarding_sessions`, false); // false = síncrono
+    xhr.open('POST', `${SUPA_URL}/rest/v1/onboarding_sessions`, false);
     xhr.setRequestHeader('apikey', SUPA_KEY);
     xhr.setRequestHeader('Authorization', `Bearer ${SUPA_KEY}`);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({ device_id: deviceId, last_step: 'landing_click', created_at: now, updated_at: now }));
+    xhr.send(JSON.stringify({ device_id: deviceId, last_step: 'landing_click', utm_source: utmSource, created_at: now, updated_at: now }));
   } catch(e) {
     console.warn('[LandingTrack] Error:', e);
   }

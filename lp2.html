@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nospi — Tu plan de esta semana en Medellín</title>
+<link rel="icon" type="image/png" href="/nospi_icon.png">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '9567012776734114');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=9567012776734114&ev=PageView&noscript=1"/></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --pink:#C2185B;--pink-light:#F06292;--cream:#FFF8F4;
+  --dark:#1C0A14;--white:#FFFFFF;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* HERO */
+.hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+@media(max-width:768px){.hero{grid-template-columns:1fr;min-height:100svh}}
+
+.hero-left{background:var(--dark);display:flex;flex-direction:column;justify-content:center;padding:60px 56px;position:relative;z-index:1}
+@media(max-width:768px){.hero-left{padding:48px 28px 40px}}
+
+.logo{font-family:'Fraunces',serif;font-size:22px;font-weight:900;color:var(--pink-light);letter-spacing:-0.5px;margin-bottom:64px}
+@media(max-width:768px){.logo{margin-bottom:40px}}
+
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--pink-light);margin-bottom:20px;opacity:0.8}
+
+h1{font-family:'Fraunces',serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05;color:var(--white);margin-bottom:24px;letter-spacing:-2px}
+h1 em{font-style:italic;color:var(--pink-light)}
+
+.subtitle{font-size:17px;line-height:1.7;color:rgba(255,255,255,0.6);max-width:420px;margin-bottom:40px}
+
+.price-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(240,98,146,0.12);border:1px solid rgba(240,98,146,0.3);border-radius:100px;padding:10px 20px;margin-bottom:32px}
+.price-badge .amount{font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--white)}
+.price-badge .label{font-size:13px;color:rgba(255,255,255,0.5)}
+
+.cta-btn{display:inline-block;background:var(--pink-light);color:var(--white);font-size:17px;font-weight:700;padding:18px 40px;border-radius:100px;transition:transform .2s,box-shadow .2s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(194,24,91,0.4)}
+
+.trust{display:flex;gap:24px;margin-top:32px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.45)}
+.trust-item span{font-size:16px}
+
+/* HERO RIGHT */
+.hero-right{background:linear-gradient(145deg,#880E4F,#C2185B,#AD1457);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+@media(max-width:768px){.hero-right{min-height:280px;order:-1}}
+
+.hero-right::before{content:'';position:absolute;inset:0;background:url('img-noche-chicas.jpg') center/cover;opacity:0.35}
+.hero-right::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(136,14,79,0.3),rgba(26,0,16,0.6))}
+
+.event-card{position:relative;z-index:1;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:24px;padding:28px 32px;max-width:320px;width:90%}
+.event-card .tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink-light);margin-bottom:12px}
+.event-card h3{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--white);margin-bottom:16px;line-height:1.2}
+.event-detail{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:10px}
+.event-detail .icon{font-size:16px;width:20px;text-align:center}
+.spots{display:flex;align-items:center;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1)}
+.spots-dots{display:flex;gap:4px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--pink-light)}
+.dot.empty{background:rgba(255,255,255,0.15)}
+.spots-text{font-size:12px;color:rgba(255,255,255,0.5)}
+
+/* HOW */
+.how{background:var(--white);padding:80px 24px}
+.how-inner{max-width:900px;margin:0 auto;text-align:center}
+.how h2{font-family:'Fraunces',serif;font-size:clamp(30px,4vw,46px);font-weight:900;margin-bottom:12px;letter-spacing:-1px}
+.how p{font-size:16px;color:#666;margin-bottom:56px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+@media(max-width:600px){.steps{grid-template-columns:1fr;gap:24px}}
+.step{text-align:center}
+.step-num{font-family:'Fraunces',serif;font-size:56px;font-weight:900;color:rgba(194,24,91,0.1);line-height:1;margin-bottom:8px}
+.step h3{font-size:17px;font-weight:700;margin-bottom:8px;color:var(--dark)}
+.step p{font-size:14px;color:#888;line-height:1.6}
+
+/* SOCIAL */
+.social{background:var(--cream);padding:80px 24px;text-align:center}
+.social h2{font-family:'Fraunces',serif;font-size:clamp(28px,3.5vw,42px);font-weight:900;margin-bottom:40px;letter-spacing:-1px}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto 48px}
+@media(max-width:600px){.reviews{grid-template-columns:1fr}}
+.review{background:var(--white);border-radius:16px;padding:24px;text-align:left;border:1px solid rgba(194,24,91,0.08)}
+.stars{color:#FFB74D;font-size:14px;margin-bottom:10px;letter-spacing:2px}
+.review q{font-size:14px;line-height:1.65;color:#444;font-style:italic;display:block;margin-bottom:14px}
+.reviewer{font-size:13px;font-weight:700;color:var(--dark)}
+.reviewer span{font-weight:400;color:#888}
+
+/* FINAL CTA */
+.final{background:var(--dark);padding:80px 24px;text-align:center}
+.final h2{font-family:'Fraunces',serif;font-size:clamp(32px,4vw,52px);font-weight:900;color:var(--white);margin-bottom:16px;letter-spacing:-1.5px}
+.final h2 em{font-style:italic;color:var(--pink-light)}
+.final p{font-size:16px;color:rgba(255,255,255,0.5);margin-bottom:32px}
+.final .price{font-family:'Fraunces',serif;font-size:20px;color:var(--white);margin-bottom:32px}
+.final .price strong{color:var(--pink-light)}
+
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.05);padding:24px;text-align:center;font-size:13px;color:rgba(255,255,255,0.25)}
+footer a{color:rgba(255,255,255,0.4);margin:0 8px}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="logo">Nospi</div>
+    <div class="eyebrow">Medellín · Solo mujeres</div>
+    <h1>El plan que<br>estabas<br><em>esperando</em></h1>
+    <p class="subtitle">Encuentros grupales en bares y restaurantes. Sin chat, sin apps de citas. Solo llegas y conectas con personas reales.</p>
+    <div class="price-badge">
+      <span class="amount">$9.900</span>
+      <span class="label">entrada · todo incluido</span>
+    </div>
+    <a href="https://app.nospi.co" class="cta-btn" id="cta-main">Quiero ir →</a>
+    <div class="trust">
+      <div class="trust-item"><span>📍</span> El Poblado · Laureles · Envigado</div>
+      <div class="trust-item"><span>👥</span> Grupos de 6 personas</div>
+      <div class="trust-item"><span>✅</span> Personas verificadas</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="event-card">
+      <div class="tag">⚡ Próximo evento</div>
+      <h3>Voraz Laureles</h3>
+      <div class="event-detail"><span class="icon">📅</span> Miércoles 22 Abr · 19:00</div>
+      <div class="event-detail"><span class="icon">📍</span> Tv. 39B #74B 41, Laureles</div>
+      <div class="event-detail"><span class="icon">🍽️</span> Restaurante</div>
+      <div class="spots">
+        <div class="spots-dots">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          <div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div>
+        </div>
+        <span class="spots-text">Cupos disponibles</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="how-inner">
+    <h2>Así de simple</h2>
+    <p>Sin perfiles, sin chat, sin drama</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Reserva tu lugar</h3>
+        <p>Elige el evento, paga $9.900 y listo. Te confirmamos tu cupo.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Llega al lugar</h3>
+        <p>Te enviamos la dirección horas antes. Solo presentas tu código.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Conéctate</h3>
+        <p>Rompe el hielo con nuestro juego de preguntas. Todos participan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="social">
+  <h2>Lo que dicen ellas</h2>
+  <div class="reviews">
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <q>Llegué sola y salí con 5 amigas nuevas. El ambiente es increíble.</q>
+      <div class="reviewer">Valentina R. <span>· El Poblado</span></div>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <q>Mis amigas nunca pueden salir. Con Nospi siempre tengo plan los fines de semana.</q>
+      <div class="reviewer">Carolina T. <span>· Envigado</span></div>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <q>Mucho mejor que cualquier app. Aquí conoces personas de verdad, en persona.</q>
+      <div class="reviewer">María José P. <span>· Laureles</span></div>
+    </div>
+  </div>
+  <a href="https://app.nospi.co" class="cta-btn" id="cta-social">Reservar mi cupo →</a>
+</section>
+
+<section class="final">
+  <h2>¿Lista para <em>salir</em>?</h2>
+  <p>Grupos pequeños, ambiente seguro, personas reales.</p>
+  <div class="price">Solo <strong>$9.900 COP</strong> · Próximo evento: Mié 22 Abr</div>
+  <a href="https://app.nospi.co" class="cta-btn" id="cta-final">Quiero mi lugar →</a>
+</section>
+
+<footer>
+  <span>© 2025 Nospi · Medellín</span>
+  <a href="/terms.html">Términos</a>
+  <a href="/privacy.html">Privacidad</a>
+</footer>
+
+<script>
+const SUPA_URL = 'https://wjdiraurfbawotlcndmk.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
+
+function getLandingDeviceId() {
+  let id = localStorage.getItem('nospi_device_id');
+  if (!id) {
+    id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+    localStorage.setItem('nospi_device_id', id);
+  }
+  return id;
+}
+
+function getUtmSource() {
+  try {
+    return new URLSearchParams(window.location.search).get('utm_source') || 'lp2';
+  } catch(e) { return 'lp2'; }
+}
+
+function trackLandingClick() {
+  try {
+    const deviceId = getLandingDeviceId();
+    const now = new Date().toISOString();
+    const utmSource = getUtmSource();
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', `${SUPA_URL}/rest/v1/onboarding_sessions`, false);
+    xhr.setRequestHeader('apikey', SUPA_KEY);
+    xhr.setRequestHeader('Authorization', `Bearer ${SUPA_KEY}`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ device_id: deviceId, last_step: 'landing_click', utm_source: utmSource, created_at: now, updated_at: now }));
+  } catch(e) {
+    console.warn('[LandingTrack] Error:', e);
+  }
+}
+
+// Meta Pixel + tracking + navegación
+document.addEventListener('click', function(e) {
+  var el = e.target.closest('a');
+  if (!el) return;
+  var href = el.getAttribute('href');
+  if (href === 'https://app.nospi.co' || href === 'https://app.nospi.co/login') {
+    e.preventDefault();
+    try { fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()}); } catch(err) {}
+    trackLandingClick();
+    window.location.href = href;
+  }
+});
+</script>
+</body>
+</html>
