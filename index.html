@@ -864,8 +864,15 @@ function trackLead(url) {
   try {
     fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()});
   } catch(e) {}
-  trackLandingClick();
-  setTimeout(function(){ window.location.href = url; }, 300);
+  // Esperar a que el tracking termine antes de navegar (máx 800ms)
+  var timeout = setTimeout(function(){ window.location.href = url; }, 800);
+  trackLandingClick().then(function() {
+    clearTimeout(timeout);
+    window.location.href = url;
+  }).catch(function() {
+    clearTimeout(timeout);
+    window.location.href = url;
+  });
   return false;
 }
 
