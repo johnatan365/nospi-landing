@@ -824,20 +824,20 @@ function getLandingDeviceId() {
 }
 
 // Registra el clic en Supabase onboarding_sessions
-async function trackLandingClick() {
+function trackLandingClick() {
   try {
     const deviceId = getLandingDeviceId();
     const now = new Date().toISOString();
-
-    await fetch(`${SUPA_URL}/rest/v1/onboarding_sessions`, {
+    fetch(`${SUPA_URL}/rest/v1/onboarding_sessions`, {
       method: 'POST',
       headers: {
         'apikey': SUPA_KEY,
         'Authorization': `Bearer ${SUPA_KEY}`,
         'Content-Type': 'application/json'
       },
+      keepalive: true,
       body: JSON.stringify({ device_id: deviceId, last_step: 'landing_click', created_at: now, updated_at: now })
-    });
+    }).catch(e => console.warn('[LandingTrack] Error:', e));
   } catch(e) {
     console.warn('[LandingTrack] Error:', e);
   }
@@ -848,15 +848,8 @@ function trackLead(url) {
   try {
     fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()});
   } catch(e) {}
-  // Esperar a que el tracking termine antes de navegar (máx 800ms)
-  var timeout = setTimeout(function(){ window.location.href = url; }, 800);
-  trackLandingClick().then(function() {
-    clearTimeout(timeout);
-    window.location.href = url;
-  }).catch(function() {
-    clearTimeout(timeout);
-    window.location.href = url;
-  });
+  trackLandingClick();
+  setTimeout(function(){ window.location.href = url; }, 500);
   return false;
 }
 
