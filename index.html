@@ -985,17 +985,17 @@ document.addEventListener('keydown', function(e) {
   }
 })();
 
-// Tracking de clics en todos los botones CTA
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('a[href="https://app.nospi.co"], a[href="https://app.nospi.co/login"]').forEach(function(el) {
-    el.addEventListener('click', function(e) {
-      e.preventDefault();
-      var url = el.getAttribute('href');
-      try { fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()}); } catch(err) {}
-      trackLandingClick();
-      window.location.href = url;
-    });
-  });
+// Tracking de clics en todos los botones CTA (event delegation)
+document.addEventListener('click', function(e) {
+  var el = e.target.closest('a');
+  if (!el) return;
+  var href = el.getAttribute('href');
+  if (href === 'https://app.nospi.co' || href === 'https://app.nospi.co/login') {
+    e.preventDefault();
+    try { fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()}); } catch(err) {}
+    trackLandingClick();
+    window.location.href = href;
+  }
 });
 </script>
 </body>
