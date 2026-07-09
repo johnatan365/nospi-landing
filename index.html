@@ -1,38 +1,1010 @@
 <!DOCTYPE html>
-<html lang="%LANG_ISO_CODE%">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="data:image/png;base64,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">
-    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta http-Equiv="Cache-Control" Content="no-cache" />
-    <meta http-Equiv="Pragma" Content="no-cache" />
-    <meta http-Equiv="Expires" Content="0" />
-    <title>%WEB_TITLE%</title>
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '956701276734114');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=956701276734114&ev=PageView&noscript=1"/></noscript>
-    <!-- End Meta Pixel Code -->
-    <style id="expo-reset">
-      html, body { height: 100%; }
-      body { overflow: hidden; }
-      #root { display: flex; height: 100%; flex: 1; }
-    </style>
-  </head>
-  <body class="">
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nospi — Encuentros grupales en Medellín</title>
+<link rel="icon" type="image/png" href="/nospi_icon.png">
+<meta name="description" content="Conoce personas reales en encuentros grupales cada semana en bares y restaurantes de Medellín. Sin chat, sin perfiles. Solo llegas y conectas.">
+<meta property="og:title" content="Nospi — Deja de chatear. Empieza a vivir.">
+<meta property="og:description" content="Encuentros grupales cada semana en Medellín. Sin perfiles, sin chat previo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nospi.co">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '956701276734114');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=956701276734114&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg-dark:#1a0010;--bg-mid:#880E4F;--bg-light:#AD1457;
+--pink:#F06292;--pink-soft:rgba(240,98,146,0.15);--pink-border:rgba(240,98,146,0.35);
+--white:#FFFFFF;--off-white:#FFF8FA;--text-dark:#1a0010;
+--blue:#4FC3F7;--orange:#FFB74D;--radius-pill:50px;--radius-card:24px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--white);overflow-x:hidden;background:var(--bg-dark)}
+h1,h2,h3,h4{font-family:'Outfit',sans-serif}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:all .3s}
+nav.scrolled{background:rgba(26,0,16,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(240,98,146,0.1)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:28px;color:var(--white);letter-spacing:-1px}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:15px;font-weight:500;color:rgba(255,255,255,0.7);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--white)!important;color:var(--bg-mid)!important;padding:10px 24px;border-radius:var(--radius-pill);font-weight:700!important;font-size:14px!important;transition:transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(26,0,16,0.97);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:22px;font-weight:600;color:var(--white)}
+.mobile-close{position:absolute;top:20px;right:24px;font-size:32px;color:var(--white);cursor:pointer}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;background:linear-gradient(180deg,rgba(26,0,16,0.92) 0%,rgba(136,14,79,0.85) 55%,rgba(173,20,87,0.9) 100%),url('img-noche-bar.jpg') center/cover;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 80px}
+.hero::before{content:'';position:absolute;top:-20%;right:-15%;width:600px;height:600px;border-radius:50%;background:rgba(240,98,146,0.06);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-10%;left:-10%;width:400px;height:400px;border-radius:50%;background:rgba(240,98,146,0.04);pointer-events:none}
+.hero-inner{display:flex;align-items:center;gap:60px;position:relative;z-index:1}
+.hero-text{flex:1}
+.hero-text h1{font-size:clamp(38px,5.5vw,72px);font-weight:900;line-height:1.05;margin-bottom:20px;letter-spacing:-2px}
+.hero-text h1 span{display:block;background:linear-gradient(90deg,#F06292,#FFB74D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-text p{font-size:18px;line-height:1.65;color:rgba(255,255,255,0.75);max-width:520px;margin-bottom:36px}
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:24px}
+.btn-primary{background:var(--white);color:var(--bg-mid);padding:18px 36px;border-radius:var(--radius-pill);font-weight:700;font-size:17px;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;letter-spacing:.3px}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.3)}
+.btn-secondary{background:var(--bg-mid);color:var(--white);padding:18px 36px;border-radius:var(--radius-pill);font-weight:700;font-size:17px;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,box-shadow .2s;border:1.5px solid rgba(255,255,255,0.4);cursor:pointer}
+.btn-secondary:hover{transform:translateY(-3px);background:#9C1458}
+.store-badges{display:flex;gap:12px;align-items:center}
+.store-badge{display:inline-flex;align-items:center;gap:8px;height:44px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--white);transition:background .2s}
+.store-badge:hover{background:rgba(255,255,255,0.18)}
+.store-badge svg{flex-shrink:0}
+
+.store-badge-a{display:inline-flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;height:52px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:8px 16px;text-decoration:none;transition:background .2s}
+.store-badge-a:hover{background:rgba(0,0,0,0.5)}
+.store-badge-a .sbat{font-size:9px;color:rgba(255,255,255,0.45);letter-spacing:0.8px;font-weight:600}
+.store-badge-a .sbab{display:flex;align-items:center;gap:6px;color:white;font-weight:700;font-size:14px}
+.store-badge-soon{display:inline-flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;height:52px;background:rgba(255,255,255,0.04);border:1px dashed rgba(255,255,255,0.15);border-radius:12px;padding:8px 16px;cursor:default}
+.store-badge-soon .sbat{font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.8px;font-weight:600}
+.store-badge-soon .sbab{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.35);font-weight:700;font-size:14px}
+
+
+/* ─── TRUST ─── */
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px}
+.trust-card{text-align:center;padding:36px 24px;border-radius:var(--radius-card);background:rgba(255,255,255,0.06);border:1px solid rgba(240,98,146,0.12);transition:transform .3s}
+.trust-card:hover{transform:translateY(-6px);border-color:var(--pink-border)}
+.trust-icon{font-size:44px;margin-bottom:14px;display:block}
+.trust-card h3{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--white)}
+.trust-card p{font-size:14px;line-height:1.6;color:rgba(255,255,255,0.6)}
+.hero-visual{flex:0 0 340px;position:relative;display:flex;flex-direction:column;align-items:center}
+.phone-mockup{width:300px;height:600px;background:linear-gradient(180deg,#1a0010,#880E4F,#AD1457);border-radius:40px;border:3px solid rgba(255,255,255,0.15);box-shadow:0 40px 80px rgba(0,0,0,0.4);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
+.phone-mockup::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:100px;height:28px;background:rgba(0,0,0,0.5);border-radius:20px}
+.phone-logo{width:140px;height:140px;border-radius:36px;background:linear-gradient(135deg,#880E4F,#C2185B);display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 12px 32px rgba(0,0,0,0.3)}
+.phone-logo span{font-family:'Outfit',sans-serif;font-size:36px;font-weight:800;color:rgba(255,240,245,0.9)}
+.phone-text{text-align:center;color:var(--white);font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;margin-bottom:24px}
+.phone-btn{background:var(--white);color:var(--bg-mid);border-radius:30px;padding:12px 40px;font-weight:700;font-size:14px;margin-bottom:10px;width:80%}
+.phone-btn2{background:var(--bg-mid);border:1.5px solid rgba(255,255,255,0.4);color:var(--white);border-radius:30px;padding:12px 40px;font-weight:700;font-size:14px;width:80%}
+.phone-btn,.phone-btn2{text-align:center;cursor:pointer;transition:transform .2s}
+.phone-btn:hover,.phone-btn2:hover{transform:scale(1.03)}
+
+/* ─── SECTION SHARED ─── */
+section{padding:100px 0}
+.section-dark{background:linear-gradient(180deg,var(--bg-dark),var(--bg-mid))}
+.section-white{background:var(--white);color:var(--text-dark)}
+.section-title{font-size:clamp(32px,4vw,52px);font-weight:800;text-align:center;margin-bottom:16px;letter-spacing:-1px}
+.section-subtitle{font-size:18px;text-align:center;max-width:600px;margin:0 auto 56px;line-height:1.6}
+.section-white .section-subtitle{color:#666}
+
+/* ─── PROBLEM ─── */
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:48px}
+.problem-card{text-align:center;padding:40px 28px;border-radius:var(--radius-card);background:var(--off-white);border:1px solid #F5D5E4;transition:transform .3s}
+.problem-card:hover{transform:translateY(-6px)}
+.problem-icon{font-size:48px;margin-bottom:16px;display:block}
+.problem-card h3{font-size:20px;font-weight:700;margin-bottom:10px;color:var(--bg-mid)}
+.problem-card p{font-size:15px;line-height:1.6;color:#666}
+.problem-closer{text-align:center;font-size:20px;font-weight:600;color:var(--bg-mid);max-width:600px;margin:0 auto}
+
+/* ─── HOW IT WORKS ─── */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:48px}
+.step{text-align:center;padding:40px 24px;border-radius:var(--radius-card);background:rgba(255,255,255,0.06);border:1px solid rgba(240,98,146,0.12);position:relative;transition:transform .3s}
+.step:hover{transform:translateY(-6px);border-color:var(--pink-border)}
+.step-number{font-family:'Outfit',sans-serif;font-size:64px;font-weight:900;color:rgba(240,98,146,0.15);line-height:1;margin-bottom:12px}
+.step h3{font-size:22px;font-weight:700;margin-bottom:12px}
+.step p{font-size:15px;line-height:1.6;color:rgba(255,255,255,0.65)}
+
+/* ─── EXPERIENCES ─── */
+.exp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.exp-card{border-radius:var(--radius-card);overflow:hidden;border:1px solid #F5D5E4;background:var(--white);transition:transform .3s,box-shadow .3s}
+.exp-card:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(136,14,79,0.12)}
+.exp-img{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.exp-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,0,16,0.4) 100%)}
+.exp-img span{position:relative;z-index:1;font-size:56px}
+.exp-body{padding:24px}
+.exp-body h3{font-size:20px;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.exp-body p{font-size:15px;line-height:1.6;color:#666}
+
+/* ─── GAME ─── */
+.game-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
+.level-card{padding:32px 24px;border-radius:var(--radius-card);background:rgba(255,255,255,0.06);text-align:center;transition:transform .3s}
+.level-card:hover{transform:translateY(-6px)}
+.level-card.divertido{border:2px solid var(--blue)}
+.level-card.sensual{border:2px solid var(--orange)}
+.level-card.atrevido{border:2px solid var(--pink)}
+.level-emoji{font-size:52px;margin-bottom:12px;display:block}
+.level-card h3{font-size:20px;font-weight:700;margin-bottom:10px}
+.level-card p{font-size:14px;line-height:1.6;color:rgba(255,255,255,0.6)}
+.game-shot{text-align:center;font-size:22px;font-weight:700;color:var(--pink);margin-bottom:40px}
+
+/* ─── TESTIMONIALS ─── */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial{padding:28px;border-radius:var(--radius-card);background:var(--off-white);border:1px solid #F5D5E4;transition:transform .3s}
+.testimonial:hover{transform:translateY(-4px)}
+.testimonial-stars{color:#FFB74D;font-size:16px;margin-bottom:12px;letter-spacing:2px}
+.testimonial q{display:block;font-size:15px;line-height:1.65;color:#444;font-style:italic;margin-bottom:16px}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:var(--bg-mid);display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700;font-size:15px;flex-shrink:0}
+.testimonial-name{font-size:14px;font-weight:700;color:var(--text-dark)}
+.testimonial-location{font-size:13px;color:#888}
+
+/* ─── FOR YOU ─── */
+.for-you-list{max-width:640px;margin:0 auto 48px;display:flex;flex-direction:column;gap:16px}
+.for-you-item{display:flex;align-items:center;gap:16px;font-size:18px;font-weight:500;color:rgba(255,255,255,0.85)}
+.for-you-check{width:32px;height:32px;border-radius:50%;background:rgba(240,98,146,0.15);border:2px solid var(--pink);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:var(--pink)}
+
+/* ─── FAQ ─── */
+.faq-list{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid #F0D0DE;padding:20px 0}
+.faq-question{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:17px;font-weight:600;color:var(--text-dark);gap:16px}
+.faq-question span{font-size:24px;color:var(--bg-mid);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-question span{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s;font-size:15px;line-height:1.65;color:#666}
+.faq-item.open .faq-answer{max-height:300px;padding-top:12px}
+
+/* ─── FOOTER ─── */
+footer{background:var(--bg-dark);padding:60px 0 32px;border-top:1px solid rgba(240,98,146,0.1)}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:40px}
+.footer-brand .nav-logo{margin-bottom:8px}
+.footer-brand p{font-size:14px;color:rgba(255,255,255,0.5);max-width:280px;line-height:1.5}
+.footer-links{display:flex;gap:48px}
+.footer-links div{display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:14px;color:rgba(255,255,255,0.6);transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+.footer-links h4{font-size:13px;font-weight:700;color:var(--pink);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.footer-bottom{text-align:center;padding-top:24px;border-top:1px solid rgba(240,98,146,0.08);font-size:13px;color:rgba(255,255,255,0.35)}
+
+/* ─── CTA CENTER ─── */
+.cta-center{text-align:center;margin-top:16px}
+
+/* ─── EVENTOS ─── */
+.eventos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.evento-card{border-radius:var(--radius-card);background:rgba(255,255,255,0.06);border:1px solid rgba(240,98,146,0.2);overflow:hidden;transition:transform .3s,border-color .3s;display:flex;flex-direction:column}
+.evento-card:hover{transform:translateY(-6px);border-color:var(--pink-border)}
+.evento-header{padding:20px 24px 16px;border-bottom:1px solid rgba(240,98,146,0.12)}
+.evento-tipo{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--pink);background:rgba(240,98,146,0.12);padding:4px 10px;border-radius:20px;margin-bottom:10px}
+.evento-nombre{font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:0}
+.evento-body{padding:16px 24px;flex:1;display:flex;flex-direction:column;gap:10px}
+.evento-info{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,0.65)}
+.evento-info span:first-child{font-size:16px;flex-shrink:0}
+.evento-cupos{display:flex;align-items:center;gap:8px;font-size:13px;margin-top:4px}
+.evento-cupos-bar{flex:1;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden}
+.evento-cupos-fill{height:100%;background:linear-gradient(90deg,var(--pink),#FFB74D);border-radius:2px;transition:width .5s}
+.evento-cupos-text{font-size:12px;color:rgba(255,255,255,0.5);white-space:nowrap}
+.evento-footer{padding:16px 24px;border-top:1px solid rgba(240,98,146,0.08)}
+.evento-btn{display:block;text-align:center;background:var(--white);color:var(--bg-mid);padding:12px 24px;border-radius:var(--radius-pill);font-weight:700;font-size:15px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.evento-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.25)}
+.evento-btn.lleno{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.4);cursor:not-allowed;pointer-events:none}
+.eventos-loading{text-align:center;padding:60px 0;color:rgba(255,255,255,0.4);font-size:16px}
+.eventos-empty{text-align:center;padding:60px 0;color:rgba(255,255,255,0.4);font-size:16px}
+@media(max-width:900px){.eventos-grid{grid-template-columns:1fr}}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── SUPPORT MODAL ─── */
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+.hero-inner{flex-direction:column;text-align:center}
+.hero-text p{margin-left:auto;margin-right:auto}
+.hero-buttons{justify-content:center}
+.store-badges{justify-content:center}
+.hero-visual{flex:none;margin-top:20px;display:flex;flex-direction:column;align-items:center}
+.phone-mockup{width:240px;height:480px}
+.phone-logo{width:100px;height:100px;border-radius:28px}
+.phone-logo span{font-size:26px}
+.problem-grid,.steps,.game-levels,.testimonials-grid,.trust-grid{grid-template-columns:1fr}
+.exp-grid{grid-template-columns:1fr}
+.nav-links{display:none}
+.hamburger{display:flex}
+.footer-inner{flex-direction:column;align-items:center;text-align:center}
+.footer-links{flex-direction:column;gap:24px;align-items:center}
+}
+@media(max-width:600px){
+.hero{padding:100px 0 60px}
+section{padding:70px 0}
+.btn-primary,.btn-secondary{padding:16px 28px;font-size:15px;width:100%;justify-content:center}
+.hero-buttons{flex-direction:column;width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+<div class="nav-inner">
+<a href="#" class="nav-logo">Nospi</a>
+<div class="nav-links">
+<a href="#como-funciona">Cómo funciona</a>
+<a href="#eventos">Eventos</a>
+<a href="#experiencias">Experiencias</a>
+<a href="#seguridad">Seguridad</a>
+<a href="#testimonios">Testimonios</a>
+<a href="#soporte">Soporte</a>
+<a href="https://app.nospi.co/login" style="font-size:15px;font-weight:500;color:rgba(255,255,255,0.7);transition:color .2s">Iniciar sesión</a>
+<a href="https://app.nospi.co" class="nav-cta">Regístrate</a>
+</div>
+<div class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')">
+<span></span><span></span><span></span>
+</div>
+</div>
+</nav>
+<div id="mobileMenu" class="mobile-menu">
+<div class="mobile-close" onclick="this.parentElement.classList.remove('open')">&times;</div>
+<a href="#como-funciona" onclick="this.parentElement.classList.remove('open')">Cómo funciona</a>
+<a href="#eventos" onclick="this.parentElement.classList.remove('open')">Eventos</a>
+<a href="#experiencias" onclick="this.parentElement.classList.remove('open')">Experiencias</a>
+<a href="#testimonios" onclick="this.parentElement.classList.remove('open')">Testimonios</a>
+<a href="#soporte" onclick="this.parentElement.classList.remove('open')">Soporte</a>
+<a href="https://app.nospi.co/login" onclick="this.parentElement.classList.remove('open');return trackLead('https://app.nospi.co/login')">Iniciar sesión</a>
+<a href="https://app.nospi.co" style="background:var(--white);color:var(--bg-mid);padding:14px 40px;border-radius:var(--radius-pill);font-weight:700">Regístrate</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<div class="hero-inner">
+<div class="hero-text">
+<div style="display:inline-flex;align-items:center;gap:8px;background:rgba(240,98,146,0.12);border:1px solid rgba(240,98,146,0.3);border-radius:100px;padding:8px 18px;margin-bottom:20px;font-size:13px;font-weight:600;color:#F06292">🔒 No sabrás quién más llega hasta el evento</div>
+<h1>Deja de chatear.<br><span>Empieza a vivir.</span></h1>
+<p>Un algoritmo arma tu grupo según tus intereses. Nada de fotos ni chat previo — solo te revelamos el lugar horas antes. Llegas, te sientas, y la sorpresa hace el resto.</p>
+<div class="hero-buttons">
+<a href="https://app.nospi.co" class="btn-primary">Únete ahora →</a>
+<a href="#como-funciona" class="btn-secondary">Cómo funciona</a>
+</div>
+</div>
+<div class="hero-visual">
+<div class="phone-mockup">
+<div class="phone-logo"><span>Nospi</span></div>
+<div class="phone-text">Tu dosis semanal<br>de conexión</div>
+<a href="https://app.nospi.co" class="phone-btn" style="text-decoration:none;display:block">Empezar</a>
+<a href="https://app.nospi.co/login" class="phone-btn2" style="text-decoration:none;display:block">Ya tengo cuenta</a>
+</div>
+<div class="store-badges" style="margin-top:20px;justify-content:center">
+<a href="https://apps.apple.com/co/app/nospi/id6761556688" target="_blank" class="store-badge-a"><span class="sbat">DISPONIBLE EN</span><span class="sbab"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.86 9.28 4.84C10.56 4.81 11.78 5.7 12.58 5.7C13.38 5.7 14.87 4.62 16.42 4.8C17.09 4.83 18.88 5.08 20.01 6.73C19.9 6.8 17.53 8.16 17.56 11.02C17.59 14.45 20.53 15.61 20.56 15.62C20.53 15.71 20.09 17.22 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg> App Store</span></a>
+<a href="https://play.google.com/store/apps/details?id=app.nospi.mobile" target="_blank" class="store-badge-a"><span class="sbat">DISPONIBLE EN</span><span class="sbab"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.5 12.92 20.16 13.19L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg> Google Play</span></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section-white">
+<div class="container">
+<h2 class="section-title reveal" style="color:var(--text-dark)">¿Cansado de lo mismo?</h2>
+<p class="section-subtitle reveal">Sabemos cómo se siente. Por eso creamos algo diferente.</p>
+<div class="problem-grid">
+<div class="problem-card reveal">
+<span class="problem-icon">🔄</span>
+<h3>Conversaciones repetitivas</h3>
+<p>Siempre las mismas preguntas en apps de citas que nunca llevan a nada concreto.</p>
+</div>
+<div class="problem-card reveal">
+<span class="problem-icon">📱</span>
+<h3>Chat sin fin</h3>
+<p>Semanas hablando por texto para que al final nadie concrete una cita real.</p>
+</div>
+<div class="problem-card reveal">
+<span class="problem-icon">😔</span>
+<h3>Fines de semana solo</h3>
+<p>Llegaste a una nueva ciudad, tus amigos no pueden salir, o simplemente quieres conocer gente nueva.</p>
+</div>
+</div>
+<p class="problem-closer reveal">Nospi elimina todo eso.<br>No sabes quién más va a llegar hasta que estás ahí. Esa incertidumbre es justo lo que lo hace funcionar. ✨</p>
+<div class="cta-center reveal" style="margin-top:32px"><a href="https://app.nospi.co" class="btn-primary" style="background:var(--bg-mid);color:var(--white);box-shadow:0 8px 24px rgba(136,14,79,0.3)">Reserva un cupo →</a></div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-dark" id="como-funciona">
+<div class="container">
+<h2 class="section-title reveal">Así de fácil</h2>
+<p class="section-subtitle reveal" style="color:rgba(255,255,255,0.6)">Tres pasos y estás dentro. Nosotros nos encargamos de todo.</p>
+<div class="steps">
+<div class="step reveal">
+<div class="step-number">01</div>
+<h3>Reserva tu lugar</h3>
+<p>Elige el evento que más te guste, paga tu entrada y listo. Nosotros nos encargamos del resto.</p>
+</div>
+<div class="step reveal">
+<div class="step-number">02</div>
+<h3>Espera la sorpresa</h3>
+<p>No sabes quiénes son ni dónde es hasta horas antes. Ese misterio es parte de la experiencia — te avisamos el lugar y llegas con curiosidad, no con expectativas.</p>
+</div>
+<div class="step reveal">
+<div class="step-number">03</div>
+<h3>Conecta y diviértete</h3>
+<p>Rompe el hielo con nuestro juego de preguntas por niveles. Todos participan, todos se divierten.</p>
+</div>
+</div>
+<div class="cta-center reveal"><a href="https://app.nospi.co" class="btn-primary">Reserva tu primer evento →</a></div>
+</div>
+</section>
+
+<!-- PRÓXIMOS EVENTOS -->
+<section class="section-dark" id="eventos" style="border-top:1px solid rgba(240,98,146,0.08)">
+<div class="container">
+<h2 class="section-title reveal">Próximos eventos</h2>
+<p class="section-subtitle reveal" style="color:rgba(255,255,255,0.6)">Elige el que más te llame y reserva tu cupo. Son grupos pequeños — los cupos se van rápido.</p>
+<div id="eventos-container">
+  <div class="eventos-loading">Cargando eventos... ✨</div>
+</div>
+<div class="cta-center reveal" style="margin-top:40px">
+  <a href="https://app.nospi.co" class="btn-primary">Ver todos los eventos →</a>
+</div>
+</div>
+</section>
+
+<!-- TRUST & SAFETY -->
+<section class="section-dark" id="seguridad" style="border-top:1px solid rgba(240,98,146,0.08)">
+<div class="container">
+<h2 class="section-title reveal">Tu seguridad es lo primero</h2>
+<p class="section-subtitle reveal" style="color:rgba(255,255,255,0.6)">Sabemos que conocer desconocidos puede generar dudas. Por eso cuidamos cada detalle.</p>
+<div class="trust-grid">
+<div class="trust-card reveal">
+<span class="trust-icon">📍</span>
+<h3>Lugares reconocidos</h3>
+<p>Todos los eventos son en bares y restaurantes verificados de Medellín. Lugares públicos, conocidos y con buena reputación.</p>
+</div>
+<div class="trust-card reveal">
+<span class="trust-icon">🛡️</span>
+<h3>Personas verificadas</h3>
+<p>Cada participante se registra con nombre real, foto y teléfono. Sabemos quién asiste a cada evento.</p>
+</div>
+<div class="trust-card reveal">
+<span class="trust-icon">👥</span>
+<h3>Grupos pequeños y compatibles</h3>
+<p>Máximo 6 personas por grupo, armado según tus intereses. Ambiente íntimo, controlado y cómodo. Nada de multitudes ni desorden.</p>
+</div>
+<div class="trust-card reveal">
+<span class="trust-icon">🕐</span>
+<h3>Horarios seguros</h3>
+<p>Los eventos tienen hora de inicio definida y se realizan en horarios accesibles. Tú decides cuándo irte.</p>
+</div>
+<div class="trust-card reveal">
+<span class="trust-icon">📱</span>
+<h3>Código de confirmación</h3>
+<p>Al llegar al lugar confirmas tu asistencia con un código único. Solo entran personas que pagaron y se registraron.</p>
+</div>
+<div class="trust-card reveal">
+<span class="trust-icon">⭐</span>
+<h3>Evaluación post-evento</h3>
+<p>Al finalizar, todos evalúan la experiencia. Esto nos permite mejorar y mantener un ambiente de calidad.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- EXPERIENCES -->
+<section class="section-white" id="experiencias">
+<div class="container">
+<h2 class="section-title reveal" style="color:var(--text-dark)">Experiencias para todos</h2>
+<p class="section-subtitle reveal">Diferentes formatos, una misma promesa: la vas a pasar increíble.</p>
+<div class="exp-grid">
+<div class="exp-card reveal">
+<div class="exp-img" style="background:url('img-noche-bar.jpg') center/cover"><span></span></div>
+<div class="exp-body"><h3>Noche en Bar</h3><p>Grupos de 6 personas en los mejores bares de Medellín. Tragos, risas y conexiones inesperadas.</p></div>
+</div>
+<div class="exp-card reveal">
+<div class="exp-img" style="background:url('img-cena-grupal.jpg') center/cover"><span></span></div>
+<div class="exp-body"><h3>Cena grupal</h3><p>Prueba un nuevo restaurante con personas interesantes. La mejor comida sabe mejor en buena compañía.</p></div>
+</div>
+<div class="exp-card reveal">
+<div class="exp-img" style="background:url('img-noche-chicas.jpg') center/cover"><span></span></div>
+<div class="exp-body"><h3>Noche de chicas</h3><p>Solo mujeres. Conoce amigas para salir, compartir y divertirte. Porque a veces necesitas tu grupo.</p></div>
+</div>
+<div class="exp-card reveal">
+<div class="exp-img" style="background:url('img-experiencias.jpg') center/cover"><span></span></div>
+<div class="exp-body"><h3>Experiencias especiales</h3><p>Noches temáticas, catas, actividades sorpresa. Siempre algo nuevo por descubrir.</p></div>
+</div>
+</div>
+<div class="cta-center reveal" style="margin-top:40px">
+<a href="https://app.nospi.co" class="btn-primary" style="background:var(--bg-mid);color:var(--white);box-shadow:0 8px 24px rgba(136,14,79,0.3)">Quiero vivir la experiencia →</a>
+</div>
+<div class="store-badges reveal" style="justify-content:center;margin-top:20px">
+<a href="https://apps.apple.com/co/app/nospi/id6761556688" target="_blank" class="store-badge-a" style="background:rgba(136,14,79,0.1);border-color:rgba(240,98,146,0.3)"><span class="sbat" style="color:rgba(136,14,79,0.6)">DISPONIBLE EN</span><span class="sbab" style="color:#880E4F"><svg width="18" height="18" viewBox="0 0 24 24" fill="#880E4F"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.86 9.28 4.84C10.56 4.81 11.78 5.7 12.58 5.7C13.38 5.7 14.87 4.62 16.42 4.8C17.09 4.83 18.88 5.08 20.01 6.73C19.9 6.8 17.53 8.16 17.56 11.02C17.59 14.45 20.53 15.61 20.56 15.62C20.53 15.71 20.09 17.22 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg> App Store</span></a>
+<a href="https://play.google.com/store/apps/details?id=app.nospi.mobile" target="_blank" class="store-badge-a" style="background:rgba(136,14,79,0.1);border-color:rgba(136,14,79,0.3)"><span class="sbat" style="color:rgba(136,14,79,0.6)">DISPONIBLE EN</span><span class="sbab" style="color:#880E4F"><svg width="18" height="18" viewBox="0 0 24 24" fill="#880E4F"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.5 12.92 20.16 13.19L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg> Google Play</span></a>
+</div>
+</div>
+</section>
+
+<!-- GAME -->
+<section class="section-dark">
+<div class="container">
+<h2 class="section-title reveal">No es una cena aburrida.<br>Es una experiencia.</h2>
+<p class="section-subtitle reveal" style="color:rgba(255,255,255,0.6)">Nuestro juego de preguntas rompe el hielo al instante. Todos participan, nadie se queda callado.</p>
+<div class="game-levels">
+<div class="level-card divertido reveal">
+<span class="level-emoji">😄</span>
+<h3>Divertido</h3>
+<p>Preguntas ligeras para conocerse. Tu nombre, a qué te dedicas, tu mayor sueño.</p>
+</div>
+<div class="level-card sensual reveal">
+<span class="level-emoji">💕</span>
+<h3>Sensual</h3>
+<p>La conversación se pone interesante. ¿Qué te atrae? ¿Tu cita ideal?</p>
+</div>
+<div class="level-card atrevido reveal">
+<span class="level-emoji">🔥</span>
+<h3>Atrevido</h3>
+<p>Para los valientes. Secretos, confesiones y preguntas que nadie se atreve a hacer.</p>
+</div>
+</div>
+<p class="game-shot reveal">Si alguien no responde... ¡shot o reto! 🥃</p>
+<div class="cta-center reveal"><a href="https://app.nospi.co" class="btn-primary">Quiero jugar →</a></div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-white" id="testimonios">
+<div class="container">
+<h2 class="section-title reveal" style="color:var(--text-dark)">Lo que dicen quienes ya lo vivieron</h2>
+<p class="section-subtitle reveal">Personas reales, experiencias reales.</p>
+<div class="testimonials-grid">
+<div class="testimonial reveal">
+<div class="testimonial-stars">★★★★★</div>
+<q>Llegué sin conocer a nadie y salí con 5 amigos nuevos. El juego de preguntas es genial, se te olvida que son desconocidos.</q>
+<div class="testimonial-author">
+<div class="testimonial-avatar">V</div>
+<div><div class="testimonial-name">Valentina R., 26 años</div><div class="testimonial-location">El Poblado, Medellín</div></div>
+</div>
+</div>
+<div class="testimonial reveal">
+<div class="testimonial-stars">★★★★★</div>
+<q>Llevo 2 meses en Medellín y no conocía a nadie. Nospi me salvó los fines de semana. Ya he ido a 3 eventos.</q>
+<div class="testimonial-author">
+<div class="testimonial-avatar">A</div>
+<div><div class="testimonial-name">Andrés M., 31 años</div><div class="testimonial-location">Laureles, Medellín</div></div>
+</div>
+</div>
+<div class="testimonial reveal">
+<div class="testimonial-stars">★★★★★</div>
+<q>Mis amigas nunca pueden salir el mismo día. Con Nospi siempre tengo plan y conozco gente muy bacana.</q>
+<div class="testimonial-author">
+<div class="testimonial-avatar">C</div>
+<div><div class="testimonial-name">Carolina T., 28 años</div><div class="testimonial-location">Envigado</div></div>
+</div>
+</div>
+<div class="testimonial reveal">
+<div class="testimonial-stars">★★★★★</div>
+<q>Mucho mejor que Tinder. Aquí no hay chat eterno, directamente llegas y conoces personas de verdad.</q>
+<div class="testimonial-author">
+<div class="testimonial-avatar">S</div>
+<div><div class="testimonial-name">Santiago G., 33 años</div><div class="testimonial-location">Sabaneta</div></div>
+</div>
+</div>
+<div class="testimonial reveal">
+<div class="testimonial-stars">★★★★★</div>
+<q>El nivel atrevido es lo mejor 😂 Nunca me había reído tanto con desconocidos. Muy recomendado.</q>
+<div class="testimonial-author">
+<div class="testimonial-avatar">M</div>
+<div><div class="testimonial-name">María José P., 24 años</div><div class="testimonial-location">El Poblado, Medellín</div></div>
+</div>
+</div>
+<div class="testimonial reveal">
+<div class="testimonial-stars">★★★★★</div>
+<q>Vine de Bogotá por trabajo y un compañero me recomendó Nospi. Fue la mejor noche que he tenido en Medellín.</q>
+<div class="testimonial-author">
+<div class="testimonial-avatar">D</div>
+<div><div class="testimonial-name">Daniel F., 29 años</div><div class="testimonial-location">Centro, Medellín</div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cta-center reveal" style="margin-top:40px"><a href="https://app.nospi.co" class="btn-primary" style="background:var(--bg-mid);color:var(--white);box-shadow:0 8px 24px rgba(136,14,79,0.3)">Vive tu primera experiencia →</a></div>
+</div>
+</section>
+
+<!-- PHOTO GALLERY STRIP -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;overflow:hidden;max-height:280px">
+<div style="background:url('img-noche-bar.jpg') center/cover;min-height:280px"></div>
+<div style="background:url('img-cena-grupal.jpg') center/cover;min-height:280px"></div>
+<div style="background:url('img-noche-chicas.jpg') center/cover;min-height:280px"></div>
+<div style="background:url('img-experiencias.jpg') center/cover;min-height:280px"></div>
+</div>
+
+<!-- FOR YOU -->
+<section class="section-dark">
+<div class="container">
+<h2 class="section-title reveal">Nospi es para ti si...</h2>
+<div class="for-you-list">
+<div class="for-you-item reveal"><div class="for-you-check">✓</div>Estás cansado de chatear sin llegar a nada</div>
+<div class="for-you-item reveal"><div class="for-you-check">✓</div>Llegaste a Medellín y no conoces a nadie</div>
+<div class="for-you-item reveal"><div class="for-you-check">✓</div>Tus amigos nunca pueden salir cuando quieres</div>
+<div class="for-you-item reveal"><div class="for-you-check">✓</div>Quieres conocer gente real, sin filtros ni perfiles falsos</div>
+<div class="for-you-item reveal"><div class="for-you-check">✓</div>Buscas amigas para salir (noche de chicas)</div>
+<div class="for-you-item reveal"><div class="for-you-check">✓</div>Simplemente quieres un plan diferente este fin de semana</div>
+</div>
+<div class="cta-center reveal"><a href="https://app.nospi.co" class="btn-primary" style="font-size:20px;padding:20px 48px">Reserva tu lugar ahora →</a></div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="section-white" id="faq">
+<div class="container">
+<h2 class="section-title reveal" style="color:var(--text-dark)">Preguntas frecuentes</h2>
+<div class="faq-list">
+<div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Cómo funciona Nospi?<span>+</span></div><div class="faq-answer">Te registras, eliges un evento, pagas tu entrada y listo. Horas antes del evento te revelamos la ubicación. Solo llegas, confirmas tu código y empieza la experiencia con nuestro juego rompe-hielo.</div></div>
+<div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Es seguro?<span>+</span></div><div class="faq-answer">Todos los participantes están verificados con su nombre real, foto y teléfono. Los eventos son en bares y restaurantes reconocidos de Medellín.</div></div>
+<div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Puedo ir solo/a?<span>+</span></div><div class="faq-answer">¡Esa es la idea! La mayoría de personas van solas. Es la forma más fácil de conocer gente nueva.</div></div>
+<div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si no conozco a nadie?<span>+</span></div><div class="faq-answer">Eso es lo mejor. Todos están en la misma situación. El juego de preguntas se encarga de romper el hielo en los primeros minutos.</div></div>
+<div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Voy a saber quién más va a estar antes de llegar?<span>+</span></div><div class="faq-answer">No, y ese es el punto. No verás fotos ni perfiles de tu grupo antes del evento. Solo sabrás el lugar horas antes. La sorpresa es parte de la experiencia — así se conoce gente de verdad, sin prejuicios previos.</div></div>
+<div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿En qué ciudades están?<span>+</span></div><div class="faq-answer">Actualmente operamos en Medellín. Próximamente en Bogotá y otras ciudades de Colombia.</div></div>
+<div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Cuántas personas hay por grupo?<span>+</span></div><div class="faq-answer">Grupos de 6 personas máximo, para que la experiencia sea íntima y todos puedan conversar.</div></div>
+</div>
+<div class="cta-center reveal" style="margin-top:40px"><a href="https://app.nospi.co" class="btn-primary" style="background:var(--bg-mid);color:var(--white);box-shadow:0 8px 24px rgba(136,14,79,0.3);font-size:20px;padding:20px 48px">¿Listo? Únete ahora →</a></div>
+</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SOPORTE / CONTACTO
+     ════════════════════════════════════════════════════════════════
+     ┌─────────────────────────────────────────────────────────────┐
+     │  DATOS DE CONTACTO DE SOPORTE — modifica aquí si cambian   │
+     │                                                             │
+     │  Correo:   nospisocial@gmail.com                           │
+     │  WhatsApp: 573192099123                                     │
+     │                                                             │
+     │  Para cambiar el correo → busca TODAS las apariciones de   │
+     │  "nospisocial@gmail.com" en este archivo y reemplázalas.   │
+     │                                                             │
+     │  Para cambiar el celular → busca TODAS las apariciones de  │
+     │  "573192099123" en este archivo y reemplázalas (formato:   │
+     │  código país + número, sin + ni espacios).                 │
+     │                                                             │
+     │  Edge Function URL (Supabase/Resend):                      │
+     │  https://wjdiraurfbawotlcndmk.supabase.co/functions/v1/   │
+     │  support-send-email                                         │
+     │  → Cambia SUPPORT_EDGE_URL en el <script> si la migras.   │
+     └─────────────────────────────────────────────────────────────┘
+-->
+<section class="section-dark" id="soporte">
+<div class="container">
+<h2 class="section-title reveal">Soporte</h2>
+<p class="section-subtitle" style="color:rgba(255,255,255,0.6)">¿Necesitas ayuda? Contáctanos</p>
+
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:600px;margin:0 auto 48px">
+
+<!-- Correo — abre modal -->
+<div onclick="openSupportModal()" class="reveal" style="display:flex;flex-direction:column;align-items:center;padding:40px 28px;border-radius:var(--radius-card);background:rgba(255,255,255,0.06);border:1px solid rgba(240,98,146,0.12);transition:transform .3s,border-color .3s;cursor:pointer" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='var(--pink-border)'" onmouseout="this.style.transform='translateY(0)';this.style.borderColor='rgba(240,98,146,0.12)'">
+<div style="width:64px;height:64px;border-radius:50%;background:rgba(136,14,79,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F06292" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+</div>
+<h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px">Correo</h3>
+<p style="font-size:14px;color:rgba(255,255,255,0.55)">Envíanos un mensaje</p>
+</div>
+
+<!-- WhatsApp -->
+<!-- ▼ WHATSAPP DE SOPORTE — cambia el número 573192099123 si necesitas ▼ -->
+<a id="whatsapp-link" href="https://wa.me/573192099123" target="_blank" class="reveal" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;padding:40px 28px;border-radius:var(--radius-card);background:rgba(255,255,255,0.06);border:1px solid rgba(240,98,146,0.12);transition:transform .3s,border-color .3s;cursor:pointer" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='var(--pink-border)'" onmouseout="this.style.transform='translateY(0)';this.style.borderColor='rgba(240,98,146,0.12)'">
+<div style="width:64px;height:64px;border-radius:50%;background:rgba(136,14,79,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="#F06292"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</div>
+<h3 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px">WhatsApp</h3>
+<p style="font-size:14px;color:rgba(255,255,255,0.55)">Chatea con nosotros</p>
+</a>
+
+</div>
+</div>
+</section>
+
+<!-- MODAL DE SOPORTE (estilo app) -->
+<div id="supportModal" style="display:none;position:fixed;inset:0;z-index:200;align-items:flex-end;justify-content:center" onclick="if(event.target===this)closeSupportModal()">
+<div style="position:absolute;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px)"></div>
+<div style="position:relative;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;background:var(--white);border-radius:24px 24px 0 0;padding:32px 28px 40px;margin:0 auto;animation:slideUp .3s ease">
+
+<!-- Estado: formulario -->
+<div id="supportFormState">
+<h3 style="font-family:'Outfit',sans-serif;font-size:24px;font-weight:700;color:#880E4F;margin-bottom:6px">Contactar Soporte</h3>
+<p style="font-size:15px;color:#666;margin-bottom:24px">Te responderemos lo antes posible</p>
+
+<label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px">Nombre</label>
+<input id="supportName" type="text" placeholder="Tu nombre" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid #E5E7EB;background:#F3F4F6;color:#333;font-size:16px;font-family:'DM Sans',sans-serif;margin-bottom:14px;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#880E4F'" onblur="this.style.borderColor='#E5E7EB'">
+
+<label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px">Tu correo electrónico</label>
+<input id="supportEmail" type="email" placeholder="tu@correo.com" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid #E5E7EB;background:#F3F4F6;color:#333;font-size:16px;font-family:'DM Sans',sans-serif;margin-bottom:14px;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#880E4F'" onblur="this.style.borderColor='#E5E7EB'">
+
+<label style="display:block;font-size:14px;font-weight:600;color:#333;margin-bottom:6px">Mensaje</label>
+<textarea id="supportMessage" placeholder="Describe tu consulta o problema..." rows="5" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid #E5E7EB;background:#F3F4F6;color:#333;font-size:16px;font-family:'DM Sans',sans-serif;margin-bottom:20px;outline:none;resize:vertical;min-height:120px;transition:border-color .2s" onfocus="this.style.borderColor='#880E4F'" onblur="this.style.borderColor='#E5E7EB'"></textarea>
+
+<button id="supportSubmitBtn" onclick="handleSupportSubmit()" style="width:100%;padding:16px;border-radius:12px;border:none;background:#880E4F;color:var(--white);font-size:16px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:opacity .2s">Enviar mensaje</button>
+
+<p id="supportError" style="display:none;margin-top:12px;font-size:14px;color:#EF4444;text-align:center"></p>
+
+<button onclick="closeSupportModal()" style="width:100%;padding:14px;border-radius:12px;border:none;background:#E0E0E0;color:#333;font-size:16px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:12px;transition:opacity .2s">Cancelar</button>
+</div>
+
+<!-- Estado: éxito -->
+<div id="supportSuccessState" style="display:none;text-align:center;padding:24px 0">
+<div style="width:72px;height:72px;border-radius:50%;background:#E8F5E9;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px;color:#2E7D32;font-weight:bold">✓</div>
+<h3 style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;color:#880E4F;margin-bottom:12px">¡Mensaje enviado!</h3>
+<p style="font-size:15px;color:#666;margin-bottom:4px">Te responderemos pronto a</p>
+<p id="supportSuccessEmail" style="font-size:15px;color:#333;font-weight:600;margin-bottom:28px"></p>
+<button onclick="closeSupportModal()" style="width:100%;padding:14px;border-radius:12px;border:none;background:#880E4F;color:var(--white);font-size:16px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer">Cerrar</button>
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<div class="footer-inner">
+<div class="footer-brand">
+<div class="nav-logo">Nospi</div>
+<p>Tu dosis semanal de conexión. Encuentros grupales en Medellín.</p>
+<div class="store-badges" style="margin-top:16px">
+<a href="https://apps.apple.com/co/app/nospi/id6761556688" target="_blank" class="store-badge-a"><span class="sbat">DISPONIBLE EN</span><span class="sbab"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.86 9.28 4.84C10.56 4.81 11.78 5.7 12.58 5.7C13.38 5.7 14.87 4.62 16.42 4.8C17.09 4.83 18.88 5.08 20.01 6.73C19.9 6.8 17.53 8.16 17.56 11.02C17.59 14.45 20.53 15.61 20.56 15.62C20.53 15.71 20.09 17.22 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg> App Store</span></a>
+<a href="https://play.google.com/store/apps/details?id=app.nospi.mobile" target="_blank" class="store-badge-a"><span class="sbat">DISPONIBLE EN</span><span class="sbab"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.5 12.92 20.16 13.19L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg> Google Play</span></a>
+</div>
+</div>
+<div class="footer-links">
+<div>
+<h4>Nospi</h4>
+<a href="#como-funciona">Cómo funciona</a>
+<a href="#experiencias">Experiencias</a>
+<a href="#testimonios">Testimonios</a>
+<a href="#faq">Preguntas frecuentes</a>
+</div>
+<div>
+<h4>Legal</h4>
+<a href="/terms.html">Términos y condiciones</a>
+<a href="/privacy.html">Política de privacidad</a>
+<a href="/child-safety.html">Seguridad de menores</a>
+<a href="/delete-account.html">Eliminar cuenta</a>
+<a href="#soporte">Contacto</a>
+</div>
+<div>
+<h4>Síguenos</h4>
+<a href="https://www.instagram.com/nospi.social?igsh=MThsa3Y1ZXM2eHlwYg%3D%3D&utm_source=qr" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@nospi.social" target="_blank">TikTok</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">© 2025 Nospi. Hecho con ❤️ en Medellín, Colombia</div>
+</div>
+</footer>
+
+<script>
+// ════════════════════════════════════════════════════════
+// EVENTOS — Carga en tiempo real desde Supabase
+// ════════════════════════════════════════════════════════
+(async function loadEventos() {
+  const SUPABASE_URL = 'https://wjdiraurfbawotlcndmk.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
+  const container = document.getElementById('eventos-container');
+
+  const TIPO_EMOJI = { bar: '🍻', restaurante: '🍽️', default: '✨' };
+  const TIPO_LABEL = { bar: 'Bar', restaurante: 'Restaurante', default: 'Evento' };
+
+  function formatFecha(dateStr, timeStr) {
+    // Supabase devuelve "2026-04-24 02:00:00+00" — tomamos solo YYYY-MM-DD
+    const soloFecha = dateStr.replace('T', ' ').split(' ')[0];
+    const partes = soloFecha.split('-');
+    const date = new Date(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2]));
+    // Ajustar a Colombia UTC-5: si la hora UTC es < 5, restar un día
+    const horaUTC = parseInt(dateStr.replace('T',' ').split(' ')[1].split(':')[0]);
+    if (horaUTC < 5) date.setDate(date.getDate() - 1);
+    const dias = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+    const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    const dia = dias[date.getDay()];
+    const num = date.getDate();
+    const mes = meses[date.getMonth()];
+    const hora = timeStr ? timeStr.slice(0,5) : '';
+    return `${dia} ${num} ${mes}${hora ? ' · ' + hora : ''}`;
+  }
+
+  function renderEventos(events) {
+    if (!events || events.length === 0) {
+      container.innerHTML = '<div class="eventos-empty">No hay eventos disponibles por el momento. ¡Vuelve pronto! 🗓️</div>';
+      return;
+    }
+
+    const grid = document.createElement('div');
+    grid.className = 'eventos-grid';
+
+    events.forEach(ev => {
+      const max = ev.max_participants || 6;
+      const actual = ev.current_participants || 0;
+      const disponibles = max - actual;
+      const lleno = disponibles <= 0;
+      const pct = Math.min(100, Math.round((actual / max) * 100));
+      const tipo = ev.type || 'default';
+      const emoji = TIPO_EMOJI[tipo] || TIPO_EMOJI.default;
+      const label = TIPO_LABEL[tipo] || TIPO_LABEL.default;
+      const lugar = ev.location_name || ev.location || 'Medellín';
+      const direccion = ev.location_address || '';
+      const fecha = formatFecha(ev.date, ev.time);
+
+      const card = document.createElement('div');
+      card.className = 'evento-card reveal';
+      card.innerHTML = `
+        <div class="evento-header">
+          <div class="evento-tipo">${emoji} ${label}</div>
+          <div class="evento-nombre">${ev.name}</div>
+        </div>
+        <div class="evento-body">
+          <div class="evento-info"><span>📅</span><span>${fecha}</span></div>
+          <div class="evento-info"><span>📍</span><span>${lugar}${direccion ? ' — ' + direccion : ''}</span></div>
+          <div class="evento-info"><span>👥</span><span>Grupos de ${max} personas</span></div>
+          <div class="evento-cupos">
+            <div class="evento-cupos-bar"><div class="evento-cupos-fill" style="width:${pct}%"></div></div>
+            <div class="evento-cupos-text">${lleno ? 'Sin cupos' : disponibles + ' cupo' + (disponibles !== 1 ? 's' : '') + ' disponible' + (disponibles !== 1 ? 's' : '')}</div>
+          </div>
+        </div>
+        <div class="evento-footer">
+          <a href="https://app.nospi.co" class="evento-btn${lleno ? ' lleno' : ''}">${lleno ? 'Sin cupos disponibles' : 'Quiero ir →'}</a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    container.innerHTML = '';
+    container.appendChild(grid);
+
+    // Activar scroll reveal para las nuevas cards
+    document.querySelectorAll('.evento-card.reveal').forEach(el => observer.observe(el));
+  }
+
+  try {
+    const today = new Date().toISOString().split('T')[0];
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/events?select=id,name,description,date,time,location_name,location_address,type,max_participants,current_participants,status&status=neq.cancelada&date=gte.${today}&order=date.asc&limit=6`,
+      {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        }
+      }
+    );
+    if (!res.ok) throw new Error('Error ' + res.status);
+    const events = await res.json();
+    renderEventos(events);
+  } catch (err) {
+    console.warn('[Eventos] Error cargando eventos:', err);
+    container.innerHTML = '<div class="eventos-empty">No pudimos cargar los eventos. <a href="https://app.nospi.co" style="color:var(--pink)">Ver en la app →</a></div>';
+  }
+})();
+
+// Supabase config (reutiliza las constantes ya definidas abajo)
+const SUPA_URL = 'https://wjdiraurfbawotlcndmk.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
+
+// Genera o recupera device_id del browser
+function getLandingDeviceId() {
+  let id = localStorage.getItem('nospi_device_id');
+  if (!id) {
+    id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+    localStorage.setItem('nospi_device_id', id);
+  }
+  return id;
+}
+
+// Registra el clic en Supabase onboarding_sessions
+function getUtmSource() {
+  try {
+    return new URLSearchParams(window.location.search).get('utm_source') || 'lp1';
+  } catch(e) { return 'lp1'; }
+}
+
+function trackLandingClick() {
+  try {
+    const deviceId = getLandingDeviceId();
+    const now = new Date().toISOString();
+    const utmSource = getUtmSource();
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', `${SUPA_URL}/rest/v1/onboarding_sessions`, false);
+    xhr.setRequestHeader('apikey', SUPA_KEY);
+    xhr.setRequestHeader('Authorization', `Bearer ${SUPA_KEY}`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ device_id: deviceId, last_step: 'landing_click', utm_source: utmSource, created_at: now, updated_at: now }));
+  } catch(e) {
+    console.warn('[LandingTrack] Error:', e);
+  }
+}
+
+// Track Lead y navegar
+function trackLead(url) {
+  try {
+    fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()});
+  } catch(e) {}
+  trackLandingClick();
+  window.location.href = url;
+  return false;
+}
+
+// Navbar scroll effect
+window.addEventListener('scroll',()=>{
+document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50)
+})
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'})
+document.querySelectorAll('.reveal').forEach(el=>{observer.observe(el)})
+
+// ════════════════════════════════════════════════════════
+// SOPORTE — Modal + formulario via Edge Function (Resend)
+// ════════════════════════════════════════════════════════
+// ▼ EDGE FUNCTION URL — cámbiala aquí si la migras ▼
+const SUPPORT_EDGE_URL = 'https://wjdiraurfbawotlcndmk.supabase.co/functions/v1/support-send-email';
+
+function openSupportModal() {
+  const modal = document.getElementById('supportModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSupportModal() {
+  const modal = document.getElementById('supportModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+  // Reset form
+  document.getElementById('supportName').value = '';
+  document.getElementById('supportEmail').value = '';
+  document.getElementById('supportMessage').value = '';
+  document.getElementById('supportError').style.display = 'none';
+  document.getElementById('supportFormState').style.display = 'block';
+  document.getElementById('supportSuccessState').style.display = 'none';
+}
+
+async function handleSupportSubmit() {
+  const nameEl = document.getElementById('supportName');
+  const emailEl = document.getElementById('supportEmail');
+  const messageEl = document.getElementById('supportMessage');
+  const btn = document.getElementById('supportSubmitBtn');
+  const errorEl = document.getElementById('supportError');
+
+  const name = nameEl.value.trim();
+  const email = emailEl.value.trim();
+  const message = messageEl.value.trim();
+
+  errorEl.style.display = 'none';
+  if (!email || !message) {
+    errorEl.textContent = 'Por favor completa tu correo y el mensaje.';
+    errorEl.style.display = 'block';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errorEl.textContent = 'Por favor ingresa un correo válido.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  btn.style.opacity = '0.6';
+
+  try {
+    const response = await fetch(SUPPORT_EDGE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ senderEmail: email, senderName: name, message: message }),
+    });
+
+    if (!response.ok) {
+      const errText = await response.text();
+      throw new Error(errText || 'Error ' + response.status);
+    }
+
+    document.getElementById('supportSuccessEmail').textContent = email;
+    document.getElementById('supportFormState').style.display = 'none';
+    document.getElementById('supportSuccessState').style.display = 'block';
+
+  } catch (err) {
+    console.error('[SupportLanding] Error:', err);
+    errorEl.textContent = 'No se pudo enviar el mensaje. Intenta de nuevo o escríbenos por WhatsApp.';
+    errorEl.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Enviar mensaje';
+    btn.style.opacity = '1';
+  }
+}
+
+// Cerrar modal con Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeSupportModal();
+});
+
+// ════════════════════════════════════════════════════════
+// APP CONFIG — Carga dinámica desde Supabase app_config
+// WhatsApp y email se sincronizan con el panel admin web
+// ════════════════════════════════════════════════════════
+(async function loadAppConfig() {
+  const SUPABASE_URL = 'https://wjdiraurfbawotlcndmk.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/app_config?select=key,value`, {
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      }
+    });
+
+    if (!res.ok) return;
+    const rows = await res.json();
+
+    const config = {};
+    rows.forEach(r => { config[r.key] = r.value; });
+
+    // Actualizar WhatsApp
+    if (config.support_whatsapp) {
+      const waLink = document.getElementById('whatsapp-link');
+      if (waLink) {
+        waLink.href = `https://wa.me/${config.support_whatsapp}`;
+      }
+    }
+
+    // Actualizar email de soporte en el modal
+    if (config.support_email) {
+      const emailHints = document.querySelectorAll('.support-email-hint');
+      emailHints.forEach(el => { el.textContent = config.support_email; });
+    }
+
+  } catch (err) {
+    console.warn('[AppConfig] No se pudo cargar config dinámica, usando valores por defecto.', err);
+  }
+})();
+
+// Tracking de clics en todos los botones CTA (event delegation)
+document.addEventListener('click', function(e) {
+  var el = e.target.closest('a');
+  if (!el) return;
+  var href = el.getAttribute('href');
+  if (href === 'https://app.nospi.co' || href === 'https://app.nospi.co/login') {
+    e.preventDefault();
+    try { fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()}); } catch(err) {}
+    trackLandingClick();
+    window.location.href = href;
+  }
+});
+</script>
+</body>
 </html>
