@@ -206,10 +206,6 @@ footer{background:var(--bg-dark);padding:60px 0 32px;border-top:1px solid rgba(2
 .evento-body{padding:16px 24px;flex:1;display:flex;flex-direction:column;gap:10px}
 .evento-info{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,0.65)}
 .evento-info span:first-child{font-size:16px;flex-shrink:0}
-.evento-cupos{display:flex;align-items:center;gap:8px;font-size:13px;margin-top:4px}
-.evento-cupos-bar{flex:1;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden}
-.evento-cupos-fill{height:100%;background:linear-gradient(90deg,var(--pink),#FFB74D);border-radius:2px;transition:width .5s}
-.evento-cupos-text{font-size:12px;color:rgba(255,255,255,0.5);white-space:nowrap}
 .evento-footer{padding:16px 24px;border-top:1px solid rgba(240,98,146,0.08)}
 .evento-btn{display:block;text-align:center;background:var(--white);color:var(--bg-mid);padding:12px 24px;border-radius:var(--radius-pill);font-weight:700;font-size:15px;text-decoration:none;transition:transform .2s,box-shadow .2s}
 .evento-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.25)}
@@ -771,10 +767,6 @@ section{padding:70px 0}
           <div class="evento-info"><span>📅</span><span>${fecha}</span></div>
           <div class="evento-info"><span>📍</span><span>${lugar}${direccion ? ' — ' + direccion : ''}</span></div>
           <div class="evento-info"><span>👥</span><span>Grupos de ${max} personas</span></div>
-          <div class="evento-cupos">
-            <div class="evento-cupos-bar"><div class="evento-cupos-fill" style="width:${pct}%"></div></div>
-            <div class="evento-cupos-text">${lleno ? 'Sin cupos' : disponibles + ' cupo' + (disponibles !== 1 ? 's' : '') + ' disponible' + (disponibles !== 1 ? 's' : '')}</div>
-          </div>
         </div>
         <div class="evento-footer">
           <a href="https://app.nospi.co" class="evento-btn${lleno ? ' lleno' : ''}">${lleno ? 'Sin cupos disponibles' : 'Quiero ir →'}</a>
