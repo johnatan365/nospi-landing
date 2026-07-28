@@ -745,10 +745,9 @@ section{padding:70px 0}
 
     events.forEach(ev => {
       const max = ev.max_participants || 6;
-      const actual = ev.current_participants || 0;
-      const disponibles = max - actual;
-      const lleno = disponibles <= 0;
-      const pct = Math.min(100, Math.round((actual / max) * 100));
+      // Nunca mostramos "sin cupos": si un evento se llena, se arman mas
+      // grupos de 6 en vez de topar la inscripcion, asi que el boton
+      // siempre queda habilitado y dice "Quiero ir".
       const tipo = ev.type || 'default';
       const emoji = TIPO_EMOJI[tipo] || TIPO_EMOJI.default;
       const label = TIPO_LABEL[tipo] || TIPO_LABEL.default;
@@ -769,7 +768,7 @@ section{padding:70px 0}
           <div class="evento-info"><span>👥</span><span>Grupos de ${max} personas</span></div>
         </div>
         <div class="evento-footer">
-          <a href="https://app.nospi.co" class="evento-btn${lleno ? ' lleno' : ''}">${lleno ? 'Sin cupos disponibles' : 'Quiero ir →'}</a>
+          <a href="https://app.nospi.co" class="evento-btn">Quiero ir →</a>
         </div>
       `;
       grid.appendChild(card);
