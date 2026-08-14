@@ -258,6 +258,7 @@ section{padding:70px 0}
 <a href="#experiencias">Experiencias</a>
 <a href="#seguridad">Seguridad</a>
 <a href="#testimonios">Testimonios</a>
+<a href="#politica">Política</a>
 <a href="#soporte">Soporte</a>
 <a href="https://app.nospi.co/login" style="font-size:15px;font-weight:500;color:rgba(255,255,255,0.7);transition:color .2s">Iniciar sesión</a>
 <a href="https://app.nospi.co" class="nav-cta">Regístrate</a>
@@ -273,6 +274,7 @@ section{padding:70px 0}
 <a href="#eventos" onclick="this.parentElement.classList.remove('open')">Eventos</a>
 <a href="#experiencias" onclick="this.parentElement.classList.remove('open')">Experiencias</a>
 <a href="#testimonios" onclick="this.parentElement.classList.remove('open')">Testimonios</a>
+<a href="#politica" onclick="this.parentElement.classList.remove('open')">Política de asistencia</a>
 <a href="#soporte" onclick="this.parentElement.classList.remove('open')">Soporte</a>
 <a href="https://app.nospi.co/login" onclick="this.parentElement.classList.remove('open');return trackLead('https://app.nospi.co/login')">Iniciar sesión</a>
 <a href="https://app.nospi.co" style="background:var(--white);color:var(--bg-mid);padding:14px 40px;border-radius:var(--radius-pill);font-weight:700">Regístrate</a>
@@ -628,6 +630,50 @@ section{padding:70px 0}
 </div>
 </section>
 
+<!-- POLÍTICA DE ASISTENCIA -->
+<section class="section-dark" id="politica">
+<div class="container">
+<p class="reveal" style="text-align:center;color:var(--pink);text-transform:uppercase;letter-spacing:2px;font-weight:700;font-size:13px;margin-bottom:8px">Confianza</p>
+<h2 class="section-title reveal">Política de asistencia</h2>
+<p class="section-subtitle reveal" style="color:rgba(255,255,255,0.65)">Cuidamos que cada mesa esté completa para que la experiencia sea buena para todas. Por eso te pedimos avisar a tiempo si no puedes ir.</p>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:780px;margin:0 auto">
+
+<div class="reveal" style="background:var(--white);border-radius:20px;padding:24px 24px">
+<h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--bg-mid);margin-bottom:10px">🗓️ Cancelación</h3>
+<p style="font-size:15px;line-height:1.6;color:#4a3a42">Cancela <b style="color:#241019">hasta 24 horas antes del evento</b> y te devolvemos el valor como <b style="color:#241019">saldo</b> para otro evento. Con <b style="color:#241019">menos de 24 horas</b> o si <b style="color:#241019">no asistes</b>, no hay devolución.</p>
+</div>
+
+<div class="reveal" style="background:var(--white);border-radius:20px;padding:24px 24px">
+<h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--bg-mid);margin-bottom:10px">🔓 ¿Qué es la suspensión?</h3>
+<p style="font-size:15px;line-height:1.6;color:#4a3a42">Solo significa que <b style="color:#241019">no puedes reservar</b> nuevos eventos por un tiempo. Sigues usando la app con normalidad (chat, perfil…).</p>
+</div>
+
+<div class="reveal" style="grid-column:1/-1;background:var(--white);border-radius:20px;padding:24px 24px">
+<h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--bg-mid);margin-bottom:14px">⚠️ Si faltas sin avisar (amonestaciones)</h3>
+<div style="display:flex;align-items:center;gap:12px;background:#FFF7E6;border-radius:12px;padding:12px 14px;margin-bottom:8px">
+<span style="flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:#E9B949;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">1</span>
+<span style="font-size:14px;color:#8a6d00"><b>Primera falta:</b> solo un aviso, sin bloqueo.</span>
+</div>
+<div style="display:flex;align-items:center;gap:12px;background:#FFEDE0;border-radius:12px;padding:12px 14px;margin-bottom:8px">
+<span style="flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:#F4823E;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">2</span>
+<span style="font-size:14px;color:#9a4a10"><b>Segunda falta:</b> no puedes reservar durante 15 días.</span>
+</div>
+<div style="display:flex;align-items:center;gap:12px;background:#FDE7EA;border-radius:12px;padding:12px 14px">
+<span style="flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:#D7385E;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center">3</span>
+<span style="font-size:14px;color:#9a1030"><b>Tercera falta:</b> no puedes reservar durante 60 días.</span>
+</div>
+<p style="font-size:13px;color:#6b5560;margin-top:12px">Las amonestaciones se borran a los ~4 meses de buen comportamiento.</p>
+</div>
+
+<div class="reveal" style="grid-column:1/-1;background:rgba(255,255,255,0.06);border:1px solid var(--pink-border);border-radius:20px;padding:20px 24px;text-align:center">
+<p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,0.9)">🛟 ¿Tuviste un problema al confirmar o entrar? <b style="color:var(--white)">Escríbenos a soporte</b> y lo solucionamos. Nunca amonestamos por un fallo técnico ni por avisar a tiempo.</p>
+</div>
+
+</div>
+</div>
+</section>
+
 <!-- MODAL DE SOPORTE (estilo app) -->
 <div id="supportModal" style="display:none;position:fixed;inset:0;z-index:200;align-items:flex-end;justify-content:center" onclick="if(event.target===this)closeSupportModal()">
 <div style="position:absolute;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px)"></div>
@@ -685,6 +731,7 @@ section{padding:70px 0}
 <a href="#experiencias">Experiencias</a>
 <a href="#testimonios">Testimonios</a>
 <a href="#faq">Preguntas frecuentes</a>
+<a href="#politica">Política de asistencia</a>
 </div>
 <div>
 <h4>Legal</h4>
