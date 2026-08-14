@@ -288,7 +288,7 @@ section{padding:70px 0}
 <div class="hero-text">
 <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(240,98,146,0.12);border:1px solid rgba(240,98,146,0.3);border-radius:100px;padding:8px 18px;margin-bottom:20px;font-size:13px;font-weight:600;color:#F06292">🔒 No sabrás quién más llega hasta el evento</div>
 <h1>Deja de chatear.<br><span>Empieza a vivir.</span></h1>
-<p>Un algoritmo arma tu grupo según tus intereses. Nada de fotos ni chat previo — solo te revelamos el lugar horas antes. Llegas, te sientas, y la sorpresa hace el resto.</p>
+<p>Un algoritmo arma tu grupo según tus intereses. Nada de fotos ni chat previo — solo te revelamos el lugar un día antes. Llegas, te sientas, y la sorpresa hace el resto.</p>
 <div class="hero-buttons">
 <a href="https://app.nospi.co" class="btn-primary">Únete ahora →</a>
 <a href="#como-funciona" class="btn-secondary">Cómo funciona</a>
@@ -351,7 +351,7 @@ section{padding:70px 0}
 <div class="step reveal">
 <div class="step-number">02</div>
 <h3>Espera la sorpresa</h3>
-<p>No sabes quiénes son ni dónde es hasta horas antes. Ese misterio es parte de la experiencia — te avisamos el lugar y llegas con curiosidad, no con expectativas.</p>
+<p>No sabes quiénes son ni dónde es hasta un día antes. Ese misterio es parte de la experiencia — te avisamos el lugar y llegas con curiosidad, no con expectativas.</p>
 </div>
 <div class="step reveal">
 <div class="step-number">03</div>
@@ -566,11 +566,11 @@ section{padding:70px 0}
 <div class="container">
 <h2 class="section-title reveal" style="color:var(--text-dark)">Preguntas frecuentes</h2>
 <div class="faq-list">
-<div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Cómo funciona Nospi?<span>+</span></div><div class="faq-answer">Te registras, eliges un evento, pagas tu entrada y listo. Horas antes del evento te revelamos la ubicación. Solo llegas, confirmas tu código y empieza la experiencia con nuestro juego rompe-hielo.</div></div>
+<div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Cómo funciona Nospi?<span>+</span></div><div class="faq-answer">Te registras, eliges un evento, pagas tu entrada y listo. Un día antes del evento te revelamos la ubicación. Solo llegas, confirmas tu código y empieza la experiencia con nuestro juego rompe-hielo.</div></div>
 <div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Es seguro?<span>+</span></div><div class="faq-answer">Todos los participantes están verificados con su nombre real, foto y teléfono. Los eventos son en bares y restaurantes reconocidos de Medellín.</div></div>
 <div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Puedo ir solo/a?<span>+</span></div><div class="faq-answer">¡Esa es la idea! La mayoría de personas van solas. Es la forma más fácil de conocer gente nueva.</div></div>
 <div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si no conozco a nadie?<span>+</span></div><div class="faq-answer">Eso es lo mejor. Todos están en la misma situación. El juego de preguntas se encarga de romper el hielo en los primeros minutos.</div></div>
-<div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Voy a saber quién más va a estar antes de llegar?<span>+</span></div><div class="faq-answer">No, y ese es el punto. No verás fotos ni perfiles de tu grupo antes del evento. Solo sabrás el lugar horas antes. La sorpresa es parte de la experiencia — así se conoce gente de verdad, sin prejuicios previos.</div></div>
+<div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Voy a saber quién más va a estar antes de llegar?<span>+</span></div><div class="faq-answer">No, y ese es el punto. No verás fotos ni perfiles de tu grupo antes del evento. Solo sabrás el lugar un día antes. La sorpresa es parte de la experiencia — así se conoce gente de verdad, sin prejuicios previos.</div></div>
 <div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿En qué ciudades están?<span>+</span></div><div class="faq-answer">Actualmente operamos en Medellín. Próximamente en Bogotá y otras ciudades de Colombia.</div></div>
 <div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Cómo son los grupos?<span>+</span></div><div class="faq-answer">Un grupo de hombres y mujeres, armado según tus intereses, para que la experiencia sea íntima y todos puedan conversar.</div></div>
 <div class="faq-item reveal"><div class="faq-question" onclick="this.parentElement.classList.toggle('open')">¿Puedo cancelar mi cupo?<span>+</span></div><div class="faq-answer">Sí. Si cancelas desde la app con más de 24 horas de anticipación, te devolvemos el valor completo como saldo para tu próximo evento. Con menos de 24 horas no hay devolución del saldo, porque tu cupo ya está reservado y el grupo armado.</div></div>
@@ -805,7 +805,7 @@ section{padding:70px 0}
       // el misterio (parte de la experiencia Nospi) y no filtramos el sitio.
       const revelado = ev.is_location_revealed === true;
       const pinEmoji = revelado ? '📍' : '🤫';
-      const lugar = revelado ? (ev.location_name || ev.location || 'Medellín') : 'Ubicación secreta · se revela horas antes';
+      const lugar = revelado ? (ev.location_name || ev.location || 'Medellín') : 'Ubicación secreta · se revela un día antes';
       const direccion = revelado ? (ev.location_address || '') : '';
       const fecha = formatFecha(ev.date, ev.time);
 
