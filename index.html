@@ -837,7 +837,7 @@ section{padding:70px 0}
   try {
     const today = new Date().toISOString().split('T')[0];
     const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/events?select=id,name,description,date,time,location_name,location_address,is_location_revealed,type,max_participants,current_participants,status&status=neq.cancelada&date=gte.${today}&order=date.asc&limit=6`,
+      `${SUPABASE_URL}/rest/v1/events?select=id,name,description,date,time,location_name,location_address,is_location_revealed,type,max_participants,current_participants,event_status,is_full&event_status=eq.published&is_full=eq.false&date=gte.${today}&order=date.asc&limit=6`,
       {
         headers: {
           'apikey': SUPABASE_ANON_KEY,
