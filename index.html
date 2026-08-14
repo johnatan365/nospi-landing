@@ -800,8 +800,12 @@ section{padding:70px 0}
       const tipo = ev.type || 'default';
       const emoji = TIPO_EMOJI[tipo] || TIPO_EMOJI.default;
       const label = TIPO_LABEL[tipo] || TIPO_LABEL.default;
-      const lugar = ev.location_name || ev.location || 'Medellín';
-      const direccion = ev.location_address || '';
+      // Solo mostramos el lugar real si YA fue revelado. Si no, mantenemos
+      // el misterio (parte de la experiencia Nospi) y no filtramos el sitio.
+      const revelado = ev.is_location_revealed === true;
+      const pinEmoji = revelado ? '📍' : '🤫';
+      const lugar = revelado ? (ev.location_name || ev.location || 'Medellín') : 'Ubicación secreta · se revela horas antes';
+      const direccion = revelado ? (ev.location_address || '') : '';
       const fecha = formatFecha(ev.date, ev.time);
 
       const card = document.createElement('div');
@@ -813,7 +817,7 @@ section{padding:70px 0}
         </div>
         <div class="evento-body">
           <div class="evento-info"><span>📅</span><span>${fecha}</span></div>
-          <div class="evento-info"><span>📍</span><span>${lugar}${direccion ? ' — ' + direccion : ''}</span></div>
+          <div class="evento-info"><span>${pinEmoji}</span><span>${lugar}${direccion ? ' — ' + direccion : ''}</span></div>
           <div class="evento-info"><span>👥</span><span>Hombres y mujeres</span></div>
         </div>
         <div class="evento-footer">
@@ -833,7 +837,7 @@ section{padding:70px 0}
   try {
     const today = new Date().toISOString().split('T')[0];
     const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/events?select=id,name,description,date,time,location_name,location_address,type,max_participants,current_participants,status&status=neq.cancelada&date=gte.${today}&order=date.asc&limit=6`,
+      `${SUPABASE_URL}/rest/v1/events?select=id,name,description,date,time,location_name,location_address,is_location_revealed,type,max_participants,current_participants,status&status=neq.cancelada&date=gte.${today}&order=date.asc&limit=6`,
       {
         headers: {
           'apikey': SUPABASE_ANON_KEY,
