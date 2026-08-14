@@ -763,8 +763,9 @@ section{padding:70px 0}
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
   const container = document.getElementById('eventos-container');
 
-  const TIPO_EMOJI = { bar: '🍻', restaurante: '🍽️', default: '✨' };
-  const TIPO_LABEL = { bar: 'Bar', restaurante: 'Restaurante', default: 'Evento' };
+  // Mismos iconos por tipo que usa la app (events/appointments/chats/dinamica).
+  const TIPO_EMOJI = { bar: '🍸', restaurante: '🍽️', cafe: '☕', caminata: '🚶', bolos: '🎳', default: '🍽️' };
+  const TIPO_LABEL = { bar: 'Bar', restaurante: 'Restaurante', cafe: 'Café', caminata: 'Caminata', bolos: 'Bolos', default: 'Restaurante' };
 
   function formatFecha(dateStr, timeStr) {
     // Supabase devuelve "2026-04-24 02:00:00+00" — tomamos solo YYYY-MM-DD
