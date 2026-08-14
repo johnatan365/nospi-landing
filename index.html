@@ -39,6 +39,7 @@ src="https://www.facebook.com/tr?id=956701276734114&ev=PageView&noscript=1"
 --blue:#4FC3F7;--orange:#FFB74D;--radius-pill:50px;--radius-card:24px;
 }
 html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:88px}
 body{font-family:'DM Sans',sans-serif;color:var(--white);overflow-x:hidden;background:var(--bg-dark)}
 h1,h2,h3,h4{font-family:'Outfit',sans-serif}
 a{text-decoration:none;color:inherit}
@@ -1046,6 +1047,17 @@ document.addEventListener('click', function(e) {
     window.location.href = href;
   }
 });
+
+// Si se llega con un ancla (ej. #politica desde un correo/WhatsApp), reposiciona
+// el scroll DESPUES de que cargan las imagenes de arriba (si no, el navegador
+// salta antes de tiempo y queda en otra seccion).
+function nospiScrollToHash(){
+  if(!location.hash) return;
+  var el;
+  try { el = document.querySelector(location.hash); } catch(e){ el = null; }
+  if(el){ el.scrollIntoView({ behavior: 'auto', block: 'start' }); }
+}
+window.addEventListener('load', function(){ setTimeout(nospiScrollToHash, 80); setTimeout(nospiScrollToHash, 400); });
 </script>
 </body>
 </html>
