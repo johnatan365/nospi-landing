@@ -3,3 +3,26 @@
     ttq.load('DA1RGIBC77UE3FB79VU0');
     ttq.page();
 }(window, document, 'ttq');
+// Espeja los eventos de Meta hacia TikTok en cualquier pagina que cargue este script.
+(function () {
+      var tries = 0;
+      var hook = setInterval(function () {
+              if (window.fbq && !window.fbq.__ttqHooked) {
+                        var orig = window.fbq;
+                        window.fbq = function () {
+                                    try {
+                                                  var a = arguments;
+                                                  if (a[0] === 'track' && window.ttq) {
+                                                                  if (a[1] === 'Lead') { ttq.track('SubmitForm'); }
+                                                                  if (a[1] === 'Purchase') { ttq.track('CompletePayment', { currency: 'COP', value: (a[2] && a[2].value) || 9900, content_type: 'product' }); }
+                                                  }
+                                    } catch (e) {}
+                                    return orig.apply(this, arguments);
+                        };
+                        for (var k in orig) { if (Object.prototype.hasOwnProperty.call(orig, k)) { window.fbq[k] = orig[k]; } }
+                        window.fbq.__ttqHooked = true;
+                        clearInterval(hook);
+              }
+              if (++tries > 100) { clearInterval(hook); }
+      }, 100);
+})();
