@@ -1,0 +1,24 @@
+{
+  "redirects": [
+    {
+      "source": "/tiktok",
+      "destination": "/?utm_source=tiktok&utm_medium=organico",
+      "permanent": false
+    },
+    {
+      "source": "/ig",
+      "destination": "/?utm_source=instagram&utm_medium=organico",
+      "permanent": false
+    },
+    {
+      "source": "/fb",
+      "destination": "/?utm_source=facebook&utm_medium=organico",
+      "permanent": false
+    },
+    {
+      "source": "/wa",
+      "destination": "/?utm_source=whatsapp&utm_medium=organico",
+      "permanent": false
+    }
+  ]
+}
