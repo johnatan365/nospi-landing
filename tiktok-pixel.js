@@ -26,3 +26,35 @@
               if (++tries > 100) { clearInterval(hook); }
       }, 100);
 })();
+
+
+// Propaga los parametros de campana del landing (nospi.co) hacia la app
+// (app.nospi.co). Son dominios distintos, asi que el localStorage NO se
+// comparte: si no reescribimos los enlaces, la atribucion se pierde en el
+// salto y todos los registros aparecen como 'directo'.
+(function () {
+    try {
+        var p = new URLSearchParams(window.location.search);
+        var keep = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'ttclid', 'fbclid', 'gclid'];
+        var out = new URLSearchParams();
+        for (var i = 0; i < keep.length; i++) {
+            var v = p.get(keep[i]);
+            if (v) { out.set(keep[i], v); }
+        }
+        var extra = out.toString();
+        if (!extra) { return; }
+        function propagar() {
+            var links = document.querySelectorAll('a[href*="app.nospi.co"]');
+            for (var j = 0; j < links.length; j++) {
+                var h = links[j].getAttribute('href');
+                if (!h || h.indexOf('utm_source=') > -1 || h.indexOf('ttclid=') > -1) { continue; }
+                links[j].setAttribute('href', h + (h.indexOf('?') > -1 ? '&' : '?') + extra);
+            }
+        }
+        propagar();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', propagar);
+        }
+        setTimeout(propagar, 1500);
+    } catch (e) {}
+})();
