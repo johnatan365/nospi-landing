@@ -62,3 +62,30 @@
         setTimeout(propagar, 1500);
     } catch (e) {}
 })();
+
+
+// PUERTA 2: a quien entra con ?plan=sub no se le ofrece descargar la app.
+//
+// Por que. La marca de la puerta 2 vive en el localStorage del NAVEGADOR. La app
+// nativa es otro contenedor y no lo comparte: si la persona instala la app en vez
+// de seguir en web, llega sin la marca y termina viendo el pago por evento, o sea
+// se pasa sola al grupo de control. Medido el 3 de septiembre de 2026, el 24% de
+// los registros entran por app y el 100% de esos llega sin atribucion.
+//
+// Esconder las insignias de las tiendas no tapa el hueco del todo (la persona
+// puede buscar "Nospi" en la tienda por su cuenta), pero le quita el empujon, que
+// es de donde viene la mayoria de la fuga.
+//
+// Para desmontarlo cuando termine la prueba: borrar este bloque entero. No hay
+// nada mas que tocar.
+(function () {
+    try {
+        if (new URLSearchParams(window.location.search).get('plan') !== 'sub') { return; }
+        var st = document.createElement('style');
+        // Se inyecta como <style> y no con JS sobre los nodos para que las
+        // insignias NUNCA lleguen a pintarse: si se esperara a DOMContentLoaded
+        // alcanzarian a parpadear en pantalla.
+        st.textContent = '.store-badges{display:none !important}';
+        (document.head || document.documentElement).appendChild(st);
+    } catch (e) {}
+})();
