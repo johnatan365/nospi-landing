@@ -897,12 +897,27 @@ function trackLandingClick() {
 }
 
 // Track Lead y navegar
-function trackLead(url) {
+//
+// OJO: el `url` que llega por parametro viene escrito a mano en el onclick del
+// enlace, asi que NO trae los parametros de campana. tiktok-pixel.js reescribe
+// el href del enlace para agregarselos; si navegaramos con el `url` del
+// parametro, tiraríamos a la basura ese trabajo y la persona llegaria a la app
+// sin utm_source y sin la marca de la puerta 2.
+//
+// Por eso se prefiere SIEMPRE el href real del enlace que se acaba de clickear.
+function trackLead(url, ev) {
   try {
     fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()});
   } catch(e) {}
   trackLandingClick();
-  window.location.href = url;
+  var destino = url;
+  try {
+    var origen = (ev && (ev.currentTarget || ev.target)) || (window.event && window.event.target);
+    var enlace = origen && origen.closest ? origen.closest('a') : null;
+    var real = enlace && enlace.getAttribute('href');
+    if (real && real.indexOf('app.nospi.co') > -1) { destino = real; }
+  } catch(e) {}
+  window.location.href = destino;
   return false;
 }
 
@@ -1046,12 +1061,17 @@ document.addEventListener('click', function(e) {
   var el = e.target.closest('a');
   if (!el) return;
   var href = el.getAttribute('href');
-  if (href === 'https://app.nospi.co' || href === 'https://app.nospi.co/login') {
-    e.preventDefault();
-    try { fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()}); } catch(err) {}
-    trackLandingClick();
-    window.location.href = href;
-  }
+  if (!href) return;
+  // Antes esto comparaba con === contra la URL exacta. Se rompia justo con el
+  // trafico pagado: tiktok-pixel.js le agrega los utm al href, el href deja de
+  // ser identico a la constante, la comparacion da falso y NI el Lead de Meta
+  // ni trackLandingClick se disparaban. Es decir, el unico trafico que se paga
+  // por medir era el unico que no se medía. Ahora se compara por prefijo.
+  if (href.indexOf('https://app.nospi.co') !== 0) return;
+  e.preventDefault();
+  try { fbq('track', 'Lead', {}, {eventID: 'lead_' + Date.now()}); } catch(err) {}
+  trackLandingClick();
+  window.location.href = href;
 });
 
 // Si se llega con un ancla (ej. #politica desde un correo/WhatsApp), reposiciona

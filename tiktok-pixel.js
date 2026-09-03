@@ -35,7 +35,11 @@
 (function () {
     try {
         var p = new URLSearchParams(window.location.search);
-        var keep = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'ttclid', 'fbclid', 'gclid'];
+        // 'plan' es la marca de la PUERTA 2 (ver PUERTA-2.md en el repo de la
+        // app): quien llega con ?plan=sub no ve el pago por evento. Si no viaja
+        // en esta lista, la campana de solo-suscripcion pierde su marca al
+        // saltar de nospi.co a app.nospi.co y el experimento no se puede medir.
+        var keep = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'ttclid', 'fbclid', 'gclid', 'plan'];
         var out = new URLSearchParams();
         for (var i = 0; i < keep.length; i++) {
             var v = p.get(keep[i]);
