@@ -20,5 +20,15 @@
       "destination": "/?utm_source=whatsapp&utm_medium=organico",
       "permanent": false
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/app",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/meet",
+      "destination": "/meet.html"
+    }
   ]
 }

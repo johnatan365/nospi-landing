@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descarga Nospi</title>
+<meta name="description" content="Con la app te llegan los avisos del evento y haces la dinámica desde el celular.">
+<meta property="og:title" content="Descarga Nospi">
+<meta property="og:description" content="Con la app te llegan los avisos del evento y haces la dinámica desde el celular.">
+<meta property="og:image" content="https://nospi.co/nospi_icon.png">
+<link rel="icon" href="/nospi_icon.png">
+<script>
+  // Link corto de la app de Nospi: manda a la tienda correcta segun el celular.
+  // En computador se queda en esta pagina con los dos botones.
+  (function () {
+    var ua = navigator.userAgent || '';
+    if (/iPhone|iPad|iPod/i.test(ua)) { location.replace('https://apps.apple.com/co/app/nospi/id6761556688'); return; }
+    if (/Android/i.test(ua)) { location.replace('https://play.google.com/store/apps/details?id=app.nospi.mobile'); return; }
+  })();
+</script>
+<style>
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #1a0010, #880E4F); font-family: -apple-system, Helvetica, Arial, sans-serif; color: #fff; }
+  .card { max-width: 360px; margin: 24px 16px; padding: 28px 24px; border-radius: 20px; background: rgba(255,255,255,0.08); text-align: center; }
+  h1 { font-size: 22px; margin: 12px 0 6px; }
+  p { margin: 0 0 20px; color: #f3d6e4; font-size: 15px; line-height: 1.5; }
+  a { display: block; margin: 10px 0; padding: 14px; border-radius: 12px; background: #C2185B; color: #fff; text-decoration: none; font-weight: 700; }
+  img { width: 64px; height: 64px; border-radius: 14px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <img src="/nospi_icon.png" alt="Nospi">
+  <h1>Descarga Nospi</h1>
+  <p>Con la app te llegan los avisos del evento y haces la dinámica desde el celular.</p>
+  <a href="https://play.google.com/store/apps/details?id=app.nospi.mobile">🤖 Descargar para Android</a>
+  <a href="https://apps.apple.com/co/app/nospi/id6761556688">🍎 Descargar para iPhone</a>
+</div>
+</body>
+</html>
