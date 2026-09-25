@@ -776,8 +776,8 @@ section{padding:70px 0}
   const container = document.getElementById('eventos-container');
 
   // Mismos iconos por tipo que usa la app (events/appointments/chats/dinamica).
-  const TIPO_EMOJI = { bar: '🍸', restaurante: '🍽️', cafe: '☕', caminata: '🚶', bolos: '🎳', default: '🍽️' };
-  const TIPO_LABEL = { bar: 'Bar', restaurante: 'Restaurante', cafe: 'Café', caminata: 'Caminata', bolos: 'Bolos', default: 'Restaurante' };
+  const TIPO_EMOJI = { bar: '🍸', restaurante: '🍽️', cafe: '☕', caminata: '🚶', bolos: '🎳', virtual: '🎥', default: '🍽️' };
+  const TIPO_LABEL = { bar: 'Bar', restaurante: 'Restaurante', cafe: 'Café', caminata: 'Caminata', bolos: 'Bolos', virtual: 'Videollamada', default: 'Restaurante' };
 
   function formatFecha(dateStr, timeStr) {
     // Supabase devuelve "2026-04-24 02:00:00+00" — tomamos solo YYYY-MM-DD
@@ -816,14 +816,19 @@ section{padding:70px 0}
       // Solo mostramos el lugar real si YA fue revelado. Si no, mantenemos
       // el misterio (parte de la experiencia Nospi) y no filtramos el sitio.
       const revelado = ev.is_location_revealed === true;
-      const pinEmoji = revelado ? '📍' : '🤫';
+      // Videollamada: no hay lugar que revelar. Lo que hay que saber antes de
+      // comprar es que va con camara prendida: la idea es conocernos las caras.
+      const esVirtual = tipo === 'virtual';
+      const pinEmoji = esVirtual ? '📹' : (revelado ? '📍' : '🤫');
       const ciudadEvento = ev.nacional
         ? 'Todo el país'
         : ((ev.cities && ev.cities.length > 0) ? ev.cities.join(' y ') : (ev.city || ''));
-      const lugar = revelado
-        ? (ev.location_name || ev.location || ciudadEvento || 'Por confirmar')
-        : 'Ubicación secreta · se revela un día antes';
-      const direccion = revelado ? (ev.location_address || '') : '';
+      const lugar = esVirtual
+        ? 'Con cámara prendida: la idea es conocernos las caras'
+        : revelado
+          ? (ev.location_name || ev.location || ciudadEvento || 'Por confirmar')
+          : 'Ubicación secreta · se revela un día antes';
+      const direccion = (revelado && !esVirtual) ? (ev.location_address || '') : '';
       const fecha = formatFecha(ev.date, ev.time);
 
       const card = document.createElement('div');
