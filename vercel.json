@@ -19,6 +19,11 @@
       "source": "/wa",
       "destination": "/?utm_source=whatsapp&utm_medium=organico",
       "permanent": false
+    },
+    {
+      "source": "/r/:codigo",
+      "destination": "/?utm_source=referido&utm_medium=invitacion&utm_campaign=programa_referidos&utm_content=:codigo",
+      "permanent": false
     }
   ],
   "rewrites": [
