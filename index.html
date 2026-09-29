@@ -203,6 +203,11 @@ footer{background:var(--bg-dark);padding:60px 0 32px;border-top:1px solid rgba(2
 .evento-card{border-radius:var(--radius-card);background:rgba(255,255,255,0.06);border:1px solid rgba(240,98,146,0.2);overflow:hidden;transition:transform .3s,border-color .3s;display:flex;flex-direction:column}
 .evento-card:hover{transform:translateY(-6px);border-color:var(--pink-border)}
 .evento-header{padding:20px 24px 16px;border-bottom:1px solid rgba(240,98,146,0.12)}
+.evento-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.evento-top .evento-tipo{margin-bottom:0}
+.evento-precio{flex-shrink:0;text-align:right}
+.evento-precio b{display:block;font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--white);line-height:1}
+.evento-precio span{display:block;font-size:11px;color:rgba(255,255,255,0.55);margin-top:3px}
 .evento-tipo{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--pink);background:rgba(240,98,146,0.12);padding:4px 10px;border-radius:20px;margin-bottom:10px}
 .evento-nombre{font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:0}
 .evento-body{padding:16px 24px;flex:1;display:flex;flex-direction:column;gap:10px}
@@ -300,6 +305,12 @@ section{padding:70px 0}
 <a href="https://app.nospi.co" class="btn-primary">Únete ahora →</a>
 <a href="#como-funciona" class="btn-secondary">Cómo funciona</a>
 </div>
+<div style="margin-top:18px;display:flex;justify-content:center">
+<div style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:9px 20px;font-size:14px">
+<b id="precio-hero" style="font-family:'Outfit',sans-serif;font-weight:800;color:#fff">$15.000</b>
+<span style="color:rgba(255,255,255,0.75)">por encuentro · pagas solo al que vayas</span>
+</div>
+</div>
 </div>
 <div class="hero-visual">
 <div class="phone-mockup">
@@ -313,6 +324,20 @@ section{padding:70px 0}
 <a href="https://play.google.com/store/apps/details?id=app.nospi.mobile" target="_blank" class="store-badge-a"><span class="sbat">DISPONIBLE EN</span><span class="sbab"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.5 12.92 20.16 13.19L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg> Google Play</span></a>
 </div>
 </div>
+</div>
+</div>
+</section>
+
+<!-- PRÓXIMOS EVENTOS -->
+<section class="section-dark" id="eventos" style="border-top:1px solid rgba(240,98,146,0.08)">
+<div class="container">
+<h2 class="section-title reveal">Próximos eventos</h2>
+<p class="section-subtitle reveal" style="color:rgba(255,255,255,0.6)">Todos cuestan lo mismo: <b id="precio-subtitulo" style="color:#fff">$15.000</b> por persona. Pagas solo el que vayas.</p>
+<div id="eventos-container">
+  <div class="eventos-loading">Cargando eventos... ✨</div>
+</div>
+<div class="cta-center reveal" style="margin-top:40px">
+  <a href="https://app.nospi.co" class="btn-primary">Ver todos los eventos →</a>
 </div>
 </div>
 </section>
@@ -370,19 +395,6 @@ section{padding:70px 0}
 </div>
 </section>
 
-<!-- PRÓXIMOS EVENTOS -->
-<section class="section-dark" id="eventos" style="border-top:1px solid rgba(240,98,146,0.08)">
-<div class="container">
-<h2 class="section-title reveal">Próximos eventos</h2>
-<p class="section-subtitle reveal" style="color:rgba(255,255,255,0.6)">Elige el que más te llame y reserva tu cupo. Los cupos se van rápido.</p>
-<div id="eventos-container">
-  <div class="eventos-loading">Cargando eventos... ✨</div>
-</div>
-<div class="cta-center reveal" style="margin-top:40px">
-  <a href="https://app.nospi.co" class="btn-primary">Ver todos los eventos →</a>
-</div>
-</div>
-</section>
 
 <!-- TRUST & SAFETY -->
 <section class="section-dark" id="seguridad" style="border-top:1px solid rgba(240,98,146,0.08)">
@@ -774,6 +786,8 @@ section{padding:70px 0}
   const SUPABASE_URL = 'https://wjdiraurfbawotlcndmk.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
   const container = document.getElementById('eventos-container');
+  // Respaldo: el mismo numero que usa constants/Pricing.ts en la app.
+  let PRECIO_TXT = '$15.000';
 
   // Mismos iconos por tipo que usa la app (events/appointments/chats/dinamica).
   const TIPO_EMOJI = { bar: '🍸', restaurante: '🍽️', cafe: '☕', caminata: '🚶', bolos: '🎳', virtual: '🎥', default: '🍽️' };
@@ -835,7 +849,10 @@ section{padding:70px 0}
       card.className = 'evento-card reveal';
       card.innerHTML = `
         <div class="evento-header">
-          <div class="evento-tipo">${emoji} ${label}</div>
+          <div class="evento-top">
+            <div class="evento-tipo">${emoji} ${label}</div>
+            <div class="evento-precio"><b>${PRECIO_TXT}</b><span>por persona</span></div>
+          </div>
           <div class="evento-nombre">${ev.name}</div>
         </div>
         <div class="evento-body">
@@ -845,7 +862,7 @@ section{padding:70px 0}
           ${ciudadEvento ? `<div class="evento-info"><span>🏙️</span><span>${ciudadEvento}</span></div>` : ''}
         </div>
         <div class="evento-footer">
-          <a href="https://app.nospi.co" class="evento-btn">Quiero ir →</a>
+          <a href="https://app.nospi.co/event-details/${ev.id}" class="evento-btn">Quiero ir →</a>
         </div>
       `;
       grid.appendChild(card);
@@ -857,6 +874,27 @@ section{padding:70px 0}
     // Activar scroll reveal para las nuevas cards
     document.querySelectorAll('.evento-card.reveal').forEach(el => observer.observe(el));
   }
+
+  // El precio vive en app_config.event_price, no en cada evento (events.price
+  // esta en null). Si la consulta falla nos quedamos con el valor de respaldo,
+  // asi una caida de red nunca deja la tarjeta sin precio.
+  try {
+    const resPrecio = await fetch(
+      `${SUPABASE_URL}/rest/v1/app_config?select=value&key=eq.event_price`,
+      { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+    );
+    if (resPrecio.ok) {
+      const filas = await resPrecio.json();
+      const n = parseInt(filas && filas[0] && filas[0].value, 10);
+      if (Number.isFinite(n) && n > 0) PRECIO_TXT = '$' + n.toLocaleString('es-CO');
+    }
+  } catch (err) {
+    console.warn('[Precio] No se pudo leer app_config, uso el de respaldo:', err);
+  }
+  ['precio-hero', 'precio-subtitulo'].forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = PRECIO_TXT;
+  });
 
   try {
     const today = new Date().toISOString().split('T')[0];
