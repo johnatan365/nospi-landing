@@ -793,22 +793,28 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
   const SUPABASE_URL = 'https://wjdiraurfbawotlcndmk.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
   const container = document.getElementById('eventos-container');
-  // Respaldo: el mismo numero que usa constants/Pricing.ts en la app.
-  // El precio vive en app_config (event_price en COP) y la tasa del dolar en
-  // app_config.usd_cop_rate. En ingles se muestra en dolares porque el
-  // visitante extranjero no sabe cuanto es "15.000". Para cambiar la tasa no
-  // hay que tocar este archivo: se edita la fila usd_cop_rate en Supabase.
+  // Respaldos: los mismos numeros que usa la app (constants/Pricing.ts).
+  //
+  // El precio vive en app_config: event_price en pesos y event_price_usd en
+  // dolares. En ingles se muestra en dolares porque el visitante extranjero no
+  // sabe cuanto es "15.000". Para cambiarlos no hay que tocar este archivo: se
+  // editan esas filas en Supabase.
+  //
+  // OJO: el precio en dolares NO se calcula dividiendo los pesos por la tasa.
+  // Eso era lo que hacia antes y daba $4.63 cuando la app cobra $19 -- quien
+  // llegaba desde aqui se encontraba una cuenta cuatro veces mayor. Son dos
+  // precios distintos a proposito, no dos monedas del mismo: Wompi cobra
+  // siempre en pesos, y el de dolares es su propio numero en app_config. La
+  // regla esta escrita en constants/Pricing.ts: "no convierte nada".
   let PRECIO_COP = 15000;
-  let TASA_USD = 3239;
+  let PRECIO_USD = 19;
   function enIngles() {
     return !!(window.nospiIdioma && window.nospiIdioma() === 'en');
   }
   function L(es, en) { return enIngles() ? en : es; }
   function precioTexto() {
     if (!enIngles()) return '$' + PRECIO_COP.toLocaleString('es-CO');
-    var usd = PRECIO_COP / (TASA_USD || 3239);
-    var txt = usd >= 10 ? String(Math.round(usd)) : (Math.round(usd * 100) / 100).toFixed(2);
-    return '$' + txt + ' USD';
+    return '$' + PRECIO_USD + ' USD';
   }
 
   // Mismos iconos por tipo que usa la app (events/appointments/chats/dinamica).
@@ -932,17 +938,17 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
     console.warn('[Precio] No se pudo leer app_config, uso el de respaldo:', err);
   }
   try {
-    const resTasa = await fetch(
-      `${SUPABASE_URL}/rest/v1/app_config?select=value&key=eq.usd_cop_rate`,
+    const resUsd = await fetch(
+      `${SUPABASE_URL}/rest/v1/app_config?select=value&key=eq.event_price_usd`,
       { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
     );
-    if (resTasa.ok) {
-      const filas = await resTasa.json();
-      const t = parseFloat(filas && filas[0] && filas[0].value);
-      if (Number.isFinite(t) && t > 0) TASA_USD = t;
+    if (resUsd.ok) {
+      const filas = await resUsd.json();
+      const n = parseFloat(filas && filas[0] && filas[0].value);
+      if (Number.isFinite(n) && n > 0) PRECIO_USD = n;
     }
   } catch (err) {
-    console.warn('[Tasa] No se pudo leer usd_cop_rate, uso la de respaldo:', err);
+    console.warn('[Precio USD] No se pudo leer event_price_usd, uso el de respaldo:', err);
   }
   function pintarPrecios() {
     ['precio-hero', 'precio-subtitulo'].forEach(function(id) {
