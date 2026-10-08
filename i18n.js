@@ -90,7 +90,7 @@
  "emp.3": "Legal information",
  "emp.30": "Privacy policy",
  "emp.31": "Child safety",
- "emp.32": "© 2025 Nospi — operated by CRICKEN. Made with ❤️ in Colombia",
+ "emp.32": "© 2025 Nospi. Made with ❤️ in Colombia",
  "emp.4": "Company",
  "emp.5": "information",
  "emp.6": "Commercial registry details of the company that operates Nospi",
@@ -222,7 +222,7 @@
  "home.209": "Instagram",
  "home.21": "Stop swiping.",
  "home.210": "TikTok",
- "home.211": "© 2025 Nospi — operated by CRICKEN. Made with ❤️ in Colombia",
+ "home.211": "© 2025 Nospi. Made with ❤️ in Colombia",
  "home.212": "V",
  "home.213": "A",
  "home.214": "C",
@@ -611,6 +611,14 @@
 
   // La pastilla que tapa el cuerpo la crea el script chico del <head>, para
   // que el ingles no muestre un parpadeo en espanol. Aqui solo se destapa.
+  // ---- API para el resto del JS de la pagina ----------------------------
+  // Lo que arma JavaScript (tarjetas de eventos, mensajes del formulario) no
+  // lleva data-i18n, asi que pregunta el idioma con estas funciones y se
+  // vuelve a pintar cuando llega el evento 'nospi:idioma'.
+  window.nospiIdioma = function () { return idioma; };
+  window.nospiT = function (es, en) { return idioma === 'en' ? en : es; };
+  window.NT = window.nospiT;
+
   var tapa = document.getElementById('nospiTapa');
   function destapar() {
     if (tapa && tapa.parentNode) { tapa.parentNode.removeChild(tapa); tapa = null; }
@@ -648,6 +656,14 @@
     idioma = lang;
     pintarBoton();
     destapar();
+    try {
+      document.dispatchEvent(new CustomEvent('nospi:idioma', { detail: lang }));
+    } catch (e) {
+      // navegadores viejos: CustomEvent a la antigua
+      var ev = document.createEvent('Event');
+      ev.initEvent('nospi:idioma', true, true);
+      document.dispatchEvent(ev);
+    }
   }
 
   var boton = null;
@@ -678,7 +694,14 @@
       "background:rgba(240,98,146,.14);font-family:'DM Sans',sans-serif;" +
       'font-size:13px;line-height:1;color:#fff;cursor:pointer;flex:0 0 auto;' +
       '-webkit-tap-highlight-color:transparent';
-    boton.innerHTML = '<span data-lang="es">ES</span>' +
+    // El globo es el icono universal de "cambiar idioma".
+    boton.innerHTML =
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
+      ' stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"' +
+      ' style="flex:0 0 auto;opacity:.9"><circle cx="12" cy="12" r="9"></circle>' +
+      '<path d="M3 12h18"></path>' +
+      '<path d="M12 3c2.6 2.6 4 5.6 4 9s-1.4 6.4-4 9c-2.6-2.6-4-5.6-4-9s1.4-6.4 4-9z"></path></svg>' +
+      '<span data-lang="es">ES</span>' +
       '<span style="opacity:.35">|</span><span data-lang="en">EN</span>';
     boton.addEventListener('click', function (ev) {
       var t = ev.target.getAttribute && ev.target.getAttribute('data-lang');

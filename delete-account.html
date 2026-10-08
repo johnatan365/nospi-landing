@@ -235,18 +235,18 @@ async function handleSupportSubmit() {
 
   errorEl.style.display = 'none';
   if (!email || !message) {
-    errorEl.textContent = 'Por favor completa tu correo y el mensaje.';
+    errorEl.textContent = NT('Por favor completa tu correo y el mensaje.', 'Please fill in your email and your message.');
     errorEl.style.display = 'block';
     return;
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errorEl.textContent = 'Por favor ingresa un correo válido.';
+    errorEl.textContent = NT('Por favor ingresa un correo válido.', 'Please enter a valid email.');
     errorEl.style.display = 'block';
     return;
   }
 
   btn.disabled = true;
-  btn.textContent = 'Enviando...';
+  btn.textContent = NT('Enviando...', 'Sending...');
   btn.style.opacity = '0.6';
 
   try {
@@ -260,11 +260,11 @@ async function handleSupportSubmit() {
     document.getElementById('supportFormState').style.display = 'none';
     document.getElementById('supportSuccessState').style.display = 'block';
   } catch (err) {
-    document.getElementById('supportError').textContent = 'No se pudo enviar. Intenta por WhatsApp.';
+    document.getElementById('supportError').textContent = NT('No se pudo enviar. Intenta por WhatsApp.', "We couldn't send it. Try on WhatsApp.");
     document.getElementById('supportError').style.display = 'block';
   } finally {
     btn.disabled = false;
-    btn.textContent = 'Enviar solicitud';
+    btn.textContent = NT('Enviar solicitud', 'Send request');
     btn.style.opacity = '1';
   }
 }
@@ -291,7 +291,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSupport
     if (config.support_whatsapp) {
       const waLink = document.getElementById('whatsapp-link');
       if (waLink) {
-        waLink.href = `https://wa.me/${config.support_whatsapp}?text=Hola%2C%20quiero%20eliminar%20mi%20cuenta%20de%20Nospi`;
+        waLink.href = `https://wa.me/${config.support_whatsapp}?text=` + encodeURIComponent(
+          NT('Hola, quiero eliminar mi cuenta de Nospi', 'Hi, I want to delete my Nospi account'));
       }
     }
   } catch (err) {

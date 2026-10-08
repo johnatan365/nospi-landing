@@ -781,7 +781,7 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
 </div>
 </div>
 </div>
-<div class="footer-bottom" data-i18n="home.211">© 2025 Nospi — operado por CRICKEN. Hecho con ❤️ en Colombia</div>
+<div class="footer-bottom" data-i18n="home.211">© 2025 Nospi. Hecho con ❤️ en Colombia</div>
 </div>
 </footer>
 
@@ -794,11 +794,27 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndqZGlyYXVyZmJhd290bGNuZG1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MDMxMTUsImV4cCI6MjA4NTk3OTExNX0.FxMBafEjIliTDzRBRlnY59i1wEcbIx6u8ZdVf1uxuj8';
   const container = document.getElementById('eventos-container');
   // Respaldo: el mismo numero que usa constants/Pricing.ts en la app.
-  let PRECIO_TXT = '$15.000';
+  // El precio vive en app_config (event_price en COP) y la tasa del dolar en
+  // app_config.usd_cop_rate. En ingles se muestra en dolares porque el
+  // visitante extranjero no sabe cuanto es "15.000". Para cambiar la tasa no
+  // hay que tocar este archivo: se edita la fila usd_cop_rate en Supabase.
+  let PRECIO_COP = 15000;
+  let TASA_USD = 3239;
+  function enIngles() {
+    return !!(window.nospiIdioma && window.nospiIdioma() === 'en');
+  }
+  function L(es, en) { return enIngles() ? en : es; }
+  function precioTexto() {
+    if (!enIngles()) return '$' + PRECIO_COP.toLocaleString('es-CO');
+    var usd = PRECIO_COP / (TASA_USD || 3239);
+    var txt = usd >= 10 ? String(Math.round(usd)) : (Math.round(usd * 100) / 100).toFixed(2);
+    return '$' + txt + ' USD';
+  }
 
   // Mismos iconos por tipo que usa la app (events/appointments/chats/dinamica).
   const TIPO_EMOJI = { bar: '🍸', restaurante: '🍽️', cafe: '☕', caminata: '🚶', bolos: '🎳', virtual: '🎥', default: '🍽️' };
   const TIPO_LABEL = { bar: 'Bar', restaurante: 'Restaurante', cafe: 'Café', caminata: 'Caminata', bolos: 'Bolos', virtual: 'Videollamada', default: 'Restaurante' };
+  const TIPO_LABEL_EN = { bar: 'Bar', restaurante: 'Restaurant', cafe: 'Café', caminata: 'Walk', bolos: 'Bowling', virtual: 'Video call', default: 'Restaurant' };
 
   function formatFecha(dateStr, timeStr) {
     // Supabase devuelve "2026-04-24 02:00:00+00" — tomamos solo YYYY-MM-DD
@@ -808,18 +824,26 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
     // Ajustar a Colombia UTC-5: si la hora UTC es < 5, restar un día
     const horaUTC = parseInt(dateStr.replace('T',' ').split(' ')[1].split(':')[0]);
     if (horaUTC < 5) date.setDate(date.getDate() - 1);
-    const dias = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
-    const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    const dias = enIngles()
+      ? ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+      : ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+    const meses = enIngles()
+      ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+      : ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
     const dia = dias[date.getDay()];
     const num = date.getDate();
     const mes = meses[date.getMonth()];
     const hora = timeStr ? timeStr.slice(0,5) : '';
-    return `${dia} ${num} ${mes}${hora ? ' · ' + hora : ''}`;
+    // En ingles el mes va antes del dia: "Thu, Oct 9 · 19:00"
+    const cuando = enIngles() ? `${dia}, ${mes} ${num}` : `${dia} ${num} ${mes}`;
+    return `${cuando}${hora ? ' · ' + hora : ''}`;
   }
 
   function renderEventos(events) {
     if (!events || events.length === 0) {
-      container.innerHTML = '<div class="eventos-empty">No hay eventos disponibles por el momento. ¡Vuelve pronto! 🗓️</div>';
+      container.innerHTML = '<div class="eventos-empty">' + L(
+        'No hay eventos disponibles por el momento. ¡Vuelve pronto! 🗓️',
+        'No events available right now. Check back soon! 🗓️') + '</div>';
       return;
     }
 
@@ -833,7 +857,9 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
       // siempre queda habilitado y dice "Quiero ir".
       const tipo = ev.type || 'default';
       const emoji = TIPO_EMOJI[tipo] || TIPO_EMOJI.default;
-      const label = TIPO_LABEL[tipo] || TIPO_LABEL.default;
+      const label = enIngles()
+        ? (TIPO_LABEL_EN[tipo] || TIPO_LABEL_EN.default)
+        : (TIPO_LABEL[tipo] || TIPO_LABEL.default);
       // Solo mostramos el lugar real si YA fue revelado. Si no, mantenemos
       // el misterio (parte de la experiencia Nospi) y no filtramos el sitio.
       const revelado = ev.is_location_revealed === true;
@@ -842,15 +868,22 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
       const esVirtual = tipo === 'virtual';
       const pinEmoji = esVirtual ? '📹' : (revelado ? '📍' : '🤫');
       const ciudadEvento = ev.nacional
-        ? 'Todo el país'
-        : ((ev.cities && ev.cities.length > 0) ? ev.cities.join(' y ') : (ev.city || ''));
+        ? L('Todo el país', 'Nationwide')
+        : ((ev.cities && ev.cities.length > 0)
+            ? ev.cities.join(L(' y ', ' and '))
+            : (ev.city || ''));
       const lugar = esVirtual
-        ? 'Con cámara prendida: la idea es conocernos las caras'
+        ? L('Con cámara prendida: la idea es conocernos las caras',
+            "Camera on: the whole point is seeing each other's faces")
         : revelado
-          ? (ev.location_name || ev.location || ciudadEvento || 'Por confirmar')
-          : 'Ubicación secreta · se revela un día antes';
+          ? (ev.location_name || ev.location || ciudadEvento || L('Por confirmar', 'To be confirmed'))
+          : L('Ubicación secreta · se revela un día antes',
+              'Secret location · revealed the day before');
       const direccion = (revelado && !esVirtual) ? (ev.location_address || '') : '';
       const fecha = formatFecha(ev.date, ev.time);
+      // El nombre en ingles lo escribe el traductor en Supabase (columna
+      // name_en). Si todavia no esta, se cae al español en vez de ir vacio.
+      const nombre = (enIngles() && ev.name_en) ? ev.name_en : ev.name;
 
       const card = document.createElement('div');
       card.className = 'evento-card reveal';
@@ -858,18 +891,18 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
         <div class="evento-header">
           <div class="evento-top">
             <div class="evento-tipo">${emoji} ${label}</div>
-            <div class="evento-precio"><b>${PRECIO_TXT}</b><span>por persona</span></div>
+            <div class="evento-precio"><b>${precioTexto()}</b><span>${L('por persona','per person')}</span></div>
           </div>
-          <div class="evento-nombre">${ev.name}</div>
+          <div class="evento-nombre">${nombre}</div>
         </div>
         <div class="evento-body">
           <div class="evento-info"><span>📅</span><span>${fecha}</span></div>
           <div class="evento-info"><span>${pinEmoji}</span><span>${lugar}${direccion ? ' — ' + direccion : ''}</span></div>
-          <div class="evento-info"><span>👥</span><span>Hombres y mujeres</span></div>
+          <div class="evento-info"><span>👥</span><span>${L('Hombres y mujeres','Men and women')}</span></div>
           ${ciudadEvento ? `<div class="evento-info"><span>🏙️</span><span>${ciudadEvento}</span></div>` : ''}
         </div>
         <div class="evento-footer">
-          <a href="https://app.nospi.co/event-details/${ev.id}" class="evento-btn">Quiero ir →</a>
+          <a href="https://app.nospi.co/event-details/${ev.id}" class="evento-btn">${L('Quiero ir →','I want to go →')}</a>
         </div>
       `;
       grid.appendChild(card);
@@ -893,20 +926,37 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
     if (resPrecio.ok) {
       const filas = await resPrecio.json();
       const n = parseInt(filas && filas[0] && filas[0].value, 10);
-      if (Number.isFinite(n) && n > 0) PRECIO_TXT = '$' + n.toLocaleString('es-CO');
+      if (Number.isFinite(n) && n > 0) PRECIO_COP = n;
     }
   } catch (err) {
     console.warn('[Precio] No se pudo leer app_config, uso el de respaldo:', err);
   }
-  ['precio-hero', 'precio-subtitulo'].forEach(function(id) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = PRECIO_TXT;
-  });
+  try {
+    const resTasa = await fetch(
+      `${SUPABASE_URL}/rest/v1/app_config?select=value&key=eq.usd_cop_rate`,
+      { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+    );
+    if (resTasa.ok) {
+      const filas = await resTasa.json();
+      const t = parseFloat(filas && filas[0] && filas[0].value);
+      if (Number.isFinite(t) && t > 0) TASA_USD = t;
+    }
+  } catch (err) {
+    console.warn('[Tasa] No se pudo leer usd_cop_rate, uso la de respaldo:', err);
+  }
+  function pintarPrecios() {
+    ['precio-hero', 'precio-subtitulo'].forEach(function(id) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = precioTexto();
+    });
+  }
+  pintarPrecios();
+  document.addEventListener('nospi:idioma', pintarPrecios);
 
   try {
     const today = new Date().toISOString().split('T')[0];
     const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/events?select=id,name,description,date,time,city,cities,nacional,location_name,location_address,is_location_revealed,type,max_participants,current_participants,event_status,is_full&event_status=eq.published&is_full=eq.false&date=gte.${today}&order=date.asc&limit=6`,
+      `${SUPABASE_URL}/rest/v1/events?select=id,name,name_en,description,description_en,date,time,city,cities,nacional,location_name,location_address,is_location_revealed,type,max_participants,current_participants,event_status,is_full&event_status=eq.published&is_full=eq.false&date=gte.${today}&order=date.asc&limit=6`,
       {
         headers: {
           'apikey': SUPABASE_ANON_KEY,
@@ -917,9 +967,15 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
     if (!res.ok) throw new Error('Error ' + res.status);
     const events = await res.json();
     renderEventos(events);
+    // Las tarjetas las arma JS, no las toca el traductor del html: al cambiar
+    // de idioma hay que volver a pintarlas.
+    document.addEventListener('nospi:idioma', function () { renderEventos(events); });
   } catch (err) {
     console.warn('[Eventos] Error cargando eventos:', err);
-    container.innerHTML = '<div class="eventos-empty">No pudimos cargar los eventos. <a href="https://app.nospi.co" style="color:var(--pink)">Ver en la app →</a></div>';
+    container.innerHTML = '<div class="eventos-empty">' +
+      L('No pudimos cargar los eventos. ', "We couldn't load the events. ") +
+      '<a href="https://app.nospi.co" style="color:var(--pink)">' +
+      L('Ver en la app →', 'See them in the app →') + '</a></div>';
   }
 })();
 
@@ -1036,18 +1092,18 @@ async function handleSupportSubmit() {
 
   errorEl.style.display = 'none';
   if (!email || !message) {
-    errorEl.textContent = 'Por favor completa tu correo y el mensaje.';
+    errorEl.textContent = NT('Por favor completa tu correo y el mensaje.', 'Please fill in your email and your message.');
     errorEl.style.display = 'block';
     return;
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errorEl.textContent = 'Por favor ingresa un correo válido.';
+    errorEl.textContent = NT('Por favor ingresa un correo válido.', 'Please enter a valid email.');
     errorEl.style.display = 'block';
     return;
   }
 
   btn.disabled = true;
-  btn.textContent = 'Enviando...';
+  btn.textContent = NT('Enviando...', 'Sending...');
   btn.style.opacity = '0.6';
 
   try {
@@ -1068,11 +1124,12 @@ async function handleSupportSubmit() {
 
   } catch (err) {
     console.error('[SupportLanding] Error:', err);
-    errorEl.textContent = 'No se pudo enviar el mensaje. Intenta de nuevo o escríbenos por WhatsApp.';
+    errorEl.textContent = NT('No se pudo enviar el mensaje. Intenta de nuevo o escríbenos por WhatsApp.',
+      "We couldn't send the message. Try again or write to us on WhatsApp.");
     errorEl.style.display = 'block';
   } finally {
     btn.disabled = false;
-    btn.textContent = 'Enviar mensaje';
+    btn.textContent = NT('Enviar mensaje', 'Send message');
     btn.style.opacity = '1';
   }
 }
