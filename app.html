@@ -26,6 +26,13 @@
   a { display: block; margin: 10px 0; padding: 14px; border-radius: 12px; background: #C2185B; color: #fff; text-decoration: none; font-weight: 700; }
   img { width: 64px; height: 64px; border-radius: 14px; }
 </style>
+<script>/* idioma: decide antes de pintar para que el ingles no parpadee */
+(function(){try{var g=localStorage.getItem('nospi_idioma');var n=(navigator.language||'es').toLowerCase();
+var l=(g==='en'||g==='es')?g:(n.indexOf('es')===0?'es':'en');
+if(l==='en'){var s=document.createElement('style');s.id='nospiTapa';s.textContent='body{visibility:hidden}';
+document.documentElement.appendChild(s);setTimeout(function(){var e=document.getElementById('nospiTapa');
+if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script>
+<script src="/i18n.js" defer></script>
 </head>
 <body>
 <div class="card">
