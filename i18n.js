@@ -605,9 +605,21 @@
   var nav = (navigator.language || navigator.userLanguage || 'es').toLowerCase();
   var guardado = null;
   try { guardado = localStorage.getItem(CLAVE); } catch (e) {}
-  var idioma = (guardado === 'en' || guardado === 'es')
-    ? guardado
-    : (nav.indexOf('es') === 0 ? 'es' : 'en');
+
+  // Orden de mando, de mas fuerte a mas debil:
+  //   1. ?lang=en en la direccion  -> lo pone el anuncio. Quien hace clic en
+  //      un anuncio en ingles ve ingles, aunque tenga el celular en espanol.
+  //   2. lo que la persona escogio antes con la pastilla ES|EN.
+  //   3. el idioma del navegador.
+  var deUrl = (function () {
+    var m = /[?&]lang=(en|es)\b/i.exec(location.search || '');
+    return m ? m[1].toLowerCase() : null;
+  })();
+  var idioma = deUrl
+    || ((guardado === 'en' || guardado === 'es') ? guardado
+        : (nav.indexOf('es') === 0 ? 'es' : 'en'));
+  // Si vino por la direccion, se recuerda: asi la segunda visita sigue igual.
+  if (deUrl) { try { localStorage.setItem(CLAVE, deUrl); } catch (e) {} }
 
   // La pastilla que tapa el cuerpo la crea el script chico del <head>, para
   // que el ingles no muestre un parpadeo en espanol. Aqui solo se destapa.
@@ -682,6 +694,14 @@
     if (lang === idioma) return;
     try { localStorage.setItem(CLAVE, lang); } catch (e) {}
     aplicar(lang);
+    // La direccion refleja el idioma escogido, asi quien copie el enlace lo
+    // comparte en el idioma que esta viendo.
+    try {
+      var u = new URL(location.href);
+      if (lang === 'en') u.searchParams.set('lang', 'en');
+      else u.searchParams.delete('lang');
+      history.replaceState(null, '', u.pathname + (u.search || '') + (u.hash || ''));
+    } catch (e) {}
   }
 
   function crearBoton() {
@@ -728,9 +748,24 @@
     pintarBoton();
   }
 
+  // Los enlaces a app.nospi.co se llevan el idioma puesto, para que quien
+  // llego en ingles no caiga en una app en espanol. Se hace al hacer clic y
+  // no al cargar, porque las tarjetas de eventos nacen despues.
+  function marcarEnlace(ev) {
+    var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.indexOf('app.nospi.co') === -1) return;
+    href = href.replace(/([?&])lang=(en|es)(&|$)/i, '$1').replace(/[?&]$/, '');
+    if (idioma === 'en') href += (href.indexOf('?') === -1 ? '?' : '&') + 'lang=en';
+    a.setAttribute('href', href);
+  }
+
   function arrancar() {
     crearBoton();
     aplicar(idioma);
+    document.addEventListener('click', marcarEnlace, true);
+    document.addEventListener('auxclick', marcarEnlace, true);
   }
 
   if (document.readyState === 'loading') {

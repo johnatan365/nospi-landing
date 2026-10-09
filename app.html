@@ -28,7 +28,8 @@
 </style>
 <script>/* idioma: decide antes de pintar para que el ingles no parpadee */
 (function(){try{var g=localStorage.getItem('nospi_idioma');var n=(navigator.language||'es').toLowerCase();
-var l=(g==='en'||g==='es')?g:(n.indexOf('es')===0?'es':'en');
+var u=/[?&]lang=(en|es)\b/i.exec(location.search||'');
+var l=u?u[1].toLowerCase():((g==='en'||g==='es')?g:(n.indexOf('es')===0?'es':'en'));
 if(l==='en'){var s=document.createElement('style');s.id='nospiTapa';s.textContent='body{visibility:hidden}';
 document.documentElement.appendChild(s);setTimeout(function(){var e=document.getElementById('nospiTapa');
 if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script>
