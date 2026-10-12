@@ -147,16 +147,16 @@ section{padding:100px 0}
 .exp-body p{font-size:15px;line-height:1.6;color:#666}
 
 /* ─── GAME ─── */
-.game-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
-.level-card{padding:32px 24px;border-radius:var(--radius-card);background:rgba(255,255,255,0.06);text-align:center;transition:transform .3s}
-.level-card:hover{transform:translateY(-6px)}
-.level-card.divertido{border:2px solid var(--blue)}
-.level-card.coqueto{border:2px solid var(--orange)}
-.level-card.atrevido{border:2px solid var(--pink)}
-.level-emoji{font-size:52px;margin-bottom:12px;display:block}
-.level-card h3{font-size:20px;font-weight:700;margin-bottom:10px}
-.level-card p{font-size:14px;line-height:1.6;color:rgba(255,255,255,0.6)}
-.game-shot{text-align:center;font-size:22px;font-weight:700;color:var(--pink);margin-bottom:40px}
+.game-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px}
+.game-card{padding:32px 24px;border-radius:var(--radius-card);background:rgba(255,255,255,0.06);text-align:center;transition:transform .3s}
+.game-card:hover{transform:translateY(-6px)}
+.game-card.azul{border:2px solid var(--blue)}
+.game-card.naranja{border:2px solid var(--orange)}
+.game-card.rosa{border:2px solid var(--pink)}
+.game-emoji{font-size:52px;margin-bottom:12px;display:block}
+.game-card h3{font-size:20px;font-weight:700;margin-bottom:10px}
+.game-card p{font-size:14px;line-height:1.6;color:rgba(255,255,255,0.6)}
+.game-note{text-align:center;font-size:22px;font-weight:700;color:var(--pink);margin-bottom:40px}
 
 /* ─── TESTIMONIALS ─── */
 .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -238,7 +238,7 @@ footer{background:var(--bg-dark);padding:60px 0 32px;border-top:1px solid rgba(2
 .phone-mockup{width:240px;height:480px}
 .phone-logo{width:100px;height:100px;border-radius:28px}
 .phone-logo span{font-size:26px}
-.problem-grid,.steps,.game-levels,.testimonials-grid,.trust-grid{grid-template-columns:1fr}
+.problem-grid,.steps,.game-cards,.testimonials-grid,.trust-grid{grid-template-columns:1fr}
 .exp-grid{grid-template-columns:1fr}
 .nav-links{display:none}
 .hamburger{display:flex}
@@ -396,7 +396,7 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
 <div class="step reveal">
 <div class="step-number">03</div>
 <h3 data-i18n="home.58">Conecta y diviértete</h3>
-<p data-i18n="home.59">Rompe el hielo con nuestro juego de preguntas por niveles. Todos participan, todos se divierten.</p>
+<p data-i18n="home.59">Rompe el hielo con nuestro juego de preguntas. Todos participan, todos se divierten.</p>
 </div>
 </div>
 <div class="cta-center reveal"><a href="https://app.nospi.co" class="btn-primary" data-i18n="home.60">Reserva tu primer evento →</a></div>
@@ -484,24 +484,24 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
 <div class="container">
 <h2 class="section-title reveal"><span data-i18n="home.90">No es una cena aburrida.</span><br><span data-i18n="home.91">Es una experiencia.</span></h2>
 <p class="section-subtitle reveal" style="color:rgba(255,255,255,0.6)" data-i18n="home.92">Nuestro juego de preguntas rompe el hielo al instante. Todos participan, nadie se queda callado.</p>
-<div class="game-levels">
-<div class="level-card divertido reveal">
-<span class="level-emoji">😄</span>
-<h3 data-i18n="home.93">Divertido</h3>
-<p data-i18n="home.94">Preguntas ligeras para conocerse. Tu nombre, a qué te dedicas, tu mayor sueño.</p>
+<div class="game-cards">
+<div class="game-card azul reveal">
+<span class="game-emoji">💬</span>
+<h3 data-i18n="home.93">Rompe el hielo</h3>
+<p data-i18n="home.94">Las preguntas ya están puestas. No tienes que pensar de qué hablar.</p>
 </div>
-<div class="level-card coqueto reveal">
-<span class="level-emoji">💕</span>
-<h3 data-i18n="home.95">Coqueto</h3>
-<p data-i18n="home.96">La conversación se pone interesante. ¿Qué te atrae? ¿Tu cita ideal?</p>
+<div class="game-card naranja reveal">
+<span class="game-emoji">😌</span>
+<h3 data-i18n="home.95">Puedes pasar</h3>
+<p data-i18n="home.96">Nadie está obligado a responder. Si no quieres, pasas y el juego sigue.</p>
 </div>
-<div class="level-card atrevido reveal">
-<span class="level-emoji">🔥</span>
-<h3 data-i18n="home.97">Atrevido</h3>
-<p data-i18n="home.98">Para los valientes. Secretos, confesiones y preguntas que nadie se atreve a hacer.</p>
+<div class="game-card rosa reveal">
+<span class="game-emoji">🗣️</span>
+<h3 data-i18n="home.97">Sin libreto</h3>
+<p data-i18n="home.98">Cuando se acaban las preguntas, la mesa sigue hablando de lo que quiera.</p>
 </div>
 </div>
-<p class="game-shot reveal" data-i18n="home.99">Si alguien no responde... ¡shot o reto! 🥃</p>
+<p class="game-note reveal" data-i18n="home.99">En 10 minutos se te olvida que eran desconocidos.</p>
 <div class="cta-center reveal"><a href="https://app.nospi.co" class="btn-primary" data-i18n="home.100">Quiero jugar →</a></div>
 </div>
 </section>
@@ -546,7 +546,7 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
 </div>
 <div class="testimonial reveal">
 <div class="testimonial-stars">★★★★★</div>
-<q data-i18n="home.113">El nivel atrevido es lo mejor 😂 Nunca me había reído tanto con desconocidos. Muy recomendado.</q>
+<q data-i18n="home.113">El juego de preguntas es lo mejor 😂 Nunca me había reído tanto con desconocidos. Muy recomendado.</q>
 <div class="testimonial-author">
 <div class="testimonial-avatar" data-i18n="home.216">M</div>
 <div><div class="testimonial-name" data-i18n="home.114">María José P., 24 años</div></div>
