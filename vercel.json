@@ -19,6 +19,26 @@
       "source": "/wa",
       "destination": "/?utm_source=whatsapp&utm_medium=organico",
       "permanent": false
+    },
+    {
+      "source": "/wa/eventos",
+      "destination": "/?utm_source=whatsapp&utm_medium=organico#eventos",
+      "permanent": false
+    },
+    {
+      "source": "/wa/dinamica",
+      "destination": "/?utm_source=whatsapp&utm_medium=organico#como-funciona",
+      "permanent": false
+    },
+    {
+      "source": "/wa/faq",
+      "destination": "/?utm_source=whatsapp&utm_medium=organico#faq",
+      "permanent": false
+    },
+    {
+      "source": "/wa/seguridad",
+      "destination": "/?utm_source=whatsapp&utm_medium=organico#seguridad",
+      "permanent": false
     }
   ],
   "rewrites": [
