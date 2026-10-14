@@ -59,10 +59,13 @@ nav.scrolled{background:rgba(26,0,16,0.92);backdrop-filter:blur(16px);border-bot
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
 .hamburger span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(26,0,16,0.97);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+/* z-index POR ENCIMA del nav (100). Con 99 el nav quedaba arriba: la X caia
+   justo debajo del boton de hamburguesa, asi que el toque se lo llevaba la
+   hamburguesa y el menu no se cerraba nunca. */
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(26,0,16,0.97);z-index:110;flex-direction:column;align-items:center;justify-content:center;gap:28px}
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-size:22px;font-weight:600;color:var(--white)}
-.mobile-close{position:absolute;top:20px;right:24px;font-size:32px;color:var(--white);cursor:pointer}
+.mobile-close{position:absolute;top:12px;right:14px;font-size:34px;line-height:1;color:var(--white);cursor:pointer;padding:10px 16px;-webkit-tap-highlight-color:transparent}
 
 /* ─── HERO ─── */
 .hero{min-height:100vh;background:linear-gradient(180deg,rgba(26,0,16,0.92) 0%,rgba(136,14,79,0.85) 55%,rgba(173,20,87,0.9) 100%),url('img-noche-bar.jpg') center/cover;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 80px}
@@ -278,13 +281,16 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
 <a href="https://app.nospi.co/login" style="font-size:15px;font-weight:500;color:rgba(255,255,255,0.7);transition:color .2s" data-i18n="home.9">Iniciar sesión</a>
 <a href="https://app.nospi.co" class="nav-cta" data-i18n="home.10">Regístrate</a>
 </div>
-<div class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')">
+<div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
 <span></span><span></span><span></span>
 </div>
 </div>
 </nav>
 <div id="mobileMenu" class="mobile-menu">
-<div class="mobile-close" onclick="this.parentElement.classList.remove('open')" data-i18n="home.11">&times;</div>
+<!-- Sin data-i18n: el traductor asigna textContent, y con la clave puesta en
+     ingles salia escrito "&amp;times;" tal cual en vez de la equis. El simbolo
+     no necesita traduccion. -->
+<div class="mobile-close" onclick="this.parentElement.classList.remove('open')" role="button" aria-label="Cerrar menu">×</div>
 <a href="#como-funciona" onclick="this.parentElement.classList.remove('open')" data-i18n="home.12">Cómo funciona</a>
 <a href="#eventos" onclick="this.parentElement.classList.remove('open')" data-i18n="home.13">Eventos</a>
 <a href="#experiencias" onclick="this.parentElement.classList.remove('open')" data-i18n="home.14">Experiencias</a>

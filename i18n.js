@@ -111,7 +111,6 @@
  "home.107": "My friends can never go out on the same day. With Nospi I always have a plan and I meet really cool people.",
  "home.108": "Carolina T., 28",
  "home.109": "Envigado",
- "home.11": "&times;",
  "home.110": "So much better than Tinder. No endless chatting here — you just show up and meet people for real.",
  "home.111": "Santiago G., 33",
  "home.112": "Sabaneta",
