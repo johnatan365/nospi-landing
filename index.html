@@ -808,13 +808,17 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
   // editan esas filas en Supabase.
   //
   // OJO: el precio en dolares NO se calcula dividiendo los pesos por la tasa.
-  // Eso era lo que hacia antes y daba $4.63 cuando la app cobra $19 -- quien
-  // llegaba desde aqui se encontraba una cuenta cuatro veces mayor. Son dos
-  // precios distintos a proposito, no dos monedas del mismo: Wompi cobra
-  // siempre en pesos, y el de dolares es su propio numero en app_config. La
-  // regla esta escrita en constants/Pricing.ts: "no convierte nada".
+  // Eso era lo que hacia antes y daba $4.63. Son dos precios distintos a
+  // proposito: event_price en pesos y event_price_usd en dolares, cada uno su
+  // propio numero en app_config.
+  //
+  // Desde el 14 de octubre de 2026 la app SI cobra el precio en dolares: le
+  // manda a Wompi el equivalente en pesos (event_price_usd x usd_cop_rate),
+  // porque Wompi solo liquida en pesos. Asi que lo que se anuncia aqui es lo
+  // que se cobra. Si se cambia este numero, cambiarlo en app_config, no aqui:
+  // estos son solo los respaldos del instante de carga.
   let PRECIO_COP = 15000;
-  let PRECIO_USD = 19;
+  let PRECIO_USD = 10;
   function enIngles() {
     return !!(window.nospiIdioma && window.nospiIdioma() === 'en');
   }
