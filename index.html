@@ -319,7 +319,7 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
 <a href="https://app.nospi.co" class="btn-primary" data-i18n="home.24">Únete ahora →</a>
 <a href="#como-funciona" class="btn-secondary" data-i18n="home.25">Cómo funciona</a>
 </div>
-<div style="margin-top:18px;display:flex;justify-content:center">
+<div id="precio-hero-pastilla" style="margin-top:18px;display:none;justify-content:center">
 <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:9px 20px;font-size:14px">
 <b id="precio-hero" style="font-family:'Outfit',sans-serif;font-weight:800;color:#fff">$15.000</b>
 <span style="color:rgba(255,255,255,0.75)" data-i18n="home.26">por encuentro · pagas solo al que vayas</span>
@@ -586,7 +586,7 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
 <section class="section-dark" id="eventos" style="border-top:1px solid rgba(240,98,146,0.08)">
 <div class="container">
 <h2 class="section-title reveal" data-i18n="home.36">Próximos eventos</h2>
-<p class="section-subtitle reveal" style="color:rgba(255,255,255,0.6)"><span data-i18n="home.37">Todos cuestan lo mismo:</span> <b id="precio-subtitulo" style="color:#fff">$15.000</b><span data-i18n="home.38"> por persona. Pagas solo el que vayas.</span></p>
+<p id="precio-eventos-subtitulo" class="section-subtitle reveal" style="color:rgba(255,255,255,0.6);display:none"><span data-i18n="home.37">Todos cuestan lo mismo:</span> <b id="precio-subtitulo" style="color:#fff">$15.000</b><span data-i18n="home.38"> por persona. Pagas solo el que vayas.</span></p>
 <div id="eventos-container">
   <div class="eventos-loading" data-i18n="home.39">Cargando eventos... ✨</div>
 </div>
@@ -818,6 +818,12 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
   // que se cobra. Si se cambia este numero, cambiarlo en app_config, no aqui:
   // estos son solo los respaldos del instante de carga.
   let PRECIO_COP = 15000;
+  // Interruptor "Pago por evento" del admin (app_config.ocultar_pago_por_evento).
+  // Encendido, la app solo le ofrece la suscripcion a quien llega nuevo, y
+  // quien llega por aqui es nuevo: no se anuncia el precio por evento ni en
+  // el hero, ni en Proximos eventos, ni en las tarjetas. Si la consulta falla
+  // se muestra el precio, como antes.
+  let MOSTRAR_PRECIO_EVENTO = true;
   let PRECIO_USD = 10;
   function enIngles() {
     return !!(window.nospiIdioma && window.nospiIdioma() === 'en');
@@ -908,7 +914,7 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
         <div class="evento-header">
           <div class="evento-top">
             <div class="evento-tipo">${emoji} ${label}</div>
-            <div class="evento-precio"><b>${precioTexto()}</b><span>${L('por persona','per person')}</span></div>
+            ${MOSTRAR_PRECIO_EVENTO ? `<div class="evento-precio"><b>${precioTexto()}</b><span>${L('por persona','per person')}</span></div>` : ''}
           </div>
           <div class="evento-nombre">${nombre}</div>
         </div>
@@ -936,6 +942,18 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
   // esta en null). Si la consulta falla nos quedamos con el valor de respaldo,
   // asi una caida de red nunca deja la tarjeta sin precio.
   try {
+    const resOcultar = await fetch(
+      `${SUPABASE_URL}/rest/v1/app_config?select=value&key=eq.ocultar_pago_por_evento`,
+      { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+    );
+    if (resOcultar.ok) {
+      const filas = await resOcultar.json();
+      MOSTRAR_PRECIO_EVENTO = !(filas && filas[0] && filas[0].value === 'true');
+    }
+  } catch (err) {
+    console.warn('[Precio] No se pudo leer ocultar_pago_por_evento, se muestra el precio:', err);
+  }
+  try {
     const resPrecio = await fetch(
       `${SUPABASE_URL}/rest/v1/app_config?select=value&key=eq.event_price`,
       { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
@@ -962,6 +980,10 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
     console.warn('[Precio USD] No se pudo leer event_price_usd, uso el de respaldo:', err);
   }
   function pintarPrecios() {
+    const pastilla = document.getElementById('precio-hero-pastilla');
+    if (pastilla) pastilla.style.display = MOSTRAR_PRECIO_EVENTO ? 'flex' : 'none';
+    const subtitulo = document.getElementById('precio-eventos-subtitulo');
+    if (subtitulo) subtitulo.style.display = MOSTRAR_PRECIO_EVENTO ? '' : 'none';
     ['precio-hero', 'precio-subtitulo'].forEach(function(id) {
       const el = document.getElementById(id);
       if (el) el.textContent = precioTexto();
