@@ -835,9 +835,9 @@ if(e&&e.parentNode)e.parentNode.removeChild(e);},1500);}}catch(e){}})();</script
   }
 
   // Mismos iconos por tipo que usa la app (events/appointments/chats/dinamica).
-  const TIPO_EMOJI = { bar: '🍸', restaurante: '🍽️', cafe: '☕', caminata: '🚶', bolos: '🎳', virtual: '🎥', default: '🍽️' };
-  const TIPO_LABEL = { bar: 'Bar', restaurante: 'Restaurante', cafe: 'Café', caminata: 'Caminata', bolos: 'Bolos', virtual: 'Videollamada', default: 'Restaurante' };
-  const TIPO_LABEL_EN = { bar: 'Bar', restaurante: 'Restaurant', cafe: 'Café', caminata: 'Walk', bolos: 'Bowling', virtual: 'Video call', default: 'Restaurant' };
+  const TIPO_EMOJI = { bar: '🍸', baile: '💃', karaoke: '🎤', restaurante: '🍽️', cafe: '☕', caminata: '🚶', bolos: '🎳', virtual: '🎥', default: '🍽️' };
+  const TIPO_LABEL = { bar: 'Bar', baile: 'Baile', karaoke: 'Karaoke', restaurante: 'Restaurante', cafe: 'Café', caminata: 'Caminata', bolos: 'Bolos', virtual: 'Videollamada', default: 'Restaurante' };
+  const TIPO_LABEL_EN = { bar: 'Bar', baile: 'Dancing', karaoke: 'Karaoke', restaurante: 'Restaurant', cafe: 'Café', caminata: 'Walk', bolos: 'Bowling', virtual: 'Video call', default: 'Restaurant' };
 
   function formatFecha(dateStr, timeStr) {
     // Supabase devuelve "2026-04-24 02:00:00+00" — tomamos solo YYYY-MM-DD
